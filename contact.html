@@ -1,1 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nous contacter — Vega Studio</title>
+  <meta name="description" content="Contactez Vega Studio pour un devis gratuit et sans engagement." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/contact.css" />
+</head>
+<body>
 
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="Vega Studio" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="formules.html">Formules</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="contact.html" class="nav-cta">Nous contacter</a></li>
+      </ul>
+      <div class="nav-burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="badge fade-up">Nous contacter</div>
+      <h1 class="fade-up fade-up-delay-1">Parlons de<br /><span class="accent-text">votre projet.</span></h1>
+      <p class="fade-up fade-up-delay-2">Vous avez une question sur nos formules, vous souhaitez un devis, ou vous voulez simplement en savoir plus ? Écrivez-nous, nous vous répondons sous 24 heures.</p>
+    </div>
+  </section>
+
+  <section class="section-contact">
+    <div class="container contact-grid">
+
+      <!-- FORMULAIRE -->
+      <div class="contact-form-wrap fade-up">
+        <form
+          action="https://formspree.io/f/VOTRE_ID_FORMSPREE"
+          method="POST"
+          class="contact-form"
+          id="contactForm"
+        >
+          <div class="form-group">
+            <label for="name">Votre nom</label>
+            <input type="text" id="name" name="name" placeholder="Jean Dupont" required />
+          </div>
+          <div class="form-group">
+            <label for="metier">Votre métier</label>
+            <input type="text" id="metier" name="metier" placeholder="Plombier, électricien..." required />
+          </div>
+          <div class="form-group">
+            <label for="email">Votre adresse e-mail</label>
+            <input type="email" id="email" name="email" placeholder="jean@exemple.fr" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Votre numéro de téléphone <span class="optional">(facultatif)</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="06 00 00 00 00" />
+          </div>
+          <div class="form-group">
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Décrivez votre projet ou posez-nous vos questions..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">
+            Envoyer le message
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+          <p class="form-note">Nous traitons chaque demande sérieusement et personnellement. Aucun message ne reste sans réponse.</p>
+        </form>
+      </div>
+
+      <!-- INFOS CONTACT -->
+      <div class="contact-info fade-up fade-up-delay-2">
+        <div class="info-card">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <strong>E-mail</strong>
+            <a href="mailto:vega.studio.webdesign@gmail.com">vega.studio.webdesign@gmail.com</a>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <strong>Délai de réponse</strong>
+            <span>Sous 24 heures, du lundi au vendredi</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div>
+            <strong>Devis gratuit</strong>
+            <span>Sans engagement, sans obligation</span>
+          </div>
+        </div>
+
+        <div class="info-reminder">
+          <p>Vous préférez nous écrire directement ?</p>
+          <a href="mailto:vega.studio.webdesign@gmail.com" class="btn btn-outline" style="margin-top:1rem;">
+            Écrire un e-mail
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <img src="assets/logo.png" alt="Vega Studio" />
+      </div>
+      <p>© 2025 Vega Studio — vega.studio.webdesign@gmail.com</p>
+      <ul class="footer-links">
+        <li><a href="formules.html">Formules</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
