@@ -131,14 +131,28 @@
 }
 
 /* ══ POURQUOI ══════════════════════════════════════ */
-.section-why { background:var(--bg); padding:9rem 0; }
+.section-why { background:var(--bg); padding:13rem 0; }
 
-.why-grid { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; }
+.why-grid { display:grid; grid-template-columns:1fr 420px 1fr; gap:4rem; align-items:center; }
 
 .why-title {
   font-family:'Syne', sans-serif;
   font-size:clamp(1.7rem, 2.8vw, 2.5rem);
   font-weight:700; line-height:1.2; letter-spacing:-.02em; margin-top:.75rem;
+}
+
+.why-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#why-canvas {
+  width: 100%;
+  max-width: 420px;
+  height: 420px;
+  display: block;
+  opacity: 0.85;
 }
 
 .why-right { display:flex; flex-direction:column; gap:1.5rem; }
@@ -246,6 +260,7 @@
 /* ══ RESPONSIVE ══════════════════════════════════ */
 @media (max-width:960px) {
   .why-grid { grid-template-columns:1fr; gap:3rem; }
+  .why-center { display: none; }
   .offer-grid { grid-template-columns:1fr; }
   .testi-grid { grid-template-columns:1fr; }
   .numbers-grid { flex-direction:column; }
