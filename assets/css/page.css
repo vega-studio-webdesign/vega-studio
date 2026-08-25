@@ -1,46 +1,34 @@
-/* CSS commun à toutes les pages secondaires */
+.section-eyebrow {
+  font-size: .75rem; font-weight: 500; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--purple);
+  margin-bottom: .75rem; display: block;
+}
 
 .page-hero {
-  padding: 11rem 0 4rem;
+  padding: 11rem 0 5rem;
   border-bottom: 1px solid var(--line);
 }
 
 .page-title {
   font-family: 'Syne', sans-serif;
   font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 800;
-  letter-spacing: -.03em;
-  line-height: 1.1;
+  font-weight: 800; letter-spacing: -.03em; line-height: 1.1;
+  margin-top: .5rem;
+}
+
+.page-sub {
+  font-size: 1.05rem; font-weight: 300;
+  color: var(--muted); line-height: 1.75;
+  max-width: 540px; margin-top: 1.25rem;
 }
 
 /* Mentions légales */
 .mentions-content { padding: 6rem 0 8rem; }
-
 .wrap--narrow { max-width: 720px; }
 
-.mention-block {
-  padding: 2.5rem 0;
-  border-bottom: 1px solid var(--line);
-}
+.mention-block { padding: 2.5rem 0; border-bottom: 1px solid var(--line); }
 .mention-block:last-child { border-bottom: none; }
-
-.mention-block h2 {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 1rem;
-}
-
-.mention-block p {
-  font-size: 1rem;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.8;
-}
-
-.mention-block a {
-  color: var(--lilac);
-  transition: color .2s;
-}
+.mention-block h2 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+.mention-block p { font-size: 1rem; font-weight: 300; color: var(--muted); line-height: 1.8; }
+.mention-block a { color: var(--lilac); transition: color .2s; }
 .mention-block a:hover { color: var(--white); }
