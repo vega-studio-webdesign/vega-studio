@@ -124,6 +124,14 @@ nav.scrolled {
   padding: .9rem 2.2rem; border-radius: 999px; border: 1.5px solid transparent;
   transition: all .25s; cursor: pointer; white-space: nowrap;
 }
+
+/* Boutons du hero : même taille, texte légèrement plus grand */
+.hero-actions .btn {
+  font-size: 1.05rem;
+  padding: 1rem 2.4rem;
+  min-width: 220px;
+  justify-content: center;
+}
 .btn-primary { background: var(--purple); color: #fff; border-color: var(--purple); }
 .btn-primary:hover { background: var(--lilac); border-color: var(--lilac); color: #111; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(139,124,246,.35); }
 .btn-secondary { background: transparent; color: var(--white); border-color: rgba(238,238,245,.35); }
