@@ -4,36 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Formules — Vega Studio</title>
-  <meta name="description" content="Des offres claires et transparentes pour les artisans. Site vitrine clé en main à partir de 100€." />
+  <meta name="description" content="Des offres claires pour les artisans. Site vitrine à partir de 100€." />
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/page.css" />
   <link rel="stylesheet" href="assets/css/formules.css" />
 </head>
 <body>
-
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
-
   <nav>
     <div class="wrap nav-inner">
-      <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="Vega Studio" /></a>
+      <a href="index.html" class="nav-wordmark">Vega Studio</a>
       <ul class="nav-links">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="formules.html">Formules</a></li>
         <li><a href="apropos.html">À propos</a></li>
-        <li><a href="contact.html" class="nav-cta-link">Nous contacter</a></li>
+        <li><a href="contact.html" class="nav-cta">Nous contacter</a></li>
       </ul>
-      <button class="nav-burger" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-  <!-- PAGE HERO -->
   <section class="page-hero">
     <div class="wrap">
-      <p class="label reveal">Nos formules</p>
-      <h1 class="headline reveal reveal-d1">Des offres claires,<br /><em>sans surprise.</em></h1>
-      <p class="body-lg reveal reveal-d2">Prix fixes, délais tenus, résultats concrets. Choisissez la formule adaptée à votre activité.</p>
+      <p class="section-eyebrow reveal">Nos formules</p>
+      <h1 class="page-title reveal d1">Des offres claires,<br /><span class="t-accent">sans surprise.</span></h1>
+      <p class="page-sub reveal d2">Prix fixes, délais tenus, résultats concrets.</p>
     </div>
   </section>
 
@@ -42,17 +36,13 @@
     <div class="wrap">
       <div class="packs-grid">
 
-        <!-- STARTER -->
-        <article class="pack reveal reveal-d1">
-          <header class="pack-head">
-            <span class="label">Starter</span>
-            <div class="pack-price">
-              <strong>100€</strong>
-              <span>+ 15€ / mois</span>
-            </div>
-          </header>
+        <article class="pack-card reveal reveal-d1">
+          <div class="pack-head">
+            <span class="pack-tier">Starter</span>
+            <div class="pack-price"><strong>100€</strong><span>+ 15€ / mois</span></div>
+          </div>
           <p class="pack-pitch">Pour les artisans qui souhaitent exister sur internet.</p>
-          <p class="body-lg pack-desc">Une page unique, claire et professionnelle, accessible depuis n'importe quel appareil. Vos clients trouvent en un coup d'œil qui vous êtes, ce que vous faites, comment vous joindre.</p>
+          <p class="t-body pack-desc">Une page unique, claire et professionnelle, accessible depuis n'importe quel appareil. Vos clients trouvent en un coup d'œil qui vous êtes, ce que vous faites, comment vous joindre.</p>
           <ul class="pack-features">
             <li>1 page complète</li>
             <li>Design responsive</li>
@@ -61,21 +51,17 @@
             <li>Hébergement inclus</li>
             <li>Mise en ligne assurée</li>
           </ul>
-          <a href="contact.html" class="btn btn-ghost pack-btn hover-target">Choisir →</a>
+          <a href="contact.html" class="btn btn-secondary pack-btn">Choisir →</a>
         </article>
 
-        <!-- PRO -->
-        <article class="pack pack--featured reveal reveal-d2">
-          <div class="pack-tag label">Le plus populaire</div>
-          <header class="pack-head">
-            <span class="label">Pro</span>
-            <div class="pack-price">
-              <strong>250€</strong>
-              <span>+ 25€ / mois</span>
-            </div>
-          </header>
+        <article class="pack-card pack-featured reveal reveal-d2">
+          <div class="pack-popular">Le plus populaire</div>
+          <div class="pack-head">
+            <span class="pack-tier">Pro</span>
+            <div class="pack-price"><strong>250€</strong><span>+ 25€ / mois</span></div>
+          </div>
           <p class="pack-pitch">Pour les artisans qui veulent convaincre avant même le premier appel.</p>
-          <p class="body-lg pack-desc">Un site structuré sur plusieurs pages, avec tout ce qu'il faut pour rassurer un client qui vous découvre pour la première fois.</p>
+          <p class="t-body pack-desc">Un site structuré sur plusieurs pages, avec tout ce qu'il faut pour rassurer un client qui vous découvre pour la première fois.</p>
           <ul class="pack-features">
             <li>3 pages complètes</li>
             <li>Design responsive</li>
@@ -87,20 +73,16 @@
             <li>Hébergement inclus</li>
             <li>Mise en ligne assurée</li>
           </ul>
-          <a href="contact.html" class="btn btn-fill pack-btn hover-target">Choisir →</a>
+          <a href="contact.html" class="btn btn-primary pack-btn">Choisir →</a>
         </article>
 
-        <!-- PREMIUM -->
-        <article class="pack reveal reveal-d3">
-          <header class="pack-head">
-            <span class="label">Premium</span>
-            <div class="pack-price">
-              <strong>400€</strong>
-              <span>+ 35€ / mois</span>
-            </div>
-          </header>
+        <article class="pack-card reveal reveal-d3">
+          <div class="pack-head">
+            <span class="pack-tier">Premium</span>
+            <div class="pack-price"><strong>400€</strong><span>+ 35€ / mois</span></div>
+          </div>
           <p class="pack-pitch">Pour les artisans qui veulent se démarquer durablement.</p>
-          <p class="body-lg pack-desc">Un site soigné, animé, pensé dans ses moindres détails pour inspirer confiance et convertir les visiteurs en clients.</p>
+          <p class="t-body pack-desc">Un site soigné, animé, pensé dans ses moindres détails pour inspirer confiance et convertir les visiteurs en clients.</p>
           <ul class="pack-features">
             <li>5 pages complètes</li>
             <li>Design responsive</li>
@@ -117,25 +99,20 @@
             <li>Hébergement inclus</li>
             <li>Mise en ligne assurée</li>
           </ul>
-          <a href="contact.html" class="btn btn-ghost pack-btn hover-target">Choisir →</a>
+          <a href="contact.html" class="btn btn-secondary pack-btn">Choisir →</a>
         </article>
 
       </div>
 
-      <!-- ABONNEMENT NOTE -->
-      <div class="abo-note reveal">
-        <hr />
-        <div class="abo-content">
-          <p class="label">L'abonnement mensuel comprend</p>
-          <div class="abo-items">
-            <span>Hébergement & domaine</span>
-            <span>Maintenance technique</span>
-            <span>1 modification / mois</span>
-            <span>Interlocuteur disponible</span>
-          </div>
-          <p class="body-lg" style="margin-top:1rem; font-size:0.85rem;">Modification supplémentaire : 20€ par intervention.</p>
+      <div class="abo-strip reveal">
+        <p class="t-label">L'abonnement mensuel comprend</p>
+        <div class="abo-items">
+          <span>Hébergement & domaine</span>
+          <span>Maintenance technique</span>
+          <span>1 modification / mois</span>
+          <span>Interlocuteur disponible</span>
         </div>
-        <hr />
+        <p class="abo-note">Modification supplémentaire : 20€.</p>
       </div>
     </div>
   </section>
@@ -143,85 +120,43 @@
   <!-- OPTIONS -->
   <section class="section-options">
     <div class="wrap">
-      <p class="label reveal">Options à la carte</p>
-      <h2 class="headline reveal reveal-d1">Personnalisez<br /><em>votre formule.</em></h2>
+      <p class="section-eyebrow reveal">Options à la carte</p>
+      <h2 class="page-title reveal d1">Personnalisez<br /><span class="t-accent">votre formule.</span></h2>
       <div class="options-list">
-        <div class="option-row reveal">
-          <span>Page supplémentaire</span>
-          <span class="option-price">+50€</span>
-        </div>
-        <hr />
-        <div class="option-row reveal">
-          <span>Rédaction des textes du site</span>
-          <span class="option-price">+80€</span>
-        </div>
-        <hr />
-        <div class="option-row reveal">
-          <span>Pop-up promotionnelle</span>
-          <span class="option-price">+40€</span>
-        </div>
-        <hr />
-        <div class="option-row reveal">
-          <span>Compteur de réalisations animé</span>
-          <span class="option-price">+30€</span>
-        </div>
-        <hr />
-        <div class="option-row reveal">
-          <span>Identité visuelle complète — logo, couleurs, typographie</span>
-          <span class="option-price">+80€</span>
-        </div>
-        <hr />
+        <div class="option-row reveal"><span>Page supplémentaire</span><span class="option-price">+50€</span></div>
+        <div class="option-row reveal"><span>Rédaction des textes du site</span><span class="option-price">+80€</span></div>
+        <div class="option-row reveal"><span>Pop-up promotionnelle</span><span class="option-price">+40€</span></div>
+        <div class="option-row reveal"><span>Compteur de réalisations animé</span><span class="option-price">+30€</span></div>
+        <div class="option-row reveal"><span>Identité visuelle complète — logo, couleurs, typographie</span><span class="option-price">+80€</span></div>
       </div>
     </div>
   </section>
 
   <!-- SUR MESURE -->
   <section class="section-custom">
-    <div class="wrap">
-      <div class="custom-inner reveal">
-        <div class="custom-left">
-          <p class="label">Sur mesure</p>
-          <h2 class="headline">Un projet<br /><em>plus ambitieux ?</em></h2>
-          <p class="body-lg" style="margin-top:2rem;">Certains besoins dépassent le cadre d'un site vitrine. Si votre activité nécessite des fonctionnalités spécifiques, nous étudions votre projet et proposons un devis personnalisé.</p>
-          <a href="contact.html" class="btn btn-fill" style="margin-top:2.5rem;">Nous contacter →</a>
-        </div>
-        <div class="custom-right">
-          <div class="custom-item">
-            <strong>Prise de rendez-vous en ligne</strong>
-            <p>Vos clients réservent directement depuis votre site. Notifications automatiques, gestion des créneaux intégrée.</p>
-          </div>
-          <hr />
-          <div class="custom-item">
-            <strong>Espace client sécurisé</strong>
-            <p>Accès à des devis, factures ou suivis de chantier depuis une interface dédiée et protégée.</p>
-          </div>
-          <hr />
-          <div class="custom-item">
-            <strong>Boutique en ligne</strong>
-            <p>Vente de produits ou forfaits directement depuis votre site, avec paiement sécurisé.</p>
-          </div>
-          <hr />
-          <div class="custom-item">
-            <strong>Refonte complète</strong>
-            <p>Votre site existe déjà mais ne reflète plus votre activité. Nous le reprenons de zéro.</p>
-          </div>
-        </div>
+    <div class="wrap custom-grid">
+      <div class="custom-left">
+        <p class="section-eyebrow reveal">Sur mesure</p>
+        <h2 class="page-title reveal d1">Un projet<br /><span class="t-accent">plus ambitieux ?</span></h2>
+        <p class="t-body reveal d2">Certains besoins dépassent le cadre d'un site vitrine. Si votre activité nécessite des fonctionnalités spécifiques, nous étudions votre projet et proposons un devis personnalisé.</p>
+        <a href="contact.html" class="btn btn-primary reveal d3">Nous contacter →</a>
+      </div>
+      <div class="custom-right">
+        <div class="custom-item reveal d1"><strong>Prise de rendez-vous en ligne</strong><p class="t-body">Vos clients réservent depuis votre site. Notifications automatiques, gestion des créneaux intégrée.</p></div>
+        <div class="custom-item reveal d2"><strong>Espace client sécurisé</strong><p class="t-body">Accès à des devis, factures ou suivis de chantier depuis une interface dédiée et protégée.</p></div>
+        <div class="custom-item reveal d3"><strong>Boutique en ligne</strong><p class="t-body">Vente de produits ou forfaits directement depuis votre site, avec paiement sécurisé.</p></div>
+        <div class="custom-item reveal d3"><strong>Refonte complète</strong><p class="t-body">Votre site existe déjà mais ne reflète plus votre activité. Nous le reprenons de zéro.</p></div>
       </div>
     </div>
   </section>
 
   <footer>
     <div class="wrap footer-inner">
-      <div class="footer-logo"><img src="assets/logo.png" alt="Vega Studio" /></div>
-      <span class="label">© 2025 Vega Studio</span>
-      <ul class="footer-links">
-        <li><a href="formules.html">Formules</a></li>
-        <li><a href="apropos.html">À propos</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <span class="footer-left"><a href="contact.html">Contact</a></span>
+      <span class="footer-mid t-label">© 2025 Vega Studio</span>
+      <span class="footer-right"><a href="mentions.html">Mentions légales</a></span>
     </div>
   </footer>
-
   <script src="assets/js/main.js"></script>
 </body>
 </html>
