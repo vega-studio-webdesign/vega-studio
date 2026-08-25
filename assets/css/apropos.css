@@ -1,0 +1,58 @@
+/* ── PAGE HERO ──────────────────────────────────── */
+.page-hero { padding: 12rem 0 6rem; }
+.page-hero em { color: var(--lilac); font-style: italic; font-weight: 400; }
+.page-hero .headline { margin-top: 1.5rem; }
+
+/* ── INTRO ──────────────────────────────────────── */
+.section-intro { padding: 4rem 0 8rem; }
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 4rem;
+  padding: 4rem 0;
+  align-items: start;
+}
+
+/* ── VALEURS ────────────────────────────────────── */
+.section-values { padding: 8rem 0; background: var(--surface); }
+.section-values .label { margin-bottom: 3rem; display: block; }
+
+.value-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 3rem;
+  padding: 3rem 0;
+}
+
+.value-num { padding-top: 0.4rem; }
+
+.value-body h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+/* ── CTA ────────────────────────────────────────── */
+.section-cta { padding: 10rem 0; }
+
+.cta-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 5rem 0;
+}
+
+.cta-inner em { color: var(--lilac); font-style: italic; font-weight: 400; }
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .value-row { grid-template-columns: 1fr; gap: 1rem; }
+  .value-num { display: none; }
+  .cta-inner { grid-template-columns: 1fr; gap: 3rem; }
+}

@@ -1,0 +1,213 @@
+/* ── PAGE HERO ──────────────────────────────────── */
+.page-hero {
+  padding: 12rem 0 6rem;
+}
+
+.page-hero em { color: var(--lilac); font-style: italic; font-weight: 400; }
+.page-hero .headline { margin: 1.5rem 0 2rem; }
+
+/* ── PACKS ──────────────────────────────────────── */
+.section-packs { padding: 4rem 0 8rem; }
+
+.packs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-bottom: 4rem;
+}
+
+.pack {
+  background: var(--black);
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  transition: background 0.3s;
+}
+
+.pack:hover { background: var(--surface); }
+
+.pack--featured {
+  background: var(--surface);
+}
+
+.pack--featured:hover { background: #131320; }
+
+.pack-tag {
+  position: absolute;
+  top: 2rem; right: 2rem;
+  color: var(--purple);
+  border: 1px solid rgba(123,110,232,0.3);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+}
+
+.pack-head {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.pack-price {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.pack-price strong {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.2rem, 3vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--white);
+}
+
+.pack-price span {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.pack-pitch {
+  font-size: 0.95rem;
+  color: var(--white);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.pack-desc { font-size: 0.88rem !important; line-height: 1.7; }
+
+.pack-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.pack-features li {
+  font-size: 0.83rem;
+  color: var(--muted);
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.pack-features li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--purple);
+  font-size: 0.7rem;
+}
+
+.pack-btn { width: 100%; justify-content: center; margin-top: auto; }
+
+/* ── ABO NOTE ───────────────────────────────────── */
+.abo-note { margin-top: 1rem; }
+.abo-note hr { border-color: var(--line); }
+
+.abo-content {
+  padding: 2.5rem 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 3rem;
+  align-items: center;
+}
+
+.abo-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+}
+
+.abo-items span {
+  font-size: 0.83rem;
+  color: var(--muted);
+  position: relative;
+  padding-left: 1rem;
+}
+
+.abo-items span::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--purple);
+}
+
+/* ── OPTIONS ────────────────────────────────────── */
+.section-options { padding: 8rem 0; background: var(--surface); }
+
+.section-options em { color: var(--lilac); font-style: italic; font-weight: 400; }
+.section-options .headline { margin: 1.5rem 0 3rem; }
+
+.option-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.75rem 0;
+  font-size: 1rem;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.option-row:hover { color: var(--white); }
+.option-row hr { border-color: var(--line); }
+
+.option-price {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--lilac);
+  white-space: nowrap;
+  margin-left: 2rem;
+}
+
+/* ── SUR MESURE ─────────────────────────────────── */
+.section-custom { padding: 8rem 0; }
+
+.custom-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8rem;
+  align-items: start;
+}
+
+.custom-left em { color: var(--lilac); font-style: italic; font-weight: 400; }
+
+.custom-right { padding-top: 1rem; }
+
+.custom-item {
+  padding: 2rem 0;
+}
+
+.custom-item strong {
+  display: block;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  margin-bottom: 0.6rem;
+  color: var(--white);
+}
+
+.custom-item p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 960px) {
+  .packs-grid { grid-template-columns: 1fr; }
+  .pack--featured { order: -1; }
+  .custom-inner { grid-template-columns: 1fr; gap: 4rem; }
+  .abo-content { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+@media (max-width: 600px) {
+  .page-hero { padding: 9rem 0 4rem; }
+}
