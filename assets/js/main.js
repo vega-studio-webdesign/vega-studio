@@ -26,20 +26,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  /* ── COMPTEURS ── */
+  /* ── COMPTEURS : durée 3s, démarrent à 0 quand visibles ── */
   const cObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
-      const el = e.target, end = +el.dataset.count, suf = el.dataset.suffix || '', dur = 1500, t0 = performance.now();
+      const el  = e.target;
+      const end = +el.dataset.count;
+      const suf = el.dataset.suffix || '';
+      const dur = 3000; // exactement 3 secondes
+      el.textContent = '0' + suf; // reset à 0 visible
+      const t0 = performance.now();
       const tick = now => {
         const p = Math.min((now - t0) / dur, 1);
-        el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * end) + suf;
+        // easing doux mais pas trop rapide au début
+        const ease = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        el.textContent = Math.round(ease * end) + suf;
         if (p < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
       cObs.unobserve(el);
     });
-  }, { threshold: .5 });
+  }, { threshold: .8 }); // déclenche quand bien visible
   document.querySelectorAll('[data-count]').forEach(el => cObs.observe(el));
 
   /* ── PARALLAX ── */
@@ -64,57 +71,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ── SHIMMER SÉQUENTIEL ALÉATOIRE ── */
-  // Une seule carte brille à la fois, ordre aléatoire, délai aléatoire entre chaque
+  /* ── SHIMMER SÉQUENTIEL — jamais 2x la même carte ── */
   const cards = Array.from(document.querySelectorAll('.offer-card'));
   if (cards.length) {
-    // Supprimer toute animation CSS existante sur .card-shimmer
     cards.forEach(card => {
-      const shimmer = card.querySelector('.card-shimmer');
-      if (shimmer) shimmer.style.animation = 'none';
+      const s = card.querySelector('.card-shimmer');
+      if (s) { s.style.animation = 'none'; s.style.transition = 'none'; }
     });
 
-    let available = [];
+    let lastIdx = -1;
+    let pool = [];
+
     function pickNext() {
-      if (available.length === 0) available = [...Array(cards.length).keys()];
-      // Choisir un index aléatoire dans les cartes restantes
-      const idx = Math.floor(Math.random() * available.length);
-      const cardIdx = available.splice(idx, 1)[0];
-      return cardIdx;
+      // Reconstituer le pool sans la dernière carte
+      if (pool.length === 0) {
+        pool = cards.map((_, i) => i).filter(i => i !== lastIdx);
+      }
+      const pos = Math.floor(Math.random() * pool.length);
+      const idx = pool.splice(pos, 1)[0];
+      lastIdx = idx;
+      return idx;
     }
 
     function runShimmer() {
-      const cardIdx = pickNext();
-      const shimmer = cards[cardIdx].querySelector('.card-shimmer');
+      const idx     = pickNext();
+      const shimmer = cards[idx].querySelector('.card-shimmer');
       if (!shimmer) { scheduleNext(); return; }
 
-      // Reset
       shimmer.style.transition = 'none';
-      shimmer.style.left = '-60%';
+      shimmer.style.left    = '-60%';
       shimmer.style.opacity = '1';
+      void shimmer.offsetWidth; // force reflow
 
-      // Force reflow
-      void shimmer.offsetWidth;
-
-      // Sweep : 2x plus rapide = ~1.5s au lieu de 3s
-      shimmer.style.transition = 'left 1.5s linear';
+      // 2x plus rapide : 0.75s
+      shimmer.style.transition = 'left 0.75s linear';
       shimmer.style.left = '110%';
 
-      // Attendre fin du sweep + pause aléatoire avant la prochaine carte
       setTimeout(() => {
         shimmer.style.opacity = '0';
         scheduleNext();
-      }, 1600);
+      }, 800);
     }
 
     function scheduleNext() {
-      // Pause aléatoire entre 0.4s et 1.2s avant la prochaine
-      const pause = 400 + Math.random() * 800;
+      const pause = 300 + Math.random() * 700;
       setTimeout(runShimmer, pause);
     }
 
-    // Démarrer après un court délai initial
-    setTimeout(runShimmer, 800);
+    setTimeout(runShimmer, 600);
   }
 
 });
