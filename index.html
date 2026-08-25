@@ -1,1 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vega Studio — Votre présence en ligne, enfin à votre image.</title>
+  <meta name="description" content="Vega Studio crée des sites vitrines professionnels pour les artisans. Clé en main, responsive, et conçus pour vous faire trouver sur Google." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/index.css" />
+</head>
+<body>
 
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="Vega Studio" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="formules.html">Formules</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="contact.html" class="nav-cta">Nous contacter</a></li>
+      </ul>
+      <div class="nav-burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="particles"></canvas>
+    <div class="container hero-content">
+      <div class="badge">Agence web pour artisans</div>
+      <h1>Votre présence en ligne,<br /><span class="accent-text">enfin à votre image.</span></h1>
+      <p class="hero-sub">Vous exercez un métier qui demande expertise et confiance. Votre site web devrait refléter la même réalité. Chez Vega Studio, nous concevons des sites vitrines professionnels, pensés pour les artisans, livrés clé en main, sans complexité.</p>
+      <div class="hero-actions">
+        <a href="formules.html" class="btn btn-primary">Découvrir nos formules</a>
+        <a href="contact.html" class="btn btn-outline">Nous contacter</a>
+      </div>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- POURQUOI UN SITE -->
+  <section class="section-why">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="badge">Pourquoi un site web ?</div>
+        <h2>Vos clients vous cherchent<br />sur internet. Soyez au rendez-vous.</h2>
+        <div class="divider"></div>
+        <p>Chaque jour, des particuliers tapent "plombier", "électricien" ou "peintre" suivi du nom de leur ville sur Google. Sans site web, vous n'apparaissez pas. Sans présence en ligne, c'est un concurrent qui décroche à votre place.</p>
+        <p style="margin-top:1rem;">Un site vitrine bien construit change cela. Il présente vos services, rassure vos futurs clients avant même le premier appel, et vous positionne là où les recherches se font — c'est-à-dire en ligne, et surtout sur mobile.</p>
+      </div>
+
+      <!-- Statistiques -->
+      <div class="stats-row">
+        <div class="stat-card fade-up fade-up-delay-1">
+          <span class="stat-number" data-target="70" data-suffix="%">0%</span>
+          <p>des recherches locales<br />se font depuis un mobile</p>
+        </div>
+        <div class="stat-card fade-up fade-up-delay-2">
+          <span class="stat-number" data-target="3" data-suffix="s">0s</span>
+          <p>pour convaincre un visiteur<br />de rester sur votre site</p>
+        </div>
+        <div class="stat-card fade-up fade-up-delay-3">
+          <span class="stat-number" data-target="60" data-suffix="%">0%</span>
+          <p>des artisans n'ont pas<br />de site web professionnel</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CE QU'ON PROPOSE -->
+  <section class="section-offer">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="badge">Ce qu'on vous propose</div>
+        <h2>Une solution complète,<br />de A à Z.</h2>
+        <div class="divider"></div>
+        <p>Nous ne livrons pas simplement des pages web. Nous construisons une présence digitale cohérente, adaptée à votre activité et à votre clientèle.</p>
+      </div>
+
+      <div class="offer-grid">
+        <div class="card fade-up fade-up-delay-1">
+          <div class="offer-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3>Design responsive</h3>
+          <p>Qu'il soit consulté depuis un ordinateur, une tablette ou un smartphone, votre site s'adapte automatiquement. Aujourd'hui indispensable — plus de 70% des recherches locales se font depuis un téléphone.</p>
+        </div>
+
+        <div class="card fade-up fade-up-delay-2">
+          <div class="offer-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </div>
+          <h3>Visibilité locale</h3>
+          <p>Chaque site est optimisé pour apparaître dans les résultats de recherche de votre zone géographique. Nous créons et optimisons également votre fiche Google Business, pour que vous apparaissiez sur Google Maps.</p>
+        </div>
+
+        <div class="card fade-up fade-up-delay-3">
+          <div class="offer-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h3>Hébergement inclus</h3>
+          <p>Votre adresse web et l'hébergement de votre site sont compris dans l'abonnement mensuel. Vous n'avez aucune démarche technique à effectuer — nous gérons tout.</p>
+        </div>
+
+        <div class="card fade-up fade-up-delay-4">
+          <div class="offer-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Accompagnement durable</h3>
+          <p>Besoin de modifier un tarif, d'ajouter une photo, de mettre à jour vos services ? Chaque abonnement inclut une modification mensuelle sans frais supplémentaires. Un interlocuteur réel, joignable, qui connaît votre site.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMOIGNAGES (placeholder) -->
+  <section class="section-testimonials">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="badge">Ils nous font confiance</div>
+        <h2>Ils ont franchi le pas.</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up fade-up-delay-1">
+          <div class="testimonial-placeholder">
+            <!-- Placeholder : photo de profil du client 1 (artisan satisfait, souriant, tenue de travail) -->
+            <div class="avatar-placeholder">?</div>
+            <div class="testimonial-info">
+              <strong>Votre nom ici</strong>
+              <span>Plombier — Ville</span>
+            </div>
+          </div>
+          <p class="testimonial-text">"Témoignage du premier client à venir."</p>
+        </div>
+        <div class="testimonial-card fade-up fade-up-delay-2">
+          <div class="testimonial-placeholder">
+            <div class="avatar-placeholder">?</div>
+            <div class="testimonial-info">
+              <strong>Votre nom ici</strong>
+              <span>Électricien — Ville</span>
+            </div>
+          </div>
+          <p class="testimonial-text">"Témoignage du deuxième client à venir."</p>
+        </div>
+        <div class="testimonial-card fade-up fade-up-delay-3">
+          <div class="testimonial-placeholder">
+            <div class="avatar-placeholder">?</div>
+            <div class="testimonial-info">
+              <strong>Votre nom ici</strong>
+              <span>Peintre — Ville</span>
+            </div>
+          </div>
+          <p class="testimonial-text">"Témoignage du troisième client à venir."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="section-cta">
+    <div class="container">
+      <div class="cta-box fade-up">
+        <div class="cta-glow"></div>
+        <div class="badge">Prêt à vous lancer ?</div>
+        <h2>Un projet ? Parlons-en.</h2>
+        <p>Nous étudions votre situation gratuitement et sans engagement. Dites-nous ce que vous faites, nous vous proposons la formule adaptée.</p>
+        <a href="contact.html" class="btn btn-primary">Nous contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <img src="assets/logo.png" alt="Vega Studio" />
+      </div>
+      <p>© 2025 Vega Studio — vega.studio.webdesign@gmail.com</p>
+      <ul class="footer-links">
+        <li><a href="formules.html">Formules</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
