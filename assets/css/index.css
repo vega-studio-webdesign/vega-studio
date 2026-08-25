@@ -42,20 +42,19 @@
 /* Titre : exactement 2 lignes — on force avec font-size en vw pur */
 .hero-title {
   font-family: 'Syne', sans-serif;
-  /* 5.5vw : sur iPad 1024px = ~56px, ligne 1 tient en 24 chars */
-  font-size: clamp(1.5rem, 5.5vw, 5.5rem);
+  /* vw pur = suit la largeur de l'écran exactement */
+  font-size: 6.2vw;
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -.04em;
   width: 100%;
   text-align: center;
-  /* Pas de nowrap : le <br /> gère les coupures, word-break évite les coupures parasites */
   word-break: keep-all;
   overflow-wrap: normal;
 }
 
 @media (max-width: 600px) {
-  .hero-title { font-size: clamp(1.4rem, 7.5vw, 3rem); letter-spacing: -.02em; }
+  .hero-title { font-size: 8.5vw; letter-spacing: -.02em; }
 }
 
 .hero-sub {
