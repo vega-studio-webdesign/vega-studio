@@ -42,27 +42,79 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: .5 });
   document.querySelectorAll('[data-count]').forEach(el => cObs.observe(el));
 
-  /* ── PARALLAX FOND ── */
+  /* ── PARALLAX ── */
   const parallaxLayers = document.querySelectorAll('[data-parallax]');
   if (parallaxLayers.length) {
     window.addEventListener('scroll', () => {
-      const sy = scrollY;
       parallaxLayers.forEach(el => {
-        const speed = parseFloat(el.dataset.parallax) || 0.15;
-        el.style.transform = `translateY(${sy * speed}px)`;
+        el.style.transform = `translateY(${scrollY * parseFloat(el.dataset.parallax)}px)`;
       });
     }, { passive: true });
   }
 
-  /* ── LUMIÈRE SUIVANT LA SOURIS (section hero) ── */
+  /* ── LUMIÈRE SOURIS HERO ── */
   const heroLight = document.querySelector('.hero-mouse-light');
-  if (heroLight) {
-    document.querySelector('.hero')?.addEventListener('mousemove', e => {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1);
-      const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
-      heroLight.style.background = `radial-gradient(circle 600px at ${x}% ${y}%, rgba(139,124,246,0.10) 0%, transparent 70%)`;
+  const heroEl    = document.querySelector('.hero');
+  if (heroLight && heroEl) {
+    heroEl.addEventListener('mousemove', e => {
+      const r = heroEl.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width  * 100).toFixed(1);
+      const y = ((e.clientY - r.top)  / r.height * 100).toFixed(1);
+      heroLight.style.background = `radial-gradient(circle 600px at ${x}% ${y}%, rgba(139,124,246,0.09) 0%, transparent 70%)`;
     });
+  }
+
+  /* ── SHIMMER SÉQUENTIEL ALÉATOIRE ── */
+  // Une seule carte brille à la fois, ordre aléatoire, délai aléatoire entre chaque
+  const cards = Array.from(document.querySelectorAll('.offer-card'));
+  if (cards.length) {
+    // Supprimer toute animation CSS existante sur .card-shimmer
+    cards.forEach(card => {
+      const shimmer = card.querySelector('.card-shimmer');
+      if (shimmer) shimmer.style.animation = 'none';
+    });
+
+    let available = [];
+    function pickNext() {
+      if (available.length === 0) available = [...Array(cards.length).keys()];
+      // Choisir un index aléatoire dans les cartes restantes
+      const idx = Math.floor(Math.random() * available.length);
+      const cardIdx = available.splice(idx, 1)[0];
+      return cardIdx;
+    }
+
+    function runShimmer() {
+      const cardIdx = pickNext();
+      const shimmer = cards[cardIdx].querySelector('.card-shimmer');
+      if (!shimmer) { scheduleNext(); return; }
+
+      // Reset
+      shimmer.style.transition = 'none';
+      shimmer.style.left = '-60%';
+      shimmer.style.opacity = '1';
+
+      // Force reflow
+      void shimmer.offsetWidth;
+
+      // Sweep : 2x plus rapide = ~1.5s au lieu de 3s
+      shimmer.style.transition = 'left 1.5s linear';
+      shimmer.style.left = '110%';
+
+      // Attendre fin du sweep + pause aléatoire avant la prochaine carte
+      setTimeout(() => {
+        shimmer.style.opacity = '0';
+        scheduleNext();
+      }, 1600);
+    }
+
+    function scheduleNext() {
+      // Pause aléatoire entre 0.4s et 1.2s avant la prochaine
+      const pause = 400 + Math.random() * 800;
+      setTimeout(runShimmer, pause);
+    }
+
+    // Démarrer après un court délai initial
+    setTimeout(runShimmer, 800);
   }
 
 });
