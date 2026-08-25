@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }));
   }
 
-  /* ── REVEAL AU SCROLL ── */
+  /* ── REVEAL ── */
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
   }, { threshold: 0.1 });
@@ -42,17 +42,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: .5 });
   document.querySelectorAll('[data-count]').forEach(el => cObs.observe(el));
 
-  /* ── TILT 3D SUR LES CARTES ── */
-  document.querySelectorAll('.card-3d').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width  - 0.5;
-      const y = (e.clientY - r.top)  / r.height - 0.5;
-      card.style.transform = `perspective(700px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateZ(6px)`;
+  /* ── PARALLAX FOND ── */
+  const parallaxLayers = document.querySelectorAll('[data-parallax]');
+  if (parallaxLayers.length) {
+    window.addEventListener('scroll', () => {
+      const sy = scrollY;
+      parallaxLayers.forEach(el => {
+        const speed = parseFloat(el.dataset.parallax) || 0.15;
+        el.style.transform = `translateY(${sy * speed}px)`;
+      });
+    }, { passive: true });
+  }
+
+  /* ── LUMIÈRE SUIVANT LA SOURIS (section hero) ── */
+  const heroLight = document.querySelector('.hero-mouse-light');
+  if (heroLight) {
+    document.querySelector('.hero')?.addEventListener('mousemove', e => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1);
+      const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
+      heroLight.style.background = `radial-gradient(circle 600px at ${x}% ${y}%, rgba(139,124,246,0.10) 0%, transparent 70%)`;
     });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(700px) rotateY(0) rotateX(0) translateZ(0)';
-    });
-  });
+  }
 
 });
