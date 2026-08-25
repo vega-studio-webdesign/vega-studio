@@ -32,6 +32,7 @@
 .hero-mouse-light { position:absolute; inset:0; pointer-events:none; z-index:1; transition:background .15s; }
 
 .hero-inner {
+  padding: 0 clamp(0.75rem, 2.5vw, 3rem);
   position:relative; z-index:2;
   display:flex; flex-direction:column;
   align-items:center; text-align:center;
@@ -41,18 +42,20 @@
 /* Titre : exactement 2 lignes — on force avec font-size en vw pur */
 .hero-title {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(1.8rem, 7.2vw, 7rem);
+  /* 5.5vw : sur iPad 1024px = ~56px, ligne 1 tient en 24 chars */
+  font-size: clamp(1.5rem, 5.5vw, 5.5rem);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -.03em;
+  line-height: 1.08;
+  letter-spacing: -.04em;
   width: 100%;
   text-align: center;
-  white-space: nowrap;
+  /* Pas de nowrap : le <br /> gère les coupures, word-break évite les coupures parasites */
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
-/* Sur petits écrans on autorise le retour à la ligne */
-@media (max-width: 700px) {
-  .hero-title { white-space: normal; font-size: clamp(1.8rem, 8vw, 3.5rem); }
+@media (max-width: 600px) {
+  .hero-title { font-size: clamp(1.4rem, 7.5vw, 3rem); letter-spacing: -.02em; }
 }
 
 .hero-sub {
