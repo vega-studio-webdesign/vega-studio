@@ -10,12 +10,9 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <div class="wrap nav-inner">
-      <a href="index.html" class="nav-logo">
-        <img src="assets/logo.png" alt="Vega Studio" />
-      </a>
+      <a href="index.html" class="nav-wordmark">Vega Studio</a>
       <ul class="nav-links">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="formules.html">Formules</a></li>
@@ -31,28 +28,33 @@
   <!-- ══ HERO ══ -->
   <section class="hero">
     <div class="hero-bg">
-      <div class="aurora"></div>
+      <div class="aurora-1" data-parallax="0.08"></div>
+      <div class="aurora-2" data-parallax="0.12"></div>
+      <div class="aurora-3" data-parallax="0.06"></div>
     </div>
-    <div class="wrap hero-content">
-      <div class="hero-logo reveal">
-        <img src="assets/logo.png" alt="Vega Studio" />
+    <div class="hero-mouse-light"></div>
+
+    <div class="wrap hero-inner">
+      <!-- Logo original, à gauche -->
+      <div class="hero-logo-col reveal">
+        <img src="assets/logo.png" alt="Vega Studio" class="hero-logo-img" />
       </div>
-      <h1 class="t-display hero-title reveal d1">
-        Votre présence en ligne,<br />
-        <span class="t-accent">enfin à votre image.</span>
-      </h1>
-      <p class="t-body hero-sub reveal d2">
-        Vous exercez un métier qui demande expertise et confiance.<br />
-        Votre site web devrait refléter la même réalité.
-      </p>
-      <div class="hero-actions reveal d3">
-        <a href="formules.html" class="btn btn-primary">Découvrir nos formules</a>
-        <a href="contact.html"  class="btn btn-secondary">Nous contacter</a>
+
+      <!-- Titre + sous-titre + actions -->
+      <div class="hero-text-col">
+        <h1 class="t-display hero-title reveal d1">
+          Votre présence<br />en ligne,<br />
+          <span class="t-accent">enfin à votre<br />image.</span>
+        </h1>
+        <p class="t-body hero-sub reveal d2">
+          Vous exercez un métier qui demande expertise et confiance.<br />
+          Votre site web devrait refléter la même réalité.
+        </p>
+        <div class="hero-actions reveal d3">
+          <a href="formules.html" class="btn btn-primary">Découvrir nos formules</a>
+          <a href="contact.html"  class="btn btn-secondary">Nous contacter</a>
+        </div>
       </div>
-    </div>
-    <div class="hero-scroll-hint reveal d3" aria-hidden="true">
-      <div class="scroll-track"><div class="scroll-thumb"></div></div>
-      <span class="t-label">Défiler</span>
     </div>
   </section>
 
@@ -62,17 +64,17 @@
       <div class="numbers-grid">
         <div class="number-block reveal">
           <span class="number-val" data-count="70" data-suffix="%">0%</span>
-          <p class="t-label">des recherches locales<br />depuis un mobile</p>
+          <p class="number-label">des recherches locales<br />depuis un mobile</p>
         </div>
         <div class="number-sep" aria-hidden="true"></div>
         <div class="number-block reveal d1">
           <span class="number-val" data-count="3" data-suffix=" sec">0</span>
-          <p class="t-label">pour convaincre<br />un visiteur de rester</p>
+          <p class="number-label">pour convaincre<br />un visiteur de rester</p>
         </div>
         <div class="number-sep" aria-hidden="true"></div>
         <div class="number-block reveal d2">
           <span class="number-val" data-count="60" data-suffix="%">0%</span>
-          <p class="t-label">des artisans sans<br />site web professionnel</p>
+          <p class="number-label">des artisans sans<br />site web professionnel</p>
         </div>
       </div>
     </div>
@@ -82,16 +84,19 @@
   <section class="section-why">
     <div class="wrap why-grid">
       <div class="why-left">
-        <span class="t-label reveal">Pourquoi un site web ?</span>
+        <p class="section-eyebrow reveal">Pourquoi un site web ?</p>
         <h2 class="t-headline reveal d1">
-          Vos clients vous cherchent<br />
-          sur internet.<br />
+          Vos clients vous cherchent<br />sur internet.<br />
           <span class="t-accent">Soyez au rendez-vous.</span>
         </h2>
       </div>
       <div class="why-right">
-        <p class="t-body reveal d1">Chaque jour, des particuliers tapent "plombier", "électricien" ou "peintre" suivi du nom de leur ville sur Google. Sans site web, vous n'apparaissez pas. Sans présence en ligne, c'est un concurrent qui décroche à votre place.</p>
-        <p class="t-body reveal d2" style="margin-top:1.25rem;">Un site vitrine bien construit présente vos services, rassure vos futurs clients avant même le premier appel, et vous positionne là où les recherches se font — en ligne, et surtout sur mobile.</p>
+        <p class="t-body why-p reveal d1">
+          Chaque jour, des particuliers tapent <em class="why-em">"plombier"</em>, <em class="why-em">"électricien"</em> ou <em class="why-em">"peintre"</em> suivi du nom de leur ville sur Google. Sans site web, vous n'apparaissez pas.
+        </p>
+        <p class="t-body why-p reveal d2">
+          Un site vitrine bien construit <strong class="why-strong">présente vos services</strong>, <strong class="why-strong">rassure vos futurs clients</strong> avant même le premier appel, et vous positionne là où les recherches se font — en ligne, et surtout sur mobile.
+        </p>
       </div>
     </div>
   </section>
@@ -99,44 +104,47 @@
   <!-- ══ CE QU'ON PROPOSE ══ -->
   <section class="section-offer">
     <div class="wrap">
-      <div class="offer-header reveal">
-        <span class="t-label">Ce qu'on propose</span>
-        <h2 class="t-headline">Une solution complète, <span class="t-accent">de A à Z.</span></h2>
-      </div>
-      <div class="offer-grid">
+      <p class="section-eyebrow reveal">Ce qu'on propose</p>
+      <h2 class="t-headline reveal d1">
+        Une solution complète,<br /><span class="t-accent">de A à Z.</span>
+      </h2>
 
-        <div class="offer-card card-3d reveal">
+      <div class="offer-grid">
+        <div class="offer-card float-card reveal">
+          <div class="card-light" aria-hidden="true"></div>
           <div class="offer-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
           </div>
           <h3>Design responsive</h3>
-          <p class="t-body">Ordinateur, tablette, smartphone — votre site s'adapte parfaitement à tous les écrans. Conçu mobile-first, parce que 70&nbsp;% de vos futurs clients vous trouveront depuis leur téléphone.</p>
+          <p class="t-body">Ordinateur, tablette, smartphone — votre site s'adapte parfaitement à tous les écrans. Conçu mobile-first, parce que 70 % de vos futurs clients vous trouveront depuis leur téléphone.</p>
         </div>
 
-        <div class="offer-card card-3d reveal d1">
+        <div class="offer-card float-card reveal d1">
+          <div class="card-light" aria-hidden="true"></div>
           <div class="offer-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           </div>
           <h3>Visibilité locale</h3>
-          <p class="t-body">Optimisation SEO locale et fiche Google Business incluses. Vous apparaissez dans les recherches et sur Maps quand un client cherche votre métier dans votre zone.</p>
+          <p class="t-body">Optimisation SEO locale et fiche Google Business incluses. Vous apparaissez dans les recherches et sur Maps quand un client cherche votre métier près de chez lui.</p>
         </div>
 
-        <div class="offer-card card-3d reveal d2">
+        <div class="offer-card float-card reveal d2">
+          <div class="card-light" aria-hidden="true"></div>
           <div class="offer-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
           </div>
           <h3>Hébergement inclus</h3>
-          <p class="t-body">Nom de domaine et hébergement compris dans l'abonnement mensuel. Aucune démarche technique de votre côté — nous gérons tout.</p>
+          <p class="t-body">Nom de domaine et hébergement compris dans l'abonnement mensuel. Aucune démarche technique — nous gérons tout de bout en bout.</p>
         </div>
 
-        <div class="offer-card card-3d reveal d3">
+        <div class="offer-card float-card reveal d3">
+          <div class="card-light" aria-hidden="true"></div>
           <div class="offer-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3>Accompagnement durable</h3>
           <p class="t-body">Chaque abonnement inclut une modification mensuelle. Un interlocuteur réel, disponible, qui connaît votre site et répond à vos questions.</p>
         </div>
-
       </div>
     </div>
   </section>
@@ -144,21 +152,20 @@
   <!-- ══ TÉMOIGNAGES ══ -->
   <section class="section-testi">
     <div class="wrap">
-      <span class="t-label reveal">Ils nous font confiance</span>
+      <p class="section-eyebrow reveal">Ils nous font confiance</p>
       <div class="testi-grid">
         <div class="testi-card reveal d1">
-          <!-- Placeholder : photo portrait artisan satisfait, fond neutre gris clair, souriant, tenue de travail -->
-          <div class="testi-avatar" aria-hidden="true">?</div>
+          <div class="testi-avatar" aria-label="Photo client">?</div>
           <blockquote>"Témoignage du premier client à venir."</blockquote>
           <cite>Prénom Nom — Plombier, Ville</cite>
         </div>
         <div class="testi-card reveal d2">
-          <div class="testi-avatar" aria-hidden="true">?</div>
+          <div class="testi-avatar" aria-label="Photo client">?</div>
           <blockquote>"Témoignage du deuxième client à venir."</blockquote>
           <cite>Prénom Nom — Électricien, Ville</cite>
         </div>
         <div class="testi-card reveal d3">
-          <div class="testi-avatar" aria-hidden="true">?</div>
+          <div class="testi-avatar" aria-label="Photo client">?</div>
           <blockquote>"Témoignage du troisième client à venir."</blockquote>
           <cite>Prénom Nom — Peintre, Ville</cite>
         </div>
@@ -171,8 +178,8 @@
     <div class="wrap">
       <div class="cta-box reveal">
         <div class="cta-glow" aria-hidden="true"></div>
-        <h2 class="t-headline">Un projet ? <span class="t-accent">Parlons-en.</span></h2>
-        <p class="t-body">Nous étudions votre situation gratuitement et sans engagement. Dites-nous ce que vous faites, nous proposons la formule adaptée.</p>
+        <h2 class="t-headline">Un projet ?<br /><span class="t-accent">Parlons-en.</span></h2>
+        <p class="t-body">Nous étudions votre situation gratuitement et sans engagement.<br />Dites-nous ce que vous faites, nous proposons la formule adaptée.</p>
         <a href="contact.html" class="btn btn-primary">Nous contacter</a>
       </div>
     </div>
@@ -181,13 +188,9 @@
   <!-- FOOTER -->
   <footer>
     <div class="wrap footer-inner">
-      <div class="footer-logo"><img src="assets/logo.png" alt="Vega Studio" /></div>
-      <span class="t-label">© 2025 Vega Studio</span>
-      <ul class="footer-links">
-        <li><a href="formules.html">Formules</a></li>
-        <li><a href="apropos.html">À propos</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <span class="footer-left"><a href="contact.html">Contact</a></span>
+      <span class="footer-mid t-label">© 2025 Vega Studio</span>
+      <span class="footer-right"><a href="mentions.html">Mentions légales</a></span>
     </div>
   </footer>
 
