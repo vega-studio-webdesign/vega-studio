@@ -4,44 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — Vega Studio</title>
-  <meta name="description" content="Contactez Vega Studio pour un devis gratuit et sans engagement." />
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/page.css" />
   <link rel="stylesheet" href="assets/css/contact.css" />
 </head>
 <body>
-
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
-
   <nav>
     <div class="wrap nav-inner">
-      <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="Vega Studio" /></a>
+      <a href="index.html" class="nav-wordmark">Vega Studio</a>
       <ul class="nav-links">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="formules.html">Formules</a></li>
         <li><a href="apropos.html">À propos</a></li>
-        <li><a href="contact.html" class="nav-cta-link">Nous contacter</a></li>
+        <li><a href="contact.html" class="nav-cta">Nous contacter</a></li>
       </ul>
-      <button class="nav-burger" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-  <!-- PAGE HERO -->
   <section class="page-hero">
     <div class="wrap">
-      <p class="label reveal">Contact</p>
-      <h1 class="headline reveal reveal-d1">Parlons de<br /><em>votre projet.</em></h1>
-      <p class="body-lg reveal reveal-d2">Vous avez une question, vous souhaitez un devis, ou simplement en savoir plus ? Écrivez-nous — nous répondons sous 24 heures.</p>
+      <p class="section-eyebrow reveal">Contact</p>
+      <h1 class="page-title reveal d1">Parlons de<br /><span class="t-accent">votre projet.</span></h1>
+      <p class="page-sub reveal d2">Vous avez une question, vous souhaitez un devis, ou simplement en savoir plus ?<br />Écrivez-nous — nous répondons sous 24 heures.</p>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section class="section-contact">
     <div class="wrap contact-grid">
 
-      <!-- FORM -->
       <div class="contact-form-wrap reveal">
         <form action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST">
           <div class="form-row">
@@ -66,30 +57,24 @@
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="6" placeholder="Décrivez votre projet..." required></textarea>
           </div>
-          <button type="submit" class="btn btn-fill submit-btn hover-target">
-            Envoyer le message
-          </button>
+          <button type="submit" class="btn btn-primary submit-btn">Envoyer le message</button>
         </form>
       </div>
 
-      <!-- INFOS -->
-      <div class="contact-info reveal reveal-d2">
+      <div class="contact-info reveal d2">
         <div class="info-block">
-          <p class="label">E-mail</p>
+          <p class="t-label">E-mail</p>
           <a href="mailto:vega.studio.webdesign@gmail.com" class="info-link">vega.studio.webdesign@gmail.com</a>
         </div>
-        <hr />
         <div class="info-block">
-          <p class="label">Délai de réponse</p>
+          <p class="t-label">Délai de réponse</p>
           <p class="info-val">Sous 24 heures</p>
         </div>
-        <hr />
         <div class="info-block">
-          <p class="label">Devis</p>
+          <p class="t-label">Devis</p>
           <p class="info-val">Gratuit, sans engagement</p>
         </div>
-        <hr />
-        <p class="info-note body-lg">Nous traitons chaque demande sérieusement et personnellement. Aucun message ne reste sans réponse.</p>
+        <p class="info-note t-body">Nous traitons chaque demande sérieusement et personnellement. Aucun message ne reste sans réponse.</p>
       </div>
 
     </div>
@@ -97,16 +82,11 @@
 
   <footer>
     <div class="wrap footer-inner">
-      <div class="footer-logo"><img src="assets/logo.png" alt="Vega Studio" /></div>
-      <span class="label">© 2025 Vega Studio</span>
-      <ul class="footer-links">
-        <li><a href="formules.html">Formules</a></li>
-        <li><a href="apropos.html">À propos</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <span class="footer-left"><a href="contact.html">Contact</a></span>
+      <span class="footer-mid t-label">© 2025 Vega Studio</span>
+      <span class="footer-right"><a href="mentions.html">Mentions légales</a></span>
     </div>
   </footer>
-
   <script src="assets/js/main.js"></script>
 </body>
 </html>
