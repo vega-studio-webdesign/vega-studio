@@ -36,7 +36,7 @@ h1, h2, h3 { font-family: 'Syne', sans-serif; letter-spacing: -0.025em; line-hei
 .t-accent   { color: var(--lilac); }
 
 /* ── LAYOUT ── */
-.wrap { max-width: 1160px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 4rem); }
+.wrap { max-width: 1060px; margin: 0 auto; padding: 0 clamp(1rem, 3vw, 3rem); }
 
 /* ── NAV ── */
 nav {
@@ -75,7 +75,7 @@ nav.scrolled {
 }
 
 .nav-links a {
-  font-size: .875rem; font-weight: 400;
+  font-size: 1rem; font-weight: 400;
   color: var(--white);
   opacity: 0.55;
   transition: opacity .2s;

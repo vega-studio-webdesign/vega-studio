@@ -91,7 +91,7 @@
 
 /* ══ CHIFFRES ══════════════════════════════════════ */
 .section-numbers {
-  background:var(--bg-2); padding:2.5rem 0;
+  background:var(--bg-2); padding:5rem 0;
   border-top:1px solid var(--line); border-bottom:1px solid var(--line);
 }
 
@@ -102,12 +102,12 @@
   display:flex; flex-direction:column; align-items:center; gap:.8rem;
 }
 
-.number-sep { width:1px; height:50px; background:var(--line); flex-shrink:0; }
+.number-sep { width:1px; height:80px; background:var(--line); flex-shrink:0; }
 
 /* Quantico, effet multicolore animé */
 .number-val {
   font-family:'Quantico', sans-serif;
-  font-size:clamp(2rem, 3.5vw, 3rem);
+  font-size:clamp(3.5rem, 6vw, 6rem);
   font-weight:700; letter-spacing:-.02em;
   line-height:1; white-space:nowrap;
   background: linear-gradient(90deg, #C4B8FF, #8B7CF6, #a78bfa, #C4B8FF);
@@ -142,26 +142,12 @@
 /* ══ POURQUOI ══════════════════════════════════════ */
 .section-why { background:var(--bg); padding:13rem 0; }
 
-.why-grid { display:grid; grid-template-columns:1fr 420px 1fr; gap:4rem; align-items:center; }
+.why-grid { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start; }
 
 .why-title {
   font-family:'Syne', sans-serif;
   font-size:clamp(1.7rem, 2.8vw, 2.5rem);
   font-weight:700; line-height:1.2; letter-spacing:-.02em; margin-top:.75rem;
-}
-
-.why-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#why-canvas {
-  width: 100%;
-  max-width: 420px;
-  height: 420px;
-  display: block;
-  opacity: 0.85;
 }
 
 .why-right { display:flex; flex-direction:column; gap:1.5rem; }
@@ -269,7 +255,6 @@
 /* ══ RESPONSIVE ══════════════════════════════════ */
 @media (max-width:960px) {
   .why-grid { grid-template-columns:1fr; gap:3rem; }
-  .why-center { display: none; }
   .offer-grid { grid-template-columns:1fr; }
   .testi-grid { grid-template-columns:1fr; }
   .numbers-grid { flex-direction:column; }
