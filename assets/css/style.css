@@ -159,23 +159,22 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; background: var(-
   .nav-right { display: none; }
   .nav-burger { display: flex; }
 
-  /* Menu slide-down */
+  /* Menu slide-down pleine largeur */
   .nav-links {
     position: fixed;
     top: 0; left: 0; right: 0;
+    width: 100vw;
     background: rgba(11,12,16,.97);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--line);
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     gap: 0;
     z-index: 199;
-    padding-top: 70px; /* hauteur de la nav */
-    /* État fermé : remonté hors écran */
+    padding-top: 70px;
     transform: translateY(-110%);
     transition: transform .4s cubic-bezier(.4,0,.2,1);
-    /* toujours affiché en flex mais déplacé hors vue */
     display: flex;
   }
   .nav-links.open {
@@ -183,32 +182,23 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; background: var(-
   }
   .nav-links li {
     border-bottom: 1px solid var(--line);
+    width: 100%;
+  }
+  /* Cacher le bouton nous contacter dans le menu mobile */
+  .nav-links .mobile-cta-item {
+    display: none;
   }
   .nav-links a {
     display: block;
-    font-size: 1.05rem;
-    padding: 1.1rem 1.75rem;
+    font-size: 1.1rem;
+    padding: 1.2rem 1.75rem;
     opacity: 0.7;
-    text-align: left;
+    text-align: center;
     width: 100%;
   }
   .nav-links a:hover,
   .nav-links a.active { opacity: 1; }
   .nav-links a.active::after { display: none; }
-
-  /* Ajouter "Nous contacter" dans le menu mobile */
-  .nav-links .mobile-cta {
-    display: block;
-    margin: 1.25rem 1.75rem;
-    text-align: center;
-    background: var(--purple);
-    color: #fff !important;
-    opacity: 1 !important;
-    padding: .8rem 1.5rem;
-    border-radius: 999px;
-    font-size: .95rem;
-    font-weight: 500;
-  }
 
   /* Animation burger → croix */
   .nav-burger.open span:nth-child(1) {
@@ -220,6 +210,21 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; background: var(-
   }
   .nav-burger.open span:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: .6rem;
+  }
+  .footer-left  { justify-self: start; }
+  .footer-right { justify-self: end; }
+  .footer-mid   {
+    grid-column: 1 / -1;
+    justify-self: center;
+    order: 3;
   }
 }
 
