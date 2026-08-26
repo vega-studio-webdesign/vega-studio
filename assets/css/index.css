@@ -110,14 +110,11 @@
   font-size:clamp(3.5rem, 6vw, 6rem);
   font-weight:700; letter-spacing:-.02em;
   line-height:1; white-space:nowrap;
-  /* Couleur animée sans background-clip (évite le scintillement GPU) */
-  color: #C4B8FF;
-  animation: numberColorShift 5s ease-in-out infinite;
-}
-@keyframes numberColorShift {
-  0%,100% { color: #C4B8FF; }
-  33%     { color: #A78BFA; }
-  66%     { color: #8B7CF6; }
+  /* Gradient statique — pas d'animation = zéro repaint = zéro vibration */
+  background: linear-gradient(135deg, #E0D8FF 0%, #A78BFA 50%, #7C6FE0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .number-label {
@@ -127,14 +124,11 @@
 
 /* Halo sur les mots clés des labels */
 .stat-glow {
-  color: var(--white);
+  color: #fff;
   font-weight: 500;
-  text-shadow: 0 0 5px rgba(139,124,246,.6), 0 0 12px rgba(139,124,246,.3);
-  animation: statWordGlow 3s ease-in-out infinite;
-}
-@keyframes statWordGlow {
-  0%,100% { text-shadow: 0 0 4px rgba(139,124,246,.5), 0 0 10px rgba(139,124,246,.22); }
-  50%     { text-shadow: 0 0 7px rgba(196,184,255,.8), 0 0 18px rgba(139,124,246,.45); }
+  text-shadow:
+    0 0 6px rgba(167,139,250,.7),
+    0 0 16px rgba(139,124,246,.4);
 }
 
 /* ══ POURQUOI ══════════════════════════════════════ */
@@ -153,21 +147,12 @@
 .why-em { font-style:italic; color:var(--lilac); }
 
 .glow-text {
-  display:inline; color:var(--white); font-weight:400;
+  display:inline; color:#fff; font-weight:400;
+  /* Halo statique — aucune animation = aucun repaint */
   text-shadow:
-    0 0 6px rgba(139,124,246,.6),
-    0 0 14px rgba(139,124,246,.35);
-  animation:textGlow 3s ease-in-out infinite;
-}
-@keyframes textGlow {
-  0%,100% {
-    text-shadow: 0 0 5px rgba(139,124,246,.5), 0 0 12px rgba(139,124,246,.25);
-    color: var(--white);
-  }
-  50% {
-    text-shadow: 0 0 8px rgba(196,184,255,.8), 0 0 20px rgba(139,124,246,.5), 0 0 35px rgba(139,124,246,.2);
-    color: #fff;
-  }
+    0 0 8px rgba(167,139,250,.75),
+    0 0 20px rgba(139,124,246,.45),
+    0 0 40px rgba(139,124,246,.2);
 }
 
 /* ══ CE QU'ON PROPOSE ══════════════════════════════ */
