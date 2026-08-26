@@ -32,26 +32,27 @@
 .hero-mouse-light { position:absolute; inset:0; pointer-events:none; z-index:1; transition:background .15s; }
 
 .hero-inner {
-  padding: 0 clamp(0.75rem, 2.5vw, 3rem);
+  padding: 0 2vw;
   position:relative; z-index:2;
   display:flex; flex-direction:column;
   align-items:center; text-align:center;
   gap:2rem;
+  max-width: 100%;
+  width: 100%;
 }
 
 /* Titre : exactement 2 lignes — on force avec font-size en vw pur */
 .hero-title {
   font-family: 'Syne', sans-serif;
   /*
-    clamp(min, préféré, max)
-    - min  : 1.8rem  → téléphone petit
-    - pref : 4.5vw   → suit l'écran proportionnellement
-    - max  : 3.8rem  → plafond sur grands écrans (~60px)
-    Sur iPad 1024px : 4.5vw = 46px ✓ (2 lignes)
-    Sur desktop 1440px : plafonné à 3.8rem = 60px ✓ (2 lignes)
-    Sur mobile 390px : 4.5vw = 17px → forcé à 1.8rem ✓
+    Le hero utilise un conteneur pleine largeur (padding 2vw).
+    "Votre présence en ligne," = ligne la plus longue.
+    Sur 96vw utile, Syne 800 letter-spacing -0.04em :
+    font-size ≈ largeur / (nb_chars × 0.52) ≈ 96vw / (24 × 0.52) ≈ 7.7vw
+    On vise 7.2vw pour avoir une marge de sécurité.
+    Plafond : 5.5rem (~88px) pour les très grands écrans.
   */
-  font-size: clamp(1.8rem, 4.5vw, 3.8rem);
+  font-size: clamp(1.8rem, 7.2vw, 5.5rem);
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -.04em;
