@@ -12,11 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (burger && links) {
     burger.addEventListener('click', () => {
       const open = links.classList.toggle('open');
-      document.body.style.overflow = open ? 'hidden' : '';
+      burger.classList.toggle('open', open);
+      // Pas de overflow hidden — le menu slide depuis le haut, le contenu reste scrollable
     });
     links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
       links.classList.remove('open');
-      document.body.style.overflow = '';
+      burger.classList.remove('open');
     }));
   }
 

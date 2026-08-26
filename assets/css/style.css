@@ -125,11 +125,11 @@ nav.scrolled {
   transition: all .25s; cursor: pointer; white-space: nowrap;
 }
 
-/* Boutons du hero : même taille, texte légèrement plus grand */
+/* Boutons du hero : largeur identique forcée */
 .hero-actions .btn {
   font-size: 1.05rem;
   padding: 1rem 2.4rem;
-  min-width: 220px;
+  width: 260px;
   justify-content: center;
 }
 .btn-primary { background: var(--purple); color: #fff; border-color: var(--purple); }
@@ -155,16 +155,72 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; background: var(-
 
 /* ── RESPONSIVE NAV ── */
 @media (max-width: 768px) {
-  .nav-inner { grid-template-columns: 1fr auto; }
-  .nav-links {
-    display: none; position: fixed; inset: 0;
-    background: var(--bg); flex-direction: column;
-    justify-content: center; align-items: center; gap: 2.5rem; z-index: 200;
-  }
-  .nav-links.open { display: flex; }
-  .nav-links a { font-size: 1.2rem; }
-  .nav-burger { display: flex; }
+  .nav-inner { grid-template-columns: 1fr auto; padding: 0 1.25rem; }
   .nav-right { display: none; }
+  .nav-burger { display: flex; }
+
+  /* Menu slide-down */
+  .nav-links {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(11,12,16,.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    z-index: 199;
+    padding-top: 70px; /* hauteur de la nav */
+    /* État fermé : remonté hors écran */
+    transform: translateY(-110%);
+    transition: transform .4s cubic-bezier(.4,0,.2,1);
+    /* toujours affiché en flex mais déplacé hors vue */
+    display: flex;
+  }
+  .nav-links.open {
+    transform: translateY(0);
+  }
+  .nav-links li {
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-links a {
+    display: block;
+    font-size: 1.05rem;
+    padding: 1.1rem 1.75rem;
+    opacity: 0.7;
+    text-align: left;
+    width: 100%;
+  }
+  .nav-links a:hover,
+  .nav-links a.active { opacity: 1; }
+  .nav-links a.active::after { display: none; }
+
+  /* Ajouter "Nous contacter" dans le menu mobile */
+  .nav-links .mobile-cta {
+    display: block;
+    margin: 1.25rem 1.75rem;
+    text-align: center;
+    background: var(--purple);
+    color: #fff !important;
+    opacity: 1 !important;
+    padding: .8rem 1.5rem;
+    border-radius: 999px;
+    font-size: .95rem;
+    font-weight: 500;
+  }
+
+  /* Animation burger → croix */
+  .nav-burger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-burger.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .nav-burger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
