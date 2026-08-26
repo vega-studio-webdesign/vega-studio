@@ -42,8 +42,16 @@
 /* Titre : exactement 2 lignes — on force avec font-size en vw pur */
 .hero-title {
   font-family: 'Syne', sans-serif;
-  /* vw pur = suit la largeur de l'écran exactement */
-  font-size: 6.2vw;
+  /*
+    clamp(min, préféré, max)
+    - min  : 1.8rem  → téléphone petit
+    - pref : 4.5vw   → suit l'écran proportionnellement
+    - max  : 3.8rem  → plafond sur grands écrans (~60px)
+    Sur iPad 1024px : 4.5vw = 46px ✓ (2 lignes)
+    Sur desktop 1440px : plafonné à 3.8rem = 60px ✓ (2 lignes)
+    Sur mobile 390px : 4.5vw = 17px → forcé à 1.8rem ✓
+  */
+  font-size: clamp(1.8rem, 4.5vw, 3.8rem);
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -.04em;
@@ -54,7 +62,7 @@
 }
 
 @media (max-width: 600px) {
-  .hero-title { font-size: 8.5vw; letter-spacing: -.02em; }
+  .hero-title { font-size: clamp(1.6rem, 7vw, 2.2rem); letter-spacing: -.02em; }
 }
 
 .hero-sub {
