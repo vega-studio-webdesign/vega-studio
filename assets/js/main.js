@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', resize, { passive: true });
 
     const N = 38;
-    const LINK_DIST = 90;
+    const LINK_DIST = 110;  // liaisons visibles sur plus grande distance
     const SPEED = 0.35;
 
     // Créer les particules
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
       y:  Math.random() * H,
       vx: (Math.random() - .5) * SPEED,
       vy: (Math.random() - .5) * SPEED,
-      r:  Math.random() * 2.5 + 1.2,
+      r:  Math.random() * 4.5 + 2.5,  // sphères plus grosses
       lit: Math.random() > .45,          // allumée ou éteinte
       litTarget: Math.random() > .45,
       litAlpha: Math.random() > .45 ? 1 : 0,
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const dy = particles[i].y - particles[j].y;
           const d  = Math.sqrt(dx*dx + dy*dy);
           if (d < LINK_DIST) {
-            const alpha = (1 - d / LINK_DIST) * 0.22;
+            const alpha = (1 - d / LINK_DIST) * 0.55;  // beaucoup plus visible
             const litness = (particles[i].litAlpha + particles[j].litAlpha) / 2;
             const r = Math.round(100 + litness * 96);
             const g = Math.round(88  + litness * 100);
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
-            ctx.lineWidth   = 0.8;
+            ctx.lineWidth   = 1.2;  // trait plus épais
             ctx.stroke();
           }
         }
@@ -219,8 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Halo sur les sphères allumées
         if (la > 0.3) {
-          const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 5);
-          grd.addColorStop(0, `rgba(${ra},${ga},${ba},${la * 0.28})`);
+          const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
+          grd.addColorStop(0, `rgba(${ra},${ga},${ba},${la * 0.45})`);
           grd.addColorStop(1, 'rgba(139,108,232,0)');
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.r * 5, 0, Math.PI*2);

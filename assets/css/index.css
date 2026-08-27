@@ -162,7 +162,7 @@
 }
 
 /* ══ POURQUOI ══════════════════════════════════════ */
-.section-why { background:var(--bg); padding:13rem 0; }
+.section-why { background:var(--bg); padding:6rem 0; }
 
 .why-grid { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start; }
 
@@ -186,7 +186,7 @@
 }
 
 /* ══ CE QU'ON PROPOSE ══════════════════════════════ */
-.section-offer { background:var(--bg-2); padding:9rem 0; }
+.section-offer { background:var(--bg-2); padding:6rem 0; }
 
 .offer-title {
   font-family:'Syne', sans-serif;
@@ -225,7 +225,7 @@
 .offer-card h3 { font-family:'Syne', sans-serif; font-size:1.05rem; font-weight:700; color:var(--white); }
 
 /* ══ TÉMOIGNAGES ══════════════════════════════════ */
-.section-testi { background:var(--bg); padding:9rem 0; }
+.section-testi { background:var(--bg); padding:6rem 0; }
 .section-testi .section-eyebrow { margin-bottom:2.5rem; }
 .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
 
@@ -248,7 +248,7 @@
 .testi-card cite { font-size:.73rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); font-style:normal; }
 
 /* ══ CTA ════════════════════════════════════════ */
-.section-cta { background:var(--bg-2); padding:9rem 0; }
+.section-cta { background:var(--bg-2); padding:6rem 0; }
 
 .cta-box {
   position:relative;
