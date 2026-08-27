@@ -107,14 +107,26 @@ nav.scrolled {
 }
 
 .nav-cta {
-  background: var(--purple); color: #fff !important;
-  padding: .55rem 1.4rem; border-radius: 999px;
-  font-size: .875rem; font-weight: 500;
+  /* Design unique : pas de fond violet, juste une bordure blanche lumineuse */
+  background: rgba(255,255,255,0.06);
+  color: var(--white) !important;
+  border: 1px solid rgba(255,255,255,0.28) !important;
+  padding: .52rem 1.35rem;
+  border-radius: 8px; /* carré au lieu d'ovale comme les autres */
+  font-size: .85rem;
+  font-weight: 500;
+  letter-spacing: .02em;
   opacity: 1 !important;
-  transition: background .25s, transform .2s;
+  transition: background .25s, border-color .25s, transform .2s;
   display: inline-block;
+  backdrop-filter: blur(4px);
 }
-.nav-cta:hover { background: var(--lilac) !important; color: #111 !important; transform: translateY(-1px); }
+.nav-cta:hover {
+  background: rgba(255,255,255,0.12) !important;
+  border-color: rgba(255,255,255,0.55) !important;
+  color: var(--white) !important;
+  transform: translateY(-1px);
+}
 .nav-cta::after { display: none !important; }
 
 .nav-burger {

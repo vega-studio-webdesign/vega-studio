@@ -3,55 +3,56 @@
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 6rem;
+  grid-template-columns: 1fr 300px;
+  gap: 7rem;
   align-items: start;
 }
 
-/* ── FORMULAIRE ── */
-.contact-form-wrap {
-  background: var(--bg-3);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 2.5rem 2.75rem;
-}
+/* ── FORMULAIRE — sans cadre générique ── */
+.contact-form-wrap { padding: 0; }
 
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
 .form-field {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
-  margin-bottom: 1.4rem;
+  margin-bottom: 2rem;
+  position: relative;
 }
 
+/* Label flottant au-dessus */
 .form-field label {
-  font-size: .72rem;
+  font-size: .7rem;
   font-weight: 600;
-  letter-spacing: .1em;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--purple);
+  margin-bottom: .55rem;
+  display: block;
 }
 
 .opt {
   font-weight: 400;
   letter-spacing: 0;
   text-transform: none;
-  font-size: .68rem;
   color: var(--faint);
 }
 
+/* Champs : fond discret avec bordure gauche accentuée */
 .form-field input,
 .form-field textarea {
-  background: var(--bg-4);
-  border: 1px solid rgba(238,238,245,.1);
-  border-radius: 10px;
-  padding: .85rem 1.1rem;
+  background: rgba(255,255,255,0.03);
+  border: none;
+  border-left: 2px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: .75rem 1rem;
   color: var(--white);
   font-family: 'Inter', sans-serif;
-  font-size: .95rem;
+  font-size: 1rem;
   font-weight: 300;
-  transition: border-color .25s, box-shadow .25s;
+  line-height: 1.5;
+  transition: border-color .25s, background .25s;
   outline: none;
   resize: none;
   width: 100%;
@@ -59,42 +60,50 @@
 
 .form-field input::placeholder,
 .form-field textarea::placeholder {
-  color: var(--faint);
+  color: rgba(238,238,245,.22);
+  font-style: italic;
 }
 
 .form-field input:focus,
 .form-field textarea:focus {
-  border-color: var(--purple);
-  box-shadow: 0 0 0 3px rgba(139,124,246,.12);
-  background: var(--bg-elevated, #1E2130);
+  border-left-color: var(--purple);
+  border-bottom-color: rgba(139,124,246,.5);
+  background: rgba(139,124,246,.04);
+}
+
+/* Ligne de séparation avant le bouton */
+.form-divider {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: .5rem 0 1.75rem;
 }
 
 .submit-btn {
-  margin-top: .75rem;
-  width: 100%;
-  justify-content: center;
+  font-size: 1rem;
+  padding: 1rem 2.5rem;
 }
 
 /* ── INFOS CONTACT ── */
 .contact-info {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  padding-top: .5rem;
+  border-left: 1px solid var(--line);
+  padding-left: 3rem;
 }
 
 .info-block {
-  padding: 1.75rem 0;
+  padding: 1.6rem 0;
   border-bottom: 1px solid var(--line);
   display: flex;
   flex-direction: column;
-  gap: .6rem;
+  gap: .5rem;
 }
 
+.info-block:first-child { padding-top: 0; }
 .info-block:last-of-type { border-bottom: none; }
 
 .info-link {
-  font-size: .9rem;
+  font-size: .95rem;
   color: var(--white);
   font-weight: 400;
   transition: color .2s;
@@ -104,25 +113,39 @@
 .info-link:hover { color: var(--lilac); }
 
 .info-val {
-  font-size: .9rem;
+  font-size: .95rem;
   color: var(--white);
   font-weight: 400;
 }
 
 .info-note {
   margin-top: 2rem;
-  font-size: .88rem !important;
+  font-size: .85rem !important;
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.75;
+  font-style: italic;
 }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .contact-info  { order: -1; }
-  .contact-form-wrap { padding: 2rem 1.75rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+  .contact-info {
+    order: -1;
+    border-left: none;
+    border-top: 1px solid var(--line);
+    padding-left: 0;
+    padding-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .info-block { border-right: 1px solid var(--line); padding: 1rem 1.5rem; border-bottom: none; }
+  .info-block:last-of-type { border-right: none; }
+  .info-note { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 1.25rem; margin-top: 0; }
 }
 
 @media (max-width: 600px) {
   .form-row { grid-template-columns: 1fr; }
+  .contact-info { grid-template-columns: 1fr; }
+  .info-block { border-right: none; border-bottom: 1px solid var(--line); padding: 1rem 0; }
 }
