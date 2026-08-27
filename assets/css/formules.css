@@ -173,9 +173,20 @@
 
 .details-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 0 5rem;
   align-items: start;
+}
+
+/* Séparateur vertical entre les deux blocs */
+.details-grid::after {
+  content: '';
+  grid-column: 2;
+  grid-row: 1;
+  background: var(--line);
+  width: 1px;
+  height: 100%;
+  align-self: stretch;
 }
 
 .detail-title {
