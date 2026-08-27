@@ -32,3 +32,18 @@
 .mention-block p { font-size: 1rem; font-weight: 300; color: var(--muted); line-height: 1.8; }
 .mention-block a { color: var(--lilac); transition: color .2s; }
 .mention-block a:hover { color: var(--white); }
+
+/* Titres centrés sur certaines pages */
+.title-centered {
+  text-align: center;
+}
+
+/* À propos : titre stylisé 2 lignes centré */
+.apropos-hero-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.15;
+  margin-top: .5rem;
+}

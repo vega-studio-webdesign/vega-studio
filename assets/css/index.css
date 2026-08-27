@@ -52,10 +52,10 @@
     On vise 7.2vw pour avoir une marge de sécurité.
     Plafond : 5.5rem (~88px) pour les très grands écrans.
   */
-  font-size: clamp(1.8rem, 7.2vw, 5.5rem);
+  font-size: clamp(1.7rem, 6.8vw, 5.2rem);
   font-weight: 800;
   line-height: 1.08;
-  letter-spacing: -.04em;
+  letter-spacing: -.01em;
   width: 100%;
   text-align: center;
   word-break: keep-all;
@@ -63,7 +63,24 @@
 }
 
 @media (max-width: 600px) {
-  .hero-title { font-size: clamp(1.6rem, 7vw, 2.2rem); letter-spacing: -.02em; }
+  /* Titre plus grand, sous-titre plus petit */
+  .hero-title { font-size: 12vw; letter-spacing: -.01em; }
+  .hero-sub { font-size: .75rem; max-width: 88vw; }
+
+  /* Boutons plus petits, même taille exacte */
+  .hero-actions .btn {
+    width: 42vw;
+    font-size: .85rem;
+    padding: .7rem .9rem;
+  }
+  .hero-actions { gap: .5rem; }
+
+  /* Stats plus compactes */
+  .section-numbers { padding: 2.5rem 0; }
+  .number-block { padding: .75rem 1.25rem; }
+  .number-val { font-size: clamp(1.8rem, 8.5vw, 2.8rem) !important; }
+  .number-label { font-size: .75rem; max-width: 130px; }
+  .number-sep { height: 35px; }
 }
 
 .hero-sub {
@@ -110,7 +127,12 @@
   font-size:clamp(3.5rem, 6vw, 6rem);
   font-weight:700; letter-spacing:-.02em;
   line-height:1; white-space:nowrap;
-  /* Gradient statique — pas d'animation = zéro repaint = zéro vibration */
+  /* Largeur fixe = les chiffres ne bougent pas pendant le comptage */
+  display: inline-block;
+  min-width: 4ch; /* largeur de "60%" = valeur la plus large */
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  /* Gradient statique — zéro vibration */
   background: linear-gradient(135deg, #E0D8FF 0%, #A78BFA 50%, #7C6FE0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -251,6 +273,5 @@
 }
 @media (max-width:600px) {
   .cta-box { padding:3rem 1.75rem; }
-  .hero-actions .btn { justify-content:center; }
   .offer-card { animation:none; }
 }

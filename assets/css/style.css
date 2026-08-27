@@ -68,6 +68,9 @@ nav.scrolled {
 }
 .nav-wordmark:hover { color: var(--lilac); }
 
+/* Masquer le bouton Nous contacter dans les nav-links */
+.mobile-cta-item { display: none !important; }
+
 .nav-links {
   display: flex; align-items: center; gap: 2.5rem;
   list-style: none;
@@ -159,7 +162,7 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; background: var(-
   .nav-right { display: none; }
   .nav-burger { display: flex; }
 
-  /* Menu slide-down pleine largeur */
+  /* Nav-links : panel pleine largeur qui slide depuis le haut, z-index au-dessus de la nav */
   .nav-links {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -171,23 +174,53 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; background: var(-
     flex-direction: column;
     align-items: center;
     gap: 0;
-    z-index: 199;
-    padding-top: 70px;
+    z-index: 201; /* au-dessus de la nav (200) */
+    padding-top: 0;
     transform: translateY(-110%);
     transition: transform .4s cubic-bezier(.4,0,.2,1);
     display: flex;
   }
-  .nav-links.open {
-    transform: translateY(0);
+  .nav-links.open { transform: translateY(0); }
+
+  /* Premier li : Accueil + bouton X sur la même ligne */
+  .nav-links li:first-child {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 1px solid var(--line);
+    position: relative;
   }
+  .nav-links li:first-child a {
+    text-align: center;
+    padding: 1.3rem 1.75rem;
+    flex: 1;
+    border-bottom: none;
+  }
+
+  /* Bouton close (X) à droite du premier item */
+  .nav-mobile-close {
+    display: block;
+    position: absolute;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.2rem;
+    line-height: 1;
+    padding: .5rem;
+    cursor: pointer;
+    transition: color .2s;
+  }
+  .nav-mobile-close:hover { color: var(--white); }
+
+  /* Autres items */
   .nav-links li {
     border-bottom: 1px solid var(--line);
     width: 100%;
   }
-  /* Cacher le bouton nous contacter dans le menu mobile */
-  .nav-links .mobile-cta-item {
-    display: none;
-  }
+  .nav-links .mobile-cta-item { display: none; }
   .nav-links a {
     display: block;
     font-size: 1.1rem;
@@ -200,32 +233,22 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; background: var(-
   .nav-links a.active { opacity: 1; }
   .nav-links a.active::after { display: none; }
 
-  /* Animation burger → croix */
-  .nav-burger.open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-  .nav-burger.open span:nth-child(2) {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-  .nav-burger.open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
+  /* Burger → croix quand menu ouvert */
+  .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 }
 
 @media (max-width: 600px) {
+  /* Footer : copyright à gauche, mentions légales à droite, Contact masqué */
   .footer-inner {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: .6rem;
+    grid-template-rows: auto;
+    gap: 0;
   }
-  .footer-left  { justify-self: start; }
+  .footer-left  { display: none; } /* Cache Contact */
+  .footer-mid   { justify-self: start; }
   .footer-right { justify-self: end; }
-  .footer-mid   {
-    grid-column: 1 / -1;
-    justify-self: center;
-    order: 3;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

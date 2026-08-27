@@ -9,16 +9,17 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── BURGER ── */
   const burger = document.querySelector('.nav-burger');
   const links  = document.querySelector('.nav-links');
+  const closeBtn = document.querySelector('.nav-mobile-close');
+
+  function openMenu()  { links.classList.add('open');    burger.classList.add('open'); }
+  function closeMenu() { links.classList.remove('open'); burger.classList.remove('open'); }
+
   if (burger && links) {
     burger.addEventListener('click', () => {
-      const open = links.classList.toggle('open');
-      burger.classList.toggle('open', open);
-      // Pas de overflow hidden — le menu slide depuis le haut, le contenu reste scrollable
+      links.classList.contains('open') ? closeMenu() : openMenu();
     });
-    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      links.classList.remove('open');
-      burger.classList.remove('open');
-    }));
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   }
 
   /* ── REVEAL ── */
