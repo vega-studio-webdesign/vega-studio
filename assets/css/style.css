@@ -41,14 +41,14 @@ h1, h2, h3 { font-family: 'Syne', sans-serif; letter-spacing: -0.025em; line-hei
 /* ── NAV ── */
 nav {
   position: fixed; inset: 0 0 auto 0; z-index: 200;
-  padding: 1.4rem 0;
-  transition: background .4s, backdrop-filter .4s, padding .4s;
+  padding: 1.2rem 0;
+  background: rgba(11,12,16,.97);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  transition: padding .3s;
 }
 nav.scrolled {
   padding: 1rem 0;
-  background: rgba(11,12,16,.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--line);
 }
 
 .nav-inner {
