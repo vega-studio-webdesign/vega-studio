@@ -3,11 +3,11 @@
 /* ══ HERO ══════════════════════════════════════════ */
 .hero {
   position: relative;
-  min-height: 88svh;
+  min-height: 100svh;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* positionné par padding-top, pas centré */
   overflow: hidden;
-  padding: 8rem 0 5rem;
+  padding: 28vh 0 5rem; /* 28vh depuis le haut = grand espace nav→titre */
 }
 
 .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
@@ -36,7 +36,7 @@
   position:relative; z-index:2;
   display:flex; flex-direction:column;
   align-items:center; text-align:center;
-  gap:2rem;
+  gap:3rem; /* plus d'espace entre sous-titre et boutons */
   max-width: 100%;
   width: 100%;
 }
@@ -88,7 +88,7 @@
   .section-offer { padding: 4rem 0; }
   .section-testi { padding: 4rem 0; }
   .section-cta  { padding: 4rem 0; }
-  .hero { padding: 6rem 0 4rem; }
+  .hero { padding: 6rem 0 4rem; align-items: center; } /* centré sur mobile */
 }
 
 .hero-sub {
