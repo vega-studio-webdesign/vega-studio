@@ -1,29 +1,128 @@
-.section-contact { padding: 4rem 0 10rem; }
-.contact-grid { display: grid; grid-template-columns: 1fr 340px; gap: 7rem; align-items: start; }
+/* ══ CONTACT PAGE ══════════════════════════════════ */
+.section-contact { padding: 3rem 0 8rem; }
 
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-
-.form-field { display: flex; flex-direction: column; gap: .55rem; margin-bottom: 1.75rem; }
-.form-field label { font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
-.opt { font-weight: 400; letter-spacing: 0; text-transform: none; font-size: .68rem; }
-
-.form-field input, .form-field textarea {
-  background: transparent; border: none; border-bottom: 1px solid var(--line);
-  padding: .75rem 0; color: var(--white);
-  font-family: 'Inter', sans-serif; font-size: .95rem; font-weight: 300;
-  transition: border-color .3s; outline: none; resize: none; width: 100%;
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 6rem;
+  align-items: start;
 }
-.form-field input::placeholder, .form-field textarea::placeholder { color: var(--faint); }
-.form-field input:focus, .form-field textarea:focus { border-color: var(--purple); }
 
-.submit-btn { margin-top: .5rem; }
+/* ── FORMULAIRE ── */
+.contact-form-wrap {
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 2.5rem 2.75rem;
+}
 
-.contact-info { display: flex; flex-direction: column; gap: 0; padding-top: .5rem; }
-.info-block { padding: 1.75rem 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: .6rem; }
-.info-link { font-size: .9rem; color: var(--muted); transition: color .2s; word-break: break-all; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin-bottom: 1.4rem;
+}
+
+.form-field label {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.opt {
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: .68rem;
+  color: var(--faint);
+}
+
+.form-field input,
+.form-field textarea {
+  background: var(--bg-4);
+  border: 1px solid rgba(238,238,245,.1);
+  border-radius: 10px;
+  padding: .85rem 1.1rem;
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: .95rem;
+  font-weight: 300;
+  transition: border-color .25s, box-shadow .25s;
+  outline: none;
+  resize: none;
+  width: 100%;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: var(--faint);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(139,124,246,.12);
+  background: var(--bg-elevated, #1E2130);
+}
+
+.submit-btn {
+  margin-top: .75rem;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── INFOS CONTACT ── */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-top: .5rem;
+}
+
+.info-block {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+
+.info-block:last-of-type { border-bottom: none; }
+
+.info-link {
+  font-size: .9rem;
+  color: var(--white);
+  font-weight: 400;
+  transition: color .2s;
+  word-break: break-all;
+}
+
 .info-link:hover { color: var(--lilac); }
-.info-val { font-size: .9rem; color: var(--muted); }
-.info-note { margin-top: 2rem; font-size: .88rem !important; }
 
-@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 4rem; } .contact-info { order: -1; } }
-@media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+.info-val {
+  font-size: .9rem;
+  color: var(--white);
+  font-weight: 400;
+}
+
+.info-note {
+  margin-top: 2rem;
+  font-size: .88rem !important;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-info  { order: -1; }
+  .contact-form-wrap { padding: 2rem 1.75rem; }
+}
+
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+}
