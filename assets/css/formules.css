@@ -1,5 +1,12 @@
 /* ══ FORMULES ════════════════════════════════════ */
 
+/* Conteneur large pour la grille des offres */
+.wrap-wide {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 3rem);
+}
+
 /* ── GRILLE DES OFFRES ── */
 .section-offers { padding: 3rem 0 5rem; }
 
@@ -23,12 +30,9 @@
   transition: background .25s;
 }
 
-.offer-card:hover { background: var(--bg-2); }
-
 .offer-card--featured {
   background: var(--bg-3);
 }
-.offer-card--featured:hover { background: #17192A; }
 
 .offer-badge {
   position: absolute;
@@ -136,14 +140,14 @@
 }
 
 .offer-cta--ghost {
-  border: 1px solid var(--line);
-  color: var(--muted);
+  border: 1px solid rgba(238,238,245,.3);
+  color: var(--white);
+  background: rgba(255,255,255,.04);
 }
 
 .offer-cta--ghost:hover {
-  border-color: rgba(139,124,246,.4);
-  color: var(--white);
-  background: rgba(139,124,246,.06);
+  border-color: rgba(238,238,245,.5);
+  background: rgba(255,255,255,.08);
 }
 
 .offer-cta--filled {
