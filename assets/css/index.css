@@ -3,11 +3,11 @@
 /* ══ HERO ══════════════════════════════════════════ */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 88svh;
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 8rem 0 6rem;
+  padding: 8rem 0 5rem;
 }
 
 .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
@@ -162,7 +162,7 @@
 }
 
 /* ══ POURQUOI ══════════════════════════════════════ */
-.section-why { background:var(--bg); padding:6rem 0; }
+.section-why { background:var(--bg); padding:8rem 0 6rem; }
 
 .why-grid { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start; }
 
