@@ -164,6 +164,7 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; background: var(-
   .nav-inner { grid-template-columns: 1fr auto; padding: 0 1.25rem; }
   .nav-right { display: none; }
   .nav-burger { display: flex; }
+  .nav-burger.open { opacity: 0; pointer-events: none; }
 
   /* Nav-links : panel pleine largeur qui slide depuis le haut, z-index au-dessus de la nav */
   .nav-links {

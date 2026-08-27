@@ -59,3 +59,8 @@
   .mentions-content { padding: 2rem 0 3.5rem; }
   .page-hero { padding: 7rem 0 2rem; }
 }
+
+/* Bouton Nous contacter dans les page-hero */
+.page-hero-actions {
+  margin-top: 1.75rem;
+}

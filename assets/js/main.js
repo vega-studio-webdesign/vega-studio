@@ -20,6 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     if (closeBtn) closeBtn.addEventListener('click', closeMenu);
     links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+    // Fermer en cliquant en dehors du menu
+    document.addEventListener('click', e => {
+      if (links.classList.contains('open') &&
+          !links.contains(e.target) &&
+          !burger.contains(e.target)) {
+        closeMenu();
+      }
+    });
   }
 
   /* ── REVEAL ── */
@@ -61,17 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  /* ── LUMIÈRE SOURIS HERO ── */
-  const heroLight = document.querySelector('.hero-mouse-light');
-  const heroEl    = document.querySelector('.hero');
-  if (heroLight && heroEl) {
-    heroEl.addEventListener('mousemove', e => {
-      const r = heroEl.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width  * 100).toFixed(1);
-      const y = ((e.clientY - r.top)  / r.height * 100).toFixed(1);
-      heroLight.style.background = `radial-gradient(circle 600px at ${x}% ${y}%, rgba(139,124,246,0.09) 0%, transparent 70%)`;
-    });
-  }
+  /* Effet lumière souris supprimé */
 
   /* ── SHIMMER SÉQUENTIEL — jamais 2x la même carte ── */
   const cards = Array.from(document.querySelectorAll('.offer-card'));
@@ -124,5 +123,124 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+
+  /* ── RÉSEAU DE PARTICULES — section À propos ── */
+  function initParticlesNetwork() {
+    const canvas = document.getElementById('particles-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let W, H;
+
+    function resize() {
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    const N = 38;
+    const LINK_DIST = 90;
+    const SPEED = 0.35;
+
+    // Créer les particules
+    const particles = Array.from({ length: N }, () => ({
+      x:  Math.random() * W,
+      y:  Math.random() * H,
+      vx: (Math.random() - .5) * SPEED,
+      vy: (Math.random() - .5) * SPEED,
+      r:  Math.random() * 2.5 + 1.2,
+      lit: Math.random() > .45,          // allumée ou éteinte
+      litTarget: Math.random() > .45,
+      litAlpha: Math.random() > .45 ? 1 : 0,
+      toggleTimer: Math.random() * 180,  // frames avant prochain basculement
+    }));
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      // Mettre à jour positions + état lit/éteint
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Rebond sur les bords
+        if (p.x < 0)  { p.x = 0;  p.vx *= -1; }
+        if (p.x > W)  { p.x = W;  p.vx *= -1; }
+        if (p.y < 0)  { p.y = 0;  p.vy *= -1; }
+        if (p.y > H)  { p.y = H;  p.vy *= -1; }
+
+        // Légère perturbation aléatoire
+        p.vx += (Math.random() - .5) * 0.012;
+        p.vy += (Math.random() - .5) * 0.012;
+        // Limiter la vitesse
+        const spd = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
+        if (spd > SPEED * 1.8) { p.vx *= .95; p.vy *= .95; }
+
+        // Basculer l'état allumé/éteint aléatoirement
+        p.toggleTimer--;
+        if (p.toggleTimer <= 0) {
+          p.litTarget = !p.litTarget;
+          p.toggleTimer = 80 + Math.random() * 220;
+        }
+        // Transition douce vers l'état cible
+        p.litAlpha += ((p.litTarget ? 1 : 0) - p.litAlpha) * 0.03;
+      }
+
+      // Dessiner les liaisons
+      for (let i = 0; i < N; i++) {
+        for (let j = i + 1; j < N; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const d  = Math.sqrt(dx*dx + dy*dy);
+          if (d < LINK_DIST) {
+            const alpha = (1 - d / LINK_DIST) * 0.22;
+            const litness = (particles[i].litAlpha + particles[j].litAlpha) / 2;
+            const r = Math.round(100 + litness * 96);
+            const g = Math.round(88  + litness * 100);
+            const b = Math.round(200 + litness * 56);
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
+            ctx.lineWidth   = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Dessiner les sphères
+      for (const p of particles) {
+        const la = p.litAlpha;
+        const ra = Math.round(139 + la * 57);
+        const ga = Math.round(108 + la * 76);
+        const ba = Math.round(232 + la * 23);
+        const baseAlpha = 0.25 + la * 0.65;
+
+        // Halo sur les sphères allumées
+        if (la > 0.3) {
+          const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 5);
+          grd.addColorStop(0, `rgba(${ra},${ga},${ba},${la * 0.28})`);
+          grd.addColorStop(1, 'rgba(139,108,232,0)');
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * 5, 0, Math.PI*2);
+          ctx.fillStyle = grd;
+          ctx.fill();
+        }
+
+        // Sphère
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(${ra},${ga},${ba},${baseAlpha})`;
+        ctx.fill();
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  }
+
+  initParticlesNetwork();
 
 });
