@@ -68,20 +68,33 @@
   /* Sous-titre plus petit */
   .hero-sub { font-size: .7rem; max-width: 88vw; }
 
-  /* Boutons plus petits */
-  .hero-actions .btn {
-    width: 42vw;
-    font-size: .8rem;
-    padding: .65rem .8rem;
+  /* Boutons en colonne, plus grands */
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: .75rem;
+    width: 100%;
   }
-  .hero-actions { gap: .5rem; }
+  .hero-actions .btn {
+    width: min(80vw, 320px);
+    font-size: .95rem;
+    padding: .95rem 1.5rem;
+    justify-content: center;
+  }
 
-  /* Stats : bandeau moins haut, chiffres légèrement plus grands */
-  .section-numbers { padding: 1.25rem 0; }
-  .number-block { padding: .4rem .8rem; }
-  .number-val { font-size: clamp(2rem, 9vw, 3rem) !important; }
-  .number-label { font-size: .78rem; max-width: 130px; }
-  .number-sep { height: 28px; }
+  /* Stats mobile : 2 stats seulement sur une ligne */
+  .section-numbers { padding: 1rem 0; }
+  .number-block { padding: .5rem 2rem; }
+  /* Masquer "3 sec" (3e enfant) et les 2 séparateurs (2e et 4e enfants) */
+  .numbers-grid > div:nth-child(2),
+  .numbers-grid > div:nth-child(3),
+  .numbers-grid > div:nth-child(4) {
+    display: none;
+  }
+  .numbers-grid { justify-content: center; }
+  .number-val { font-size: clamp(2.2rem, 10vw, 3.2rem) !important; }
+  .number-label { font-size: .8rem; max-width: 160px; }
+  .number-sep { height: 40px; }
 
   /* Sections : réduire les marges verticales énormes */
   .section-why  { padding: 4rem 0; }

@@ -176,7 +176,7 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; background: var(-
   .nav-inner { grid-template-columns: 1fr auto; padding: 0 1.25rem; }
   .nav-right { display: none; }
   .nav-burger { display: flex; }
-  .nav-burger.open { opacity: 0; pointer-events: none; }
+  /* burger reste visible — il devient la croix */
 
   /* Nav-links : panel pleine largeur qui slide depuis le haut, z-index au-dessus de la nav */
   .nav-links {
@@ -215,21 +215,12 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; background: var(-
     border-bottom: none;
   }
 
-  /* Bouton close (X) affiché seulement dans le menu mobile */
-  .nav-mobile-close {
-    display: block !important;
-    position: absolute;
-    right: 1.25rem;
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-size: 1.2rem;
-    line-height: 1;
-    padding: .5rem;
-    cursor: pointer;
-    transition: color .2s;
-  }
-  .nav-mobile-close:hover { color: var(--white); }
+  /* nav-mobile-close reste caché sur mobile — c'est le burger qui fait la croix */
+
+  /* Burger → croix quand menu ouvert */
+  .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   /* Autres items */
   .nav-links li {
