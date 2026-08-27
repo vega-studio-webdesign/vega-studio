@@ -68,6 +68,9 @@ nav.scrolled {
 }
 .nav-wordmark:hover { color: var(--lilac); }
 
+/* Bouton close mobile : invisible sur desktop */
+.nav-mobile-close { display: none; }
+
 /* Masquer le bouton Nous contacter dans les nav-links */
 .mobile-cta-item { display: none !important; }
 
@@ -199,9 +202,9 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; background: var(-
     border-bottom: none;
   }
 
-  /* Bouton close (X) à droite du premier item */
+  /* Bouton close (X) affiché seulement dans le menu mobile */
   .nav-mobile-close {
-    display: block;
+    display: block !important;
     position: absolute;
     right: 1.25rem;
     background: none;
@@ -233,11 +236,7 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; background: var(-
   .nav-links a.active { opacity: 1; }
   .nav-links a.active::after { display: none; }
 
-  /* Burger → croix quand menu ouvert */
-  .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-}
+}  /* fin @media 768px */
 
 @media (max-width: 600px) {
   /* Footer : copyright à gauche, mentions légales à droite, Contact masqué */

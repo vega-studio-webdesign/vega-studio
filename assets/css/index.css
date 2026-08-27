@@ -63,24 +63,32 @@
 }
 
 @media (max-width: 600px) {
-  /* Titre plus grand, sous-titre plus petit */
+  /* Titre plus grand */
   .hero-title { font-size: 12vw; letter-spacing: -.01em; }
-  .hero-sub { font-size: .75rem; max-width: 88vw; }
+  /* Sous-titre plus petit */
+  .hero-sub { font-size: .7rem; max-width: 88vw; }
 
-  /* Boutons plus petits, même taille exacte */
+  /* Boutons plus petits */
   .hero-actions .btn {
     width: 42vw;
-    font-size: .85rem;
-    padding: .7rem .9rem;
+    font-size: .8rem;
+    padding: .65rem .8rem;
   }
   .hero-actions { gap: .5rem; }
 
-  /* Stats plus compactes */
-  .section-numbers { padding: 2.5rem 0; }
-  .number-block { padding: .75rem 1.25rem; }
-  .number-val { font-size: clamp(1.8rem, 8.5vw, 2.8rem) !important; }
-  .number-label { font-size: .75rem; max-width: 130px; }
-  .number-sep { height: 35px; }
+  /* Stats : bandeau moins haut, chiffres légèrement plus grands */
+  .section-numbers { padding: 1.25rem 0; }
+  .number-block { padding: .4rem .8rem; }
+  .number-val { font-size: clamp(2rem, 9vw, 3rem) !important; }
+  .number-label { font-size: .78rem; max-width: 130px; }
+  .number-sep { height: 28px; }
+
+  /* Sections : réduire les marges verticales énormes */
+  .section-why  { padding: 4rem 0; }
+  .section-offer { padding: 4rem 0; }
+  .section-testi { padding: 4rem 0; }
+  .section-cta  { padding: 4rem 0; }
+  .hero { padding: 6rem 0 4rem; }
 }
 
 .hero-sub {
@@ -101,7 +109,7 @@
 
 /* ══ EYEBROW ══════════════════════════════════════ */
 .section-eyebrow {
-  font-size:.75rem; font-weight:500; letter-spacing:.14em;
+  font-size:.9rem; font-weight:500; letter-spacing:.12em;
   text-transform:uppercase; color:var(--purple);
   margin-bottom:.75rem; display:block;
 }

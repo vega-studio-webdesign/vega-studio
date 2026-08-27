@@ -29,7 +29,7 @@
   display: grid; grid-template-columns: 80px 1fr;
   gap: 2rem; padding: 3rem 0; border-bottom: 1px solid var(--line);
 }
-.value-num { font-size: .7rem; font-weight: 600; letter-spacing: .15em; color: var(--purple); padding-top: .3rem; }
+.value-num { display: none; }
 .value-row h3 { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: .6rem; }
 
 .section-cta-about { padding: 8rem 0; background: var(--bg); }
