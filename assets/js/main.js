@@ -474,7 +474,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderFormulas() {
       const hasPrem = PREM_FEATS.some(f => features.has(f));
-      document.getElementById('sim-prem-note').hidden = !hasPrem;
+      document.getElementById('sim-prem-note').hidden = true;
+
+      // Si une fonctionnalité Premium est sélectionnée → on n'affiche que Premium
+      if (hasPrem) {
+        document.getElementById('sim-formulas').innerHTML = `
+          <div class="sim-formula-card sim-formula-prem">
+            <div class="sfc-head">
+              <span class="sfc-name">Premium</span>
+              <strong class="sfc-creation">Sur devis</strong>
+            </div>
+            <p class="sim-prem-inline">Votre projet nécessite des fonctionnalités avancées (espace client, boutique, RDV…). Contactez-nous pour un devis personnalisé.</p>
+            <a href="contact.html" class="btn btn-primary">Nous contacter →</a>
+          </div>`;
+        // Masquer durée et total
+        document.querySelector('.sim-dur-section').style.display  = 'none';
+        document.getElementById('sim-total-live').style.display   = 'none';
+        document.getElementById('sim-continue').style.display     = 'none';
+        return;
+      }
+
+      // Sinon, remettre durée et total visibles
+      document.querySelector('.sim-dur-section').style.display  = '';
+      document.getElementById('sim-total-live').style.display   = '';
+      document.getElementById('sim-continue').style.display     = '';
 
       document.getElementById('sim-formulas').innerHTML =
         ['starter','standard','pro'].map(fk => {

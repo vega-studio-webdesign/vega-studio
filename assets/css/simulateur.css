@@ -209,3 +209,12 @@
 @media (max-width: 500px) {
   .sim-dur-btns { grid-template-columns: repeat(2,1fr); }
 }
+
+.sim-formula-prem {
+  background: var(--bg-3) !important;
+  padding: 1.75rem 1.5rem;
+  gap: 1rem;
+}
+.sim-prem-inline {
+  font-size: .85rem; color: var(--muted); line-height: 1.65; font-weight: 300;
+}
