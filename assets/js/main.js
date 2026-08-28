@@ -420,212 +420,212 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initFloatingNames();
-  /* ── SIMULATEUR FORMULES ── */
+  /* ── SIMULATEUR — PAGE 1 (simulateur.html) ── */
   function initSimulator() {
-    if (!document.getElementById('sim-step1')) return;
+    if (!document.getElementById('sim-formulas')) return;
 
-    let pages = 1;
-    const features = new Set();
-    const options  = new Set();
-    const optPrices = {};
+    let pages       = 1;
+    let selectedFk  = 'starter';
+    let months      = 1;
+    let discount    = 0;
+    const features  = new Set();
+    const options   = new Set();
+    const optData   = {};
 
     const FORMULAS = {
       starter:  { name: 'Starter',  creation: 100, monthly: 15 },
       standard: { name: 'Standard', creation: 250, monthly: 25 },
       pro:      { name: 'Pro',      creation: 400, monthly: 35 },
-      premium:  { name: 'Premium',  creation: null, monthly: null },
     };
-
-    const INCLUDED_PAGES = { starter: 1, standard: 3, pro: 5, premium: 999 };
-
-    // Fonctionnalités incluses dans chaque formule
+    const INCLUDED_PAGES = { starter: 1, standard: 3, pro: 5 };
     const FORMULA_INCLUDES = {
       starter:  new Set([]),
       standard: new Set(['contact','galerie','google','seo']),
       pro:      new Set(['contact','galerie','google','seo','anim','whatsapp','avis','favicon']),
-      premium:  new Set(['contact','galerie','google','seo','anim','whatsapp','avis','favicon','rdv','espace','boutique','multi']),
     };
-
-    // Prix d'ajout en option sur une formule inférieure (null = Premium uniquement)
+    // Prix à la création + supplément mensuel de maintenance par add-on
     const FEATURE_ADDONS = {
-      contact:  { price: 40,  label: 'Formulaire de contact' },
-      galerie:  { price: 50,  label: 'Galerie photos' },
-      google:   { price: 60,  label: 'Google Business & Maps' },
-      seo:      { price: 50,  label: 'SEO local' },
-      anim:     { price: 60,  label: 'Animations visuelles' },
-      whatsapp: { price: 20,  label: 'Bouton WhatsApp' },
-      avis:     { price: 40,  label: 'Section avis clients' },
-      favicon:  { price: 80,  label: 'Favicon & identité visuelle' },
-      rdv:      null, // Premium uniquement
-      espace:   null,
-      boutique: null,
-      multi:    null,
+      contact:  { price: 40, monthly: 2,  label: 'Formulaire de contact' },
+      galerie:  { price: 50, monthly: 2,  label: 'Galerie photos' },
+      google:   { price: 60, monthly: 3,  label: 'Google Business & Maps' },
+      seo:      { price: 50, monthly: 3,  label: 'SEO local' },
+      anim:     { price: 60, monthly: 2,  label: 'Animations visuelles' },
+      whatsapp: { price: 20, monthly: 1,  label: 'Bouton WhatsApp' },
+      avis:     { price: 40, monthly: 2,  label: 'Section avis clients' },
+      favicon:  { price: 80, monthly: 0,  label: 'Favicon & identité' },
     };
+    const PREM_FEATS = ['rdv','espace','boutique','multi'];
 
-    const DURATIONS = [
-      { months: 1,  label: '1 mois',  desc: 'Pour découvrir', discount: 0 },
-      { months: 3,  label: '3 mois',  desc: 'Bon équilibre',  discount: 7 },
-      { months: 6,  label: '6 mois',  desc: 'Idéal',          discount: 12 },
-      { months: 12, label: '1 an',    desc: 'Meilleur tarif', discount: 20 },
-    ];
-
-    function optionsCost() {
-      return [...options].reduce((s, o) => s + (optPrices[o] || 0), 0);
+    function calcFormula(fk) {
+      const included = FORMULA_INCLUDES[fk];
+      const missing  = [...features].filter(f => !included.has(f) && !PREM_FEATS.includes(f));
+      const addOnCreation = missing.reduce((s,f) => s + (FEATURE_ADDONS[f]?.price||0), 0);
+      const addOnMonthly  = missing.reduce((s,f) => s + (FEATURE_ADDONS[f]?.monthly||0), 0);
+      const extraPages    = Math.max(0, pages - INCLUDED_PAGES[fk]);
+      const optCreation   = [...options].reduce((s,o) => s + (optData[o]?.price||0), 0);
+      const optMonthly    = [...options].reduce((s,o) => s + (optData[o]?.monthly||0), 0);
+      return {
+        missing,
+        creation: FORMULAS[fk].creation + addOnCreation + extraPages*50 + optCreation,
+        monthly:  FORMULAS[fk].monthly  + addOnMonthly  + optMonthly,
+        extraPages,
+      };
     }
 
-    function getAlternatives() {
-      const premFeats = ['rdv','espace','boutique','multi'];
+    function renderFormulas() {
+      const hasPrem = PREM_FEATS.some(f => features.has(f));
+      document.getElementById('sim-prem-note').hidden = !hasPrem;
 
-      // Si une feature Premium sélectionnée → une seule option
-      if (premFeats.some(f => features.has(f))) {
-        return [{ fk: 'premium', addOns: [], extraPages: 0, creation: null, monthly: null }];
-      }
+      document.getElementById('sim-formulas').innerHTML =
+        ['starter','standard','pro'].map(fk => {
+          const f   = FORMULAS[fk];
+          const c   = calcFormula(fk);
+          const sel = fk === selectedFk;
 
-      const oc = optionsCost();
-      const results = [];
+          const addOnTags = c.missing.map(ft => {
+            const a = FEATURE_ADDONS[ft];
+            return `<span class="sim-addon">${a.label} <em>+${a.price}€${a.monthly>0?' +'+a.monthly+'€/m':''}</em></span>`;
+          }).join('');
+          const extraTag = c.extraPages > 0
+            ? `<span class="sim-addon">${c.extraPages} page${c.extraPages>1?'s':''} supp. <em>+${c.extraPages*50}€</em></span>`
+            : '';
+          const allIn = c.missing.length === 0 && c.extraPages === 0;
 
-      for (const fk of ['starter','standard','pro']) {
-        const included = FORMULA_INCLUDES[fk];
-        const missing  = [...features].filter(f => !included.has(f));
+          return `<div class="sim-formula-card${sel?' is-selected':''}" data-fk="${fk}">
+            <div class="sfc-head">
+              <span class="sfc-name">${f.name}</span>
+              <div class="sfc-prices">
+                <strong class="sfc-creation">${c.creation}€</strong>
+                <span class="sfc-monthly">${c.monthly}€<small>/mois</small></span>
+              </div>
+            </div>
+            <div class="sim-alt-addons">
+              ${allIn
+                ? '<span class="sim-addon sim-addon--ok">Tout inclus</span>'
+                : addOnTags + extraTag}
+            </div>
+            <button class="sfc-select${sel?' sfc-select--active':''}" data-fk="${fk}">
+              ${sel ? 'Sélectionné ✓' : 'Sélectionner'}
+            </button>
+          </div>`;
+        }).join('');
 
-        // Peut-on tout couvrir avec des add-ons ?
-        if (missing.some(f => FEATURE_ADDONS[f] === null)) continue;
-
-        const addOnCost     = missing.reduce((s, f) => s + (FEATURE_ADDONS[f]?.price || 0), 0);
-        const extraPages    = Math.max(0, pages - INCLUDED_PAGES[fk]);
-        const extraPagesCost = extraPages * 50;
-        const creation      = FORMULAS[fk].creation + addOnCost + extraPagesCost + oc;
-
-        results.push({ fk, addOns: missing, extraPages, creation, monthly: FORMULAS[fk].monthly });
-      }
-
-      // Trier par prix croissant, garder max 3
-      results.sort((a, b) => a.creation - b.creation);
-
-      // Ne garder que les alternatives vraiment différentes en prix ou en formule
-      const kept = [];
-      for (const r of results) {
-        if (kept.length === 0 || r.fk !== kept[kept.length-1].fk) kept.push(r);
-        if (kept.length >= 3) break;
-      }
-      return kept;
-    }
-
-    function renderOption(alt, idx) {
-      const f = FORMULAS[alt.fk];
-      if (alt.fk === 'premium') {
-        return `<div class="sim-alt">
-          <div class="sim-alt-head">
-            <span class="sim-alt-name">Premium</span>
-          </div>
-          <p class="sim-alt-desc">Votre projet nécessite des fonctionnalités avancées. Contactez-nous pour un devis personnalisé.</p>
-          <a href="contact.html" class="btn btn-primary sim-cta">Nous contacter →</a>
-        </div>`;
-      }
-
-      const addOnLines = alt.addOns.map(f2 =>
-        `<span class="sim-addon">+ ${FEATURE_ADDONS[f2].label} <em>+${FEATURE_ADDONS[f2].price}€</em></span>`
-      ).join('');
-      const extraLine  = alt.extraPages > 0
-        ? `<span class="sim-addon">+ ${alt.extraPages} page${alt.extraPages > 1 ? 's' : ''} supp. <em>+${alt.extraPages * 50}€</em></span>`
-        : '';
-      const noAddons   = alt.addOns.length === 0 && alt.extraPages === 0;
-
-      return `<div class="sim-alt">
-        <div class="sim-alt-head">
-          <span class="sim-alt-name">${f.name}</span>
-          <strong class="sim-alt-price">${alt.creation}€</strong>
-        </div>
-        <div class="sim-alt-addons">
-          ${noAddons ? '<span class="sim-addon sim-addon--ok">Tout inclus</span>' : addOnLines + extraLine}
-        </div>
-        <div class="sim-alt-monthly">${f.monthly}€ / mois maximum</div>
-        <button class="sim-choose btn btn-${idx === 0 ? 'primary' : 'secondary'}"
-          data-fk="${alt.fk}" data-creation="${alt.creation}" data-monthly="${f.monthly}">
-          Choisir cette option →
-        </button>
-      </div>`;
-    }
-
-    function updateResult() {
-      const alts = getAlternatives();
-      const el   = document.getElementById('sim-result');
-      if (!el) return;
-
-      const label = alts.length > 1
-        ? `<span class="sim-rec-label">${alts.length} options possibles</span>`
-        : `<span class="sim-rec-label">Formule recommandée</span>`;
-
-      el.innerHTML = label + alts.map((a, i) => renderOption(a, i)).join('<hr class="sim-sep" />');
-
-      el.querySelectorAll('.sim-choose').forEach(btn => {
+      // Réattacher les listeners sur les boutons sélectionner
+      document.querySelectorAll('.sfc-select').forEach(btn => {
         btn.addEventListener('click', () => {
-          showStep2(btn.dataset.fk, parseInt(btn.dataset.creation), parseInt(btn.dataset.monthly));
+          selectedFk = btn.dataset.fk;
+          renderFormulas();
+          renderTotal();
         });
       });
     }
 
-    function showStep2(fk, creation, monthly) {
-      document.getElementById('sim-step1').hidden = true;
-      const s2 = document.getElementById('sim-step2');
-      s2.hidden = false;
+    function renderTotal() {
+      const c        = calcFormula(selectedFk);
+      const f        = FORMULAS[selectedFk];
+      const mDisc    = Math.round(c.monthly * (1 - discount/100));
+      const mTotal   = Math.round(mDisc * months);
+      const total    = c.creation + mTotal;
+      const saving   = discount > 0 ? Math.round(c.monthly * months * discount/100) : 0;
 
-      document.getElementById('sim-dur-grid').innerHTML = DURATIONS.map(d => {
-        const monthlyDisc = monthly * (1 - d.discount / 100);
-        const total       = creation + monthlyDisc * d.months;
-        const saving      = d.discount > 0 ? Math.round(monthly * d.months * d.discount / 100) : 0;
-        return `<div class="dur-card">
-          <div class="dur-head">
-            <span class="dur-label">${d.label}</span>
-            ${d.discount > 0 ? `<span class="dur-badge">−${d.discount}%</span>` : ''}
-          </div>
-          <p class="dur-desc">${d.desc}</p>
-          <div class="dur-monthly">${Math.round(monthlyDisc)}€<span> / mois</span></div>
-          ${saving > 0 ? `<div class="dur-saving">Économie de ${saving}€</div>` : '<div class="dur-saving" style="visibility:hidden">—</div>'}
-          <div class="dur-total">
-            <span>Total à régler :</span>
-            <strong>${Math.round(total)}€</strong>
-            <small>création + ${d.months} mois de maintenance</small>
-          </div>
-          <a href="contact.html" class="dur-cta">Choisir →</a>
-        </div>`;
-      }).join('');
+      document.getElementById('sim-total-live').innerHTML = `
+        <div class="stl-row"><span>Création</span><strong>${c.creation}€</strong></div>
+        <div class="stl-row"><span>Maintenance (${months} mois à ${mDisc}€)</span><strong>${mTotal}€</strong></div>
+        ${saving > 0 ? `<div class="stl-row stl-saving"><span>Économie abonnement</span><strong>−${saving}€</strong></div>` : ''}
+        <div class="stl-row stl-grand"><span>Total estimé</span><strong>${total}€</strong></div>`;
+
+      // Mettre à jour le lien du bouton continuer
+      const params = new URLSearchParams({
+        fk:   selectedFk,
+        fn:   f.name,
+        cr:   c.creation,
+        mo:   c.monthly,
+        months,
+        discount,
+        total,
+      });
+      document.getElementById('sim-continue').href = `simulateur-total.html?${params}`;
     }
 
-    // Listeners
+    function update() { renderFormulas(); renderTotal(); }
+
+    // Listeners pages
     document.querySelectorAll('.page-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         pages = parseInt(btn.dataset.pages) || 6;
-        updateResult();
+        update();
       });
     });
+    // Listeners features
     document.querySelectorAll('.sim-chip[data-feature]').forEach(chip => {
       chip.addEventListener('click', () => {
         chip.classList.toggle('active');
         const f = chip.dataset.feature;
         features.has(f) ? features.delete(f) : features.add(f);
-        updateResult();
+        update();
       });
     });
+    // Listeners options
     document.querySelectorAll('.sim-chip[data-option]').forEach(chip => {
       chip.addEventListener('click', () => {
         chip.classList.toggle('active');
         const o = chip.dataset.option;
-        optPrices[o] = parseInt(chip.dataset.price) || 0;
+        optData[o] = { price: parseInt(chip.dataset.price)||0, monthly: parseInt(chip.dataset.monthly)||0 };
         options.has(o) ? options.delete(o) : options.add(o);
-        updateResult();
+        update();
       });
     });
-    document.getElementById('sim-back')?.addEventListener('click', () => {
-      document.getElementById('sim-step2').hidden = true;
-      document.getElementById('sim-step1').hidden = false;
+    // Listeners durée
+    document.querySelectorAll('.dur-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.dur-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        months   = parseInt(btn.dataset.months)   || 1;
+        discount = parseInt(btn.dataset.discount) || 0;
+        renderTotal();
+      });
     });
 
-    updateResult();
+    update();
+  }
+
+  /* ── SIMULATEUR — PAGE 3 (simulateur-total.html) ── */
+  function initSimulateurTotal() {
+    const el = document.getElementById('total-content');
+    if (!el) return;
+
+    const p        = new URLSearchParams(location.search);
+    const fn       = p.get('fn')       || 'Starter';
+    const cr       = parseInt(p.get('cr'))       || 100;
+    const mo       = parseInt(p.get('mo'))       || 15;
+    const months   = parseInt(p.get('months'))   || 1;
+    const discount = parseInt(p.get('discount')) || 0;
+    const total    = parseInt(p.get('total'))    || cr;
+    const mDisc    = Math.round(mo * (1 - discount/100));
+    const mTotal   = Math.round(mDisc * months);
+    const saving   = discount > 0 ? Math.round(mo * months * discount/100) : 0;
+
+    el.innerHTML = `
+      <div class="sim-total-box">
+        <span class="sim-rec-label">Votre simulation</span>
+        <div class="sim-total-rows">
+          <div class="sim-total-row"><span>Formule</span><strong>${fn}</strong></div>
+          <div class="sim-total-row"><span>Durée</span><strong>${months === 12 ? '1 an' : months + ' mois'}</strong></div>
+          <div class="sim-total-row"><span>Création du site</span><strong>${cr}€</strong></div>
+          <div class="sim-total-row"><span>Maintenance mensuelle</span><strong>${mDisc}€ / mois${discount > 0 ? ` <em>−${discount}%</em>` : ''}</strong></div>
+          <div class="sim-total-row"><span>Maintenance totale (${months} mois)</span><strong>${mTotal}€</strong></div>
+          ${saving > 0 ? `<div class="sim-total-row sim-total-saving"><span>Économie sur l'abonnement</span><strong>−${saving}€</strong></div>` : ''}
+          <div class="sim-total-row sim-total-grand"><span>Total à régler</span><strong>${total}€</strong></div>
+        </div>
+        <p class="sim-total-note">Ce tarif est une estimation. Le prix final sera confirmé après étude de votre projet.</p>
+        <a href="contact.html" class="btn btn-primary sim-contact-btn">Nous contacter →</a>
+        <a href="simulateur.html" class="sim-restart">Recommencer une simulation</a>
+      </div>`;
   }
 
   initSimulator();
+  initSimulateurTotal();
 
 });

@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simulateur — Vega Studio</title>
-  <meta name="description" content="Simulez votre projet web et obtenez un tarif personnalisé." />
   <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="assets/css/page.css" />
   <link rel="stylesheet" href="assets/css/simulateur.css" />
 </head>
 <body>
@@ -25,20 +23,20 @@
     </div>
   </nav>
 
-  <section class="page-hero sim-hero">
+  <section class="sim-hero-bar">
     <div class="wrap">
-      <h1 class="apropos-hero-title reveal">Simulez votre projet.</h1>
-      <p class="page-sub reveal d1">Cochez ce dont vous avez besoin — on trouve la formule idéale et le tarif exact.</p>
+      <p class="section-eyebrow">Simulateur</p>
+      <h1 class="sim-page-title">Simulez votre projet.</h1>
+      <p class="sim-page-sub">Cochez ce dont vous avez besoin — on trouve la formule idéale et le tarif exact.</p>
     </div>
   </section>
 
   <section class="sim-section">
     <div class="wrap">
+      <div class="sim-body">
 
-      <!-- ÉTAPE 1 -->
-      <div class="sim-body" id="sim-step1">
+        <!-- GAUCHE : sélection des besoins -->
         <div class="sim-left">
-
           <div class="sim-group">
             <span class="sim-group-label">Nombre de pages</span>
             <div class="sim-pages">
@@ -72,27 +70,41 @@
           <div class="sim-group">
             <span class="sim-group-label">Options à la carte</span>
             <div class="sim-chips">
-              <button class="sim-chip" data-option="textes"   data-price="80">Rédaction des textes <em>+80€</em></button>
-              <button class="sim-chip" data-option="identite" data-price="80">Identité visuelle complète <em>+80€</em></button>
-              <button class="sim-chip" data-option="popup"    data-price="40">Pop-up promotionnelle <em>+40€</em></button>
-              <button class="sim-chip" data-option="compteur" data-price="30">Compteur animé <em>+30€</em></button>
-              <button class="sim-chip" data-option="chatbot"  data-price="60">Chatbot de contact <em>+60€</em></button>
-              <button class="sim-chip" data-option="rgpd"     data-price="35">Bannière cookies RGPD <em>+35€</em></button>
-              <button class="sim-chip" data-option="devis"    data-price="70">Formulaire de devis <em>+70€</em></button>
+              <button class="sim-chip" data-option="textes"   data-price="80" data-monthly="0">Rédaction des textes <em>+80€</em></button>
+              <button class="sim-chip" data-option="identite" data-price="80" data-monthly="0">Identité visuelle complète <em>+80€</em></button>
+              <button class="sim-chip" data-option="popup"    data-price="40" data-monthly="2">Pop-up promotionnelle <em>+40€ +2€/mois</em></button>
+              <button class="sim-chip" data-option="compteur" data-price="30" data-monthly="1">Compteur animé <em>+30€ +1€/mois</em></button>
+              <button class="sim-chip" data-option="chatbot"  data-price="60" data-monthly="5">Chatbot de contact <em>+60€ +5€/mois</em></button>
+              <button class="sim-chip" data-option="rgpd"     data-price="35" data-monthly="1">Bannière cookies RGPD <em>+35€ +1€/mois</em></button>
+              <button class="sim-chip" data-option="devis"    data-price="70" data-monthly="3">Formulaire de devis <em>+70€ +3€/mois</em></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- DROITE : formules + durée + total -->
+        <div class="sim-right">
+          <div id="sim-formulas"></div>
+
+          <div class="sim-dur-section">
+            <span class="sim-group-label">Durée d'abonnement</span>
+            <div class="sim-dur-btns">
+              <button class="dur-btn active" data-months="1"  data-discount="0">1 mois</button>
+              <button class="dur-btn"        data-months="3"  data-discount="7">3 mois <span>−7%</span></button>
+              <button class="dur-btn"        data-months="6"  data-discount="12">6 mois <span>−12%</span></button>
+              <button class="dur-btn"        data-months="12" data-discount="20">1 an <span>−20%</span></button>
             </div>
           </div>
 
+          <div class="sim-total-live" id="sim-total-live"></div>
+
+          <a href="#" class="btn btn-primary sim-continue" id="sim-continue">Voir le récapitulatif →</a>
         </div>
 
-        <div class="sim-right" id="sim-result"></div>
       </div>
 
-      <!-- ÉTAPE 2 -->
-      <div class="sim-body--duration" id="sim-step2" hidden>
-        <button class="sim-back" id="sim-back">← Modifier ma sélection</button>
-        <div class="sim-duration-grid" id="sim-dur-grid"></div>
-      </div>
-
+      <p class="sim-prem-note" id="sim-prem-note" hidden>
+        Certaines fonctionnalités sélectionnées (RDV, espace client…) ne peuvent être intégrées que dans la formule <strong>Premium</strong>, sur devis. <a href="contact.html">Nous contacter →</a>
+      </p>
     </div>
   </section>
 
