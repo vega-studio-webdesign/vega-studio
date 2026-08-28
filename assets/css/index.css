@@ -279,7 +279,7 @@
 /* ══ NOMS FLOTTANTS ════════════════════════════════ */
 .section-names {
   background: var(--bg);
-  padding: 6rem 0 0;
+  padding: 6rem 0 6rem;
 }
 
 .names-subtitle {
