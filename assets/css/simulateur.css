@@ -74,7 +74,7 @@
 }
 
 /* Résultat */
-.sim-right { position: sticky; top: 6rem; }
+.sim-right {}
 
 .sim-rec {
   background: var(--bg-3);
@@ -197,3 +197,60 @@
 @media (max-width: 500px) {
   .sim-duration-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Alternatives multiples ── */
+.sim-rec-label {
+  display: block;
+  font-size: .68rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--purple); margin-bottom: 1.25rem;
+}
+
+#sim-result {
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.75rem;
+  display: flex; flex-direction: column; gap: 0;
+}
+
+.sim-alt { display: flex; flex-direction: column; gap: .85rem; padding: .25rem 0; }
+
+.sim-alt-head {
+  display: flex; align-items: baseline;
+  justify-content: space-between; gap: .5rem;
+}
+
+.sim-alt-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.25rem; font-weight: 800;
+  letter-spacing: -.025em; color: var(--white);
+}
+
+.sim-alt-price {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.3rem; font-weight: 800;
+  letter-spacing: -.03em; color: var(--white);
+}
+
+.sim-alt-addons {
+  display: flex; flex-wrap: wrap; gap: .35rem;
+}
+
+.sim-addon {
+  font-size: .75rem; color: var(--muted);
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--line);
+  border-radius: 6px; padding: .2rem .6rem;
+  display: inline-flex; align-items: center; gap: .3rem;
+}
+.sim-addon em { font-style: normal; color: var(--lilac); }
+.sim-addon--ok { color: var(--lilac); border-color: rgba(139,124,246,.25); background: rgba(139,124,246,.08); }
+
+.sim-alt-monthly { font-size: .78rem; color: var(--faint); font-weight: 300; }
+
+.sim-cta, .sim-choose { width: 100%; justify-content: center; }
+
+.sim-sep { border: none; border-top: 1px solid var(--line); margin: 1.25rem 0; }
+
+.sim-alt-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
