@@ -243,4 +243,127 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initParticlesNetwork();
 
+  /* ── NOMS FLOTTANTS ── */
+  function initFloatingNames() {
+    const zone = document.getElementById('floating-names');
+    if (!zone) return;
+
+    const ALL_NAMES = [
+      'Frédéric Vanek', 'Laurent Brissaud', 'Pascal Gonthier', 'Thierry Marchand',
+      'Marc Delcourt', 'Bruno Teissier', 'Christophe Mouries', 'Didier Fourneau',
+      'Sébastien Lamour', 'Yannick Prévot', 'Gilles Castagnède', 'Julien Tremblet',
+      'Alain Pouget', 'Rémi Charlot', 'Nicolas Ferriol', 'Stéphane Bouquillon',
+      'David Lenfant', 'Patrice Vaugelas', 'Éric Dumarché', 'François Bonnard',
+      'Olivier Tavernier', 'Jean-Pierre Moulinier', 'Antoine Brassac', 'Hervé Chabrier',
+      'Maxime Tollet', 'Cédric Vidal-Roux', 'Karim Benyounes', 'Benoît Lartigau',
+      'Damien Souquet', 'Thomas Pérignon', 'Philippe Lauzet', 'Arnaud Meunier',
+      'Xavier Bourrelier', 'Loïc Granger', 'Mickael Barthas', 'Vincent Combes',
+      'Romain Escoffier', 'Jean-Marc Pelissier', 'Guillaume Sarradet', 'Adrien Poudevigne',
+      'Samuel Claverie', 'Pierre-Antoine Galy', 'Ludovic Fauché', 'Florent Gombaud',
+      'Alexandre Moutet', 'Bertrand Lacassagne', 'Jérôme Baylac', 'Cyril Tournadre',
+      'Emmanuel Sabatier', 'Quentin Dutheil'
+    ];
+
+    // Mélanger le pool au départ
+    const pool = [...ALL_NAMES].sort(() => Math.random() - .5);
+    const active = []; // { el, x, y, w, h, name }
+
+    const MAX_ACTIVE   = 13;
+    const FADE_MS      = 900;
+    const PAD_X        = 28;
+    const PAD_Y        = 22;
+
+    const SIZES   = ['.8rem', '.88rem', '.95rem', '1rem', '1.05rem', '1.12rem'];
+    const COLORS  = [
+      'rgba(238,238,245,0.85)',
+      'rgba(238,238,245,0.55)',
+      'rgba(238,238,245,0.38)',
+      'rgba(196,184,255,0.80)',
+      'rgba(196,184,255,0.55)',
+      'rgba(139,124,246,0.70)',
+    ];
+
+    function overlaps(x, y, w, h) {
+      for (const a of active) {
+        if (x < a.x + a.w + PAD_X &&
+            x + w + PAD_X > a.x &&
+            y < a.y + a.h + PAD_Y &&
+            y + h + PAD_Y > a.y) return true;
+      }
+      return false;
+    }
+
+    function spawn() {
+      if (active.length >= MAX_ACTIVE || pool.length === 0) return;
+
+      const name = pool.shift();
+      const el   = document.createElement('span');
+      el.className   = 'floating-name';
+      el.textContent = name;
+      el.style.fontSize  = SIZES [Math.floor(Math.random() * SIZES .length)];
+      el.style.color     = COLORS[Math.floor(Math.random() * COLORS.length)];
+      el.style.opacity   = '0';
+
+      zone.appendChild(el);
+
+      const w  = el.offsetWidth  + 2;
+      const h  = el.offsetHeight + 2;
+      const zW = zone.offsetWidth;
+      const zH = zone.offsetHeight;
+
+      // Chercher une position libre
+      let x, y, found = false;
+      for (let t = 0; t < 40; t++) {
+        x = 16 + Math.random() * Math.max(0, zW - w - 32);
+        y = 16 + Math.random() * Math.max(0, zH - h - 32);
+        if (!overlaps(x, y, w, h)) { found = true; break; }
+      }
+
+      if (!found) {
+        zone.removeChild(el);
+        pool.push(name);
+        return;
+      }
+
+      el.style.left = x + 'px';
+      el.style.top  = y + 'px';
+
+      // Flottement unique par élément
+      const amp = -(6 + Math.random() * 12);
+      const dur =  3200 + Math.random() * 2400;
+      const del =  Math.random() * 1200;
+      el.style.setProperty('--float-amp', amp + 'px');
+      el.style.animation = `nameFloat ${dur}ms ${del}ms ease-in-out infinite alternate`;
+
+      const entry = { el, x, y, w, h, name };
+      active.push(entry);
+
+      // Fade in
+      requestAnimationFrame(() => requestAnimationFrame(() => { el.style.opacity = '1'; }));
+
+      // Durée de vie aléatoire
+      const life = 3500 + Math.random() * 5000;
+      setTimeout(() => {
+        el.style.opacity = '0';
+        setTimeout(() => {
+          if (zone.contains(el)) zone.removeChild(el);
+          const i = active.indexOf(entry);
+          if (i > -1) active.splice(i, 1);
+          pool.push(name); // retour dans le pool
+        }, FADE_MS);
+      }, life);
+    }
+
+    // Spawn initial étalé
+    for (let i = 0; i < 10; i++) setTimeout(spawn, i * 180);
+
+    // Spawn régulier pour maintenir la densité
+    setInterval(() => {
+      const deficit = MAX_ACTIVE - active.length;
+      for (let i = 0; i < Math.min(deficit, 2); i++) spawn();
+    }, 500);
+  }
+
+  initFloatingNames();
+
 });
