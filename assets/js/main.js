@@ -474,8 +474,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderFormulas() {
       const hasPrem = PREM_FEATS.some(f => features.has(f));
-      document.getElementById('sim-prem-note').hidden = true;
-
       // Si une fonctionnalité Premium est sélectionnée → on n'affiche que Premium
       if (hasPrem) {
         document.getElementById('sim-formulas').innerHTML = `
@@ -512,7 +510,15 @@ document.addEventListener('DOMContentLoaded', () => {
           const extraTag = c.extraPages > 0
             ? `<span class="sim-addon">${c.extraPages} page${c.extraPages>1?'s':''} supp. <em>+${c.extraPages*50}€</em></span>`
             : '';
-          const allIn = c.missing.length === 0 && c.extraPages === 0;
+          // Tags des options sélectionnées (mêmes pour toutes les formules)
+          const optTags = [...options].map(o => {
+            const d = optData[o];
+            if (!d) return '';
+            return `<span class="sim-addon">${d.label} <em>+${d.price}€${d.monthly>0?' +'+d.monthly+'€/m':''}</em></span>`;
+          }).join('');
+
+          // "Tout inclus" seulement si rien n'est ajouté : ni feature add-on, ni page extra, ni option
+          const allIn = c.missing.length === 0 && c.extraPages === 0 && options.size === 0;
 
           return `<div class="sim-formula-card${sel?' is-selected':''}" data-fk="${fk}">
             <div class="sfc-head">
@@ -525,7 +531,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="sim-alt-addons">
               ${allIn
                 ? '<span class="sim-addon sim-addon--ok">Tout inclus</span>'
-                : addOnTags + extraTag}
+                : addOnTags + extraTag + optTags}
             </div>
             <button class="sfc-select${sel?' sfc-select--active':''}" data-fk="${fk}">
               ${sel ? 'Sélectionné ✓' : 'Sélectionner'}
@@ -546,10 +552,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderTotal() {
       const c        = calcFormula(selectedFk);
       const f        = FORMULAS[selectedFk];
-      const mDisc    = Math.round(c.monthly * (1 - discount/100));
-      const mTotal   = Math.round(mDisc * months);
+      const rawMonthly = c.monthly * (1 - discount / 100);
+      const mDisc    = Math.round(rawMonthly);                     // affiché
+      const mTotal   = Math.round(rawMonthly * months);            // précis
       const total    = c.creation + mTotal;
-      const saving   = discount > 0 ? Math.round(c.monthly * months * discount/100) : 0;
+      const saving   = discount > 0 ? Math.round(c.monthly * months * discount / 100) : 0;
 
       document.getElementById('sim-total-live').innerHTML = `
         <div class="stl-row"><span>Création</span><strong>${c.creation}€</strong></div>
@@ -570,7 +577,12 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('sim-continue').href = `simulateur-total.html?${params}`;
     }
 
-    function update() { renderFormulas(); renderTotal(); }
+    function update() {
+      renderFormulas();
+      // Ne pas appeler renderTotal() si on est en mode Premium (éléments masqués)
+      const hasPrem = PREM_FEATS.some(f => features.has(f));
+      if (!hasPrem) renderTotal();
+    }
 
     // Listeners pages
     document.querySelectorAll('.page-btn').forEach(btn => {
@@ -595,7 +607,10 @@ document.addEventListener('DOMContentLoaded', () => {
       chip.addEventListener('click', () => {
         chip.classList.toggle('active');
         const o = chip.dataset.option;
-        optData[o] = { price: parseInt(chip.dataset.price)||0, monthly: parseInt(chip.dataset.monthly)||0 };
+        // Stocker prix, mensuel ET label pour l'affichage dans les cartes
+        const labelNode = [...chip.childNodes].find(n => n.nodeType === 3); // text node avant <em>
+        const label = labelNode ? labelNode.textContent.trim() : o;
+        optData[o] = { price: parseInt(chip.dataset.price)||0, monthly: parseInt(chip.dataset.monthly)||0, label };
         options.has(o) ? options.delete(o) : options.add(o);
         update();
       });
@@ -626,19 +641,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const months   = parseInt(p.get('months'))   || 1;
     const discount = parseInt(p.get('discount')) || 0;
     const total    = parseInt(p.get('total'))    || cr;
-    const mDisc    = Math.round(mo * (1 - discount/100));
-    const mTotal   = Math.round(mDisc * months);
-    const saving   = discount > 0 ? Math.round(mo * months * discount/100) : 0;
+    // mTotal = total - cr pour garantir la cohérence (évite les erreurs d'arrondi)
+    const mTotal   = total - cr;
+    const rawMo    = mo * (1 - discount / 100);
+    const mDisc    = Math.round(rawMo);
+    const saving   = discount > 0 ? Math.round(mo * months * discount / 100) : 0;
+    const durLabel = months === 12 ? '1 an' : months + ' mois';
 
     el.innerHTML = `
       <div class="sim-total-box">
         <span class="sim-rec-label">Votre simulation</span>
         <div class="sim-total-rows">
           <div class="sim-total-row"><span>Formule</span><strong>${fn}</strong></div>
-          <div class="sim-total-row"><span>Durée</span><strong>${months === 12 ? '1 an' : months + ' mois'}</strong></div>
+          <div class="sim-total-row"><span>Durée</span><strong>${durLabel}</strong></div>
           <div class="sim-total-row"><span>Création du site</span><strong>${cr}€</strong></div>
           <div class="sim-total-row"><span>Maintenance mensuelle</span><strong>${mDisc}€ / mois${discount > 0 ? ` <em>−${discount}%</em>` : ''}</strong></div>
-          <div class="sim-total-row"><span>Maintenance totale (${months} mois)</span><strong>${mTotal}€</strong></div>
+          <div class="sim-total-row"><span>Maintenance totale (${durLabel})</span><strong>${mTotal}€</strong></div>
           ${saving > 0 ? `<div class="sim-total-row sim-total-saving"><span>Économie sur l'abonnement</span><strong>−${saving}€</strong></div>` : ''}
           <div class="sim-total-row sim-total-grand"><span>Total à régler</span><strong>${total}€</strong></div>
         </div>
