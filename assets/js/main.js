@@ -379,10 +379,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     for (let i = 0; i < 10; i++) setTimeout(spawn, i * 130);
+
+    // Spawn régulier
     setInterval(() => {
       const d = MAX - active.length;
       for (let i = 0; i < Math.min(d, 2); i++) spawn();
     }, 350);
+
+    // Nettoyage des zombies : entrées active dont le wrapper a disparu du DOM
+    // (cas de veille/throttling des timers sur mobile)
+    setInterval(() => {
+      for (let i = active.length - 1; i >= 0; i--) {
+        if (!zone.contains(active[i].wrapper)) {
+          pool.push(active[i].item);
+          active.splice(i, 1);
+        }
+      }
+      // Sécurité : si tout a disparu, relancer
+      if (active.length === 0 && pool.length === 0) {
+        ALL_NAMES.forEach(it => pool.push(it));
+        pool.sort(() => Math.random() - .5);
+      }
+    }, 2000);
+
+    // Relancer les spawns quand la page redevient visible (retour d'arrière-plan)
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        // Nettoyer les zombies immédiatement
+        for (let i = active.length - 1; i >= 0; i--) {
+          if (!zone.contains(active[i].wrapper)) {
+            pool.push(active[i].item);
+            active.splice(i, 1);
+          }
+        }
+        // Relancer si nécessaire
+        const d = MAX - active.length;
+        for (let i = 0; i < Math.min(d, 5); i++) setTimeout(spawn, i * 150);
+      }
+    });
   }
 
   initFloatingNames();
