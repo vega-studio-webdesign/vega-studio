@@ -454,7 +454,7 @@ document.addEventListener('DOMContentLoaded', () => {
       avis:     { price: 40, monthly: 2,  label: 'Section avis clients' },
       favicon:  { price: 80, monthly: 0,  label: 'Favicon & identité' },
     };
-    const PREM_FEATS = ['rdv','espace','boutique','multi'];
+    const PREM_FEATS = ['rdv','espace','boutique','multi','autre_feat','autre_opt'];
 
     function calcFormula(fk) {
       const included = FORMULA_INCLUDES[fk];
@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <strong class="sfc-creation">Sur devis</strong>
             </div>
             <p class="sim-prem-inline">Votre projet nécessite des fonctionnalités avancées (espace client, boutique, RDV…). Contactez-nous pour un devis personnalisé.</p>
-            <a href="contact.html" class="btn btn-primary">Nous contacter →</a>
+            <a href="contact.html" class="btn btn-secondary sim-prem-btn">Nous contacter</a>
           </div>`;
         // Masquer durée et total
         document.querySelector('.sim-dur-section').style.display  = 'none';
@@ -643,7 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="sim-total-row sim-total-grand"><span>Total à régler</span><strong>${total}€</strong></div>
         </div>
         <p class="sim-total-note">Ce tarif est une estimation. Le prix final sera confirmé après étude de votre projet.</p>
-        <a href="contact.html" class="btn btn-primary sim-contact-btn">Nous contacter →</a>
+        <a href="contact.html" class="btn btn-primary sim-contact-btn">Nous contacter</a>
         <a href="simulateur.html" class="sim-restart">Recommencer une simulation</a>
       </div>`;
   }

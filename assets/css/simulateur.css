@@ -218,3 +218,7 @@
 .sim-prem-inline {
   font-size: .85rem; color: var(--muted); line-height: 1.65; font-weight: 300;
 }
+.sim-prem-btn {
+  /* Même style que btn-secondary : transparent + bordure */
+  align-self: flex-start;
+}
