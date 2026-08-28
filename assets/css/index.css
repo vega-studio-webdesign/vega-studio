@@ -291,52 +291,29 @@
 
 .floating-names-zone {
   position: relative;
-  /* Même contrainte que .wrap */
   max-width: 1060px;
   margin: 3rem auto 0;
   padding: 0 clamp(1rem, 3vw, 3rem);
   box-sizing: border-box;
   height: 420px;
   overflow: hidden;
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 12%,
-    black 88%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 12%,
-    black 88%,
-    transparent 100%
-  );
 }
 
-/* Wrapper : gère UNIQUEMENT l'opacité */
+/* Wrapper : position + opacité uniquement */
 .name-wrapper {
   position: absolute;
-  will-change: opacity;
-  transition: opacity .8s ease;
+  transition: opacity .9s ease;
   cursor: default;
   user-select: none;
   pointer-events: none;
 }
 
-/* Inner : gère UNIQUEMENT le transform — aucun conflit GPU */
 .name-inner {
   display: block;
   white-space: nowrap;
   font-family: 'Inter', sans-serif;
   font-weight: 300;
   letter-spacing: .01em;
-  will-change: transform;
-}
-
-@keyframes nameFloat {
-  0%   { transform: translateY(0px); }
-  100% { transform: translateY(var(--float-amp, -6px)); }
 }
 
 @media (max-width: 600px) {

@@ -318,13 +318,6 @@ document.addEventListener('DOMContentLoaded', () => {
       wrapper.style.left = x + 'px';
       wrapper.style.top  = y + 'px';
 
-      /* Float sur l'inner uniquement — après le fade-in */
-      const amp = -(2 + Math.random() * 4);
-      const dur =  10000 + Math.random() * 6000;
-      const del =  FADE + Math.random() * 2000;
-      inner.style.setProperty('--float-amp', amp + 'px');
-      inner.style.animation = `nameFloat ${dur}ms ${del}ms ease-in-out infinite alternate`;
-
       const entry = { wrapper, x, y, w, h, name };
       active.push(entry);
 
