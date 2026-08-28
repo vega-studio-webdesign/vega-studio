@@ -433,9 +433,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const optData   = {};
 
     const FORMULAS = {
-      starter:  { name: 'Starter',  creation: 100, monthly: 15 },
-      standard: { name: 'Standard', creation: 250, monthly: 25 },
-      pro:      { name: 'Pro',      creation: 400, monthly: 35 },
+      starter:  { name: 'Starter',  creation: 149, monthly: 19 },
+      standard: { name: 'Standard', creation: 299, monthly: 29 },
+      pro:      { name: 'Pro',      creation: 499, monthly: 39 },
     };
     const INCLUDED_PAGES = { starter: 1, standard: 3, pro: 5 };
     const FORMULA_INCLUDES = {
@@ -445,13 +445,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     // Prix à la création + supplément mensuel de maintenance par add-on
     const FEATURE_ADDONS = {
-      contact:  { price: 40, monthly: 2,  label: 'Formulaire de contact' },
-      galerie:  { price: 50, monthly: 2,  label: 'Galerie photos' },
-      google:   { price: 60, monthly: 3,  label: 'Google Business & Maps' },
-      seo:      { price: 50, monthly: 3,  label: 'SEO local' },
-      anim:     { price: 60, monthly: 2,  label: 'Animations visuelles' },
-      whatsapp: { price: 20, monthly: 1,  label: 'Bouton WhatsApp' },
-      avis:     { price: 40, monthly: 2,  label: 'Section avis clients' },
+      contact:  { price: 40, monthly: 3,  label: 'Formulaire de contact' },
+      galerie:  { price: 50, monthly: 3,  label: 'Galerie photos' },
+      google:   { price: 60, monthly: 4,  label: 'Google Business & Maps' },
+      seo:      { price: 50, monthly: 4,  label: 'SEO local' },
+      anim:     { price: 60, monthly: 3,  label: 'Animations visuelles' },
+      whatsapp: { price: 20, monthly: 2,  label: 'Bouton WhatsApp' },
+      avis:     { price: 40, monthly: 3,  label: 'Section avis clients' },
       favicon:  { price: 80, monthly: 0,  label: 'Favicon & identité' },
     };
     const PREM_FEATS = ['rdv','espace','boutique','multi','autre_feat','autre_opt'];
@@ -466,7 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const optMonthly    = [...options].reduce((s,o) => s + (optData[o]?.monthly||0), 0);
       return {
         missing,
-        creation: FORMULAS[fk].creation + addOnCreation + extraPages*50 + optCreation,
+        creation: FORMULAS[fk].creation + addOnCreation + extraPages*60 + optCreation,
         monthly:  FORMULAS[fk].monthly  + addOnMonthly  + optMonthly,
         extraPages,
       };
@@ -508,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return `<span class="sim-addon">${a.label} <em>+${a.price}€${a.monthly>0?' +'+a.monthly+'€/m':''}</em></span>`;
           }).join('');
           const extraTag = c.extraPages > 0
-            ? `<span class="sim-addon">${c.extraPages} page${c.extraPages>1?'s':''} supp. <em>+${c.extraPages*50}€</em></span>`
+            ? `<span class="sim-addon">${c.extraPages} page${c.extraPages>1?'s':''} supp. <em>+${c.extraPages*60}€</em></span>`
             : '';
           // Tags des options sélectionnées (mêmes pour toutes les formules)
           const optTags = [...options].map(o => {
