@@ -420,5 +420,159 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initFloatingNames();
+  /* ── SIMULATEUR FORMULES ── */
+  function initSimulator() {
+    if (!document.getElementById('sim-step1')) return;
+
+    let pages = 1;
+    const features = new Set();
+    const options  = new Set();
+    const optPrices = {};
+
+    const FORMULAS = {
+      starter:  { name: 'Starter',  creation: 100, monthly: 15 },
+      standard: { name: 'Standard', creation: 250, monthly: 25 },
+      pro:      { name: 'Pro',      creation: 400, monthly: 35 },
+      premium:  { name: 'Premium',  creation: null, monthly: null },
+    };
+
+    const INCLUDED_PAGES = { starter: 1, standard: 3, pro: 5, premium: 999 };
+
+    const DURATIONS = [
+      { months: 1,  label: '1 mois',  desc: 'Pour découvrir', discount: 0 },
+      { months: 3,  label: '3 mois',  desc: 'Bon équilibre',  discount: 7 },
+      { months: 6,  label: '6 mois',  desc: 'Idéal',          discount: 12 },
+      { months: 12, label: '1 an',    desc: 'Meilleur tarif', discount: 20 },
+    ];
+
+    function getFormula() {
+      const premFeats = ['rdv','espace','boutique','multi'];
+      const proFeats  = ['anim','whatsapp','avis','favicon'];
+      const stdFeats  = ['contact','galerie','google','seo'];
+      if (premFeats.some(f => features.has(f))) return 'premium';
+      if (pages >= 5 || proFeats.some(f => features.has(f))) return 'pro';
+      if (pages >= 2 || stdFeats.some(f => features.has(f))) return 'standard';
+      return 'starter';
+    }
+
+    function extraPagesCost(fk) {
+      return Math.max(0, pages - INCLUDED_PAGES[fk]) * 50;
+    }
+
+    function optionsCost() {
+      return [...options].reduce((s, o) => s + (optPrices[o] || 0), 0);
+    }
+
+    function updateResult() {
+      const fk = getFormula();
+      const f  = FORMULAS[fk];
+      const ep = extraPagesCost(fk);
+      const oc = optionsCost();
+      const el = document.getElementById('sim-result');
+      if (!el) return;
+
+      if (fk === 'premium') {
+        el.innerHTML = `
+          <div class="sim-rec">
+            <span class="sim-rec-label">Formule recommandée</span>
+            <strong class="sim-rec-name">Premium</strong>
+            <p class="sim-rec-desc">Votre projet nécessite des fonctionnalités avancées (espace client, boutique, RDV…). Contactez-nous pour un devis personnalisé.</p>
+            <a href="contact.html" class="btn btn-primary sim-cta">Nous contacter →</a>
+          </div>`;
+        return;
+      }
+
+      const creation = f.creation + ep + oc;
+      const epLine  = ep > 0
+        ? `<div class="sim-rec-row"><span>Pages supplémentaires (×${pages - INCLUDED_PAGES[fk]})</span><strong>+${ep}€</strong></div>`
+        : '';
+      const ocLine  = oc > 0
+        ? `<div class="sim-rec-row"><span>Options sélectionnées</span><strong>+${oc}€</strong></div>`
+        : '';
+
+      el.innerHTML = `
+        <div class="sim-rec">
+          <span class="sim-rec-label">Formule recommandée</span>
+          <strong class="sim-rec-name">${f.name}</strong>
+          <div class="sim-rec-prices">
+            <div class="sim-rec-row"><span>Création (${f.name})</span><strong>${f.creation}€</strong></div>
+            ${epLine}${ocLine}
+            <div class="sim-rec-row is-total"><span>Total création</span><strong>${creation}€</strong></div>
+            <div class="sim-rec-row"><span>Mensuel</span><strong>${f.monthly}€ / mois max.</strong></div>
+          </div>
+          <button class="btn btn-primary sim-cta" id="sim-choose">Choisir la durée →</button>
+        </div>`;
+
+      document.getElementById('sim-choose')?.addEventListener('click', () => showStep2(fk, creation, f.monthly));
+    }
+
+    function showStep2(fk, creation, monthly) {
+      document.getElementById('sim-step1').hidden = true;
+      const s2 = document.getElementById('sim-step2');
+      s2.hidden = false;
+
+      document.getElementById('sim-dur-grid').innerHTML = DURATIONS.map(d => {
+        const monthlyDisc = monthly * (1 - d.discount / 100);
+        const totalMaint  = monthlyDisc * d.months;
+        const total       = creation + totalMaint;
+        const saving      = d.discount > 0 ? Math.round(monthly * d.months * d.discount / 100) : 0;
+
+        return `
+          <div class="dur-card">
+            <div class="dur-head">
+              <span class="dur-label">${d.label}</span>
+              ${d.discount > 0 ? `<span class="dur-badge">−${d.discount}%</span>` : ''}
+            </div>
+            <p class="dur-desc">${d.desc}</p>
+            <div class="dur-monthly">${Math.round(monthlyDisc)}€<span> / mois</span></div>
+            ${saving > 0 ? `<div class="dur-saving">Économie de ${saving}€</div>` : '<div class="dur-saving" style="opacity:0">—</div>'}
+            <div class="dur-total">
+              <span>Total à régler :</span>
+              <strong>${Math.round(total)}€</strong>
+              <small>création + ${d.months} mois de maintenance</small>
+            </div>
+            <a href="contact.html?sim=${fk}-${d.months}m" class="dur-cta">Choisir →</a>
+          </div>`;
+      }).join('');
+    }
+
+    // Listeners
+    document.querySelectorAll('.page-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        pages = parseInt(btn.dataset.pages) || 6;
+        updateResult();
+      });
+    });
+
+    document.querySelectorAll('.sim-chip[data-feature]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        chip.classList.toggle('active');
+        const f = chip.dataset.feature;
+        features.has(f) ? features.delete(f) : features.add(f);
+        updateResult();
+      });
+    });
+
+    document.querySelectorAll('.sim-chip[data-option]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        chip.classList.toggle('active');
+        const o = chip.dataset.option;
+        optPrices[o] = parseInt(chip.dataset.price) || 0;
+        options.has(o) ? options.delete(o) : options.add(o);
+        updateResult();
+      });
+    });
+
+    document.getElementById('sim-back')?.addEventListener('click', () => {
+      document.getElementById('sim-step2').hidden = true;
+      document.getElementById('sim-step1').hidden = false;
+    });
+
+    updateResult();
+  }
+
+  initSimulator();
 
 });
