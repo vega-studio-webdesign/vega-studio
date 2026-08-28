@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* Effet lumière souris supprimé */
 
-  /* ── SHIMMER SÉQUENTIEL — jamais 2x la même carte ── */
+  /* ── SHIMMER SÉQUENTIEL, jamais 2x la même carte ── */
   const cards = Array.from(document.querySelectorAll('.offer-card'));
   if (cards.length) {
     cards.forEach(card => {
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  /* ── RÉSEAU DE PARTICULES — section À propos ── */
+  /* ── RÉSEAU DE PARTICULES, section À propos ── */
   function initParticlesNetwork() {
     const canvas = document.getElementById('particles-canvas');
     if (!canvas) return;
@@ -249,56 +249,56 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!zone) return;
 
     const ALL_NAMES = [
-      { n: 'Frédéric Vanek',        f: 'Frédéric Vanek, 46 ans — Plombier' },
-      { n: 'Laurent Brissaud',       f: 'Laurent Brissaud, 38 ans — Électricien' },
-      { n: 'Pascal Gonthier',        f: 'Pascal Gonthier, 52 ans — Plombier' },
-      { n: 'Thierry Marchand',       f: 'Thierry Marchand, 41 ans — Peintre' },
-      { n: 'Marc Delcourt',          f: 'Marc Delcourt, 35 ans — Plombier' },
-      { n: 'Bruno Teissier',         f: 'Bruno Teissier, 49 ans — Électricien' },
-      { n: 'Christophe Mouries',     f: 'Christophe Mouries, 43 ans — Maçon' },
-      { n: 'Didier Fourneau',        f: 'Didier Fourneau, 57 ans — Plombier' },
-      { n: 'Sébastien Lamour',       f: 'Sébastien Lamour, 33 ans — Électricien' },
-      { n: 'Yannick Prévot',         f: 'Yannick Prévot, 44 ans — Plombier' },
-      { n: 'Gilles Castagnède',      f: 'Gilles Castagnède, 50 ans — Serrurier' },
-      { n: 'Julien Tremblet',        f: 'Julien Tremblet, 29 ans — Plombier' },
-      { n: 'Alain Pouget',           f: 'Alain Pouget, 55 ans — Maçon' },
-      { n: 'Rémi Charlot',           f: 'Rémi Charlot, 37 ans — Électricien' },
-      { n: 'Nicolas Ferriol',        f: 'Nicolas Ferriol, 42 ans — Plombier' },
-      { n: 'Stéphane Bouquillon',    f: 'Stéphane Bouquillon, 48 ans — Peintre' },
-      { n: 'David Lenfant',          f: 'David Lenfant, 31 ans — Plombier' },
-      { n: 'Patrice Vaugelas',       f: 'Patrice Vaugelas, 53 ans — Électricien' },
-      { n: 'Éric Dumarché',          f: 'Éric Dumarché, 45 ans — Plombier' },
-      { n: 'François Bonnard',       f: 'François Bonnard, 39 ans — Serrurier' },
-      { n: 'Olivier Tavernier',      f: 'Olivier Tavernier, 36 ans — Plombier' },
-      { n: 'Jean-Pierre Moulinier',  f: 'Jean-Pierre Moulinier, 59 ans — Maçon' },
-      { n: 'Antoine Brassac',        f: 'Antoine Brassac, 27 ans — Électricien' },
-      { n: 'Hervé Chabrier',         f: 'Hervé Chabrier, 47 ans — Plombier' },
-      { n: 'Maxime Tollet',          f: 'Maxime Tollet, 32 ans — Peintre' },
-      { n: 'Cédric Vidal-Roux',      f: 'Cédric Vidal-Roux, 40 ans — Plombier' },
-      { n: 'Karim Benyounes',        f: 'Karim Benyounes, 38 ans — Électricien' },
-      { n: 'Benoît Lartigau',        f: 'Benoît Lartigau, 51 ans — Plombier' },
-      { n: 'Damien Souquet',         f: 'Damien Souquet, 34 ans — Maçon' },
-      { n: 'Thomas Pérignon',        f: 'Thomas Pérignon, 28 ans — Plombier' },
-      { n: 'Philippe Lauzet',        f: 'Philippe Lauzet, 56 ans — Serrurier' },
-      { n: 'Arnaud Meunier',         f: 'Arnaud Meunier, 43 ans — Électricien' },
-      { n: 'Xavier Bourrelier',      f: 'Xavier Bourrelier, 46 ans — Plombier' },
-      { n: 'Loïc Granger',           f: 'Loïc Granger, 30 ans — Peintre' },
-      { n: 'Mickael Barthas',        f: 'Mickael Barthas, 39 ans — Plombier' },
-      { n: 'Vincent Combes',         f: 'Vincent Combes, 44 ans — Maçon' },
-      { n: 'Romain Escoffier',       f: 'Romain Escoffier, 26 ans — Électricien' },
-      { n: 'Jean-Marc Pelissier',    f: 'Jean-Marc Pelissier, 54 ans — Plombier' },
-      { n: 'Guillaume Sarradet',     f: 'Guillaume Sarradet, 35 ans — Serrurier' },
-      { n: 'Adrien Poudevigne',      f: 'Adrien Poudevigne, 29 ans — Plombier' },
-      { n: 'Samuel Claverie',        f: 'Samuel Claverie, 41 ans — Électricien' },
-      { n: 'Pierre-Antoine Galy',    f: 'Pierre-Antoine Galy, 48 ans — Peintre' },
-      { n: 'Ludovic Fauché',         f: 'Ludovic Fauché, 37 ans — Plombier' },
-      { n: 'Florent Gombaud',        f: 'Florent Gombaud, 33 ans — Maçon' },
-      { n: 'Alexandre Moutet',       f: 'Alexandre Moutet, 45 ans — Plombier' },
-      { n: 'Bertrand Lacassagne',    f: 'Bertrand Lacassagne, 52 ans — Électricien' },
-      { n: 'Jérôme Baylac',          f: 'Jérôme Baylac, 43 ans — Peintre' },
-      { n: 'Cyril Tournadre',        f: 'Cyril Tournadre, 31 ans — Plombier' },
-      { n: 'Emmanuel Sabatier',      f: 'Emmanuel Sabatier, 49 ans — Serrurier' },
-      { n: 'Quentin Dutheil',        f: 'Quentin Dutheil, 27 ans — Plombier' },
+      { n: 'Frédéric Vanek',        f: 'Frédéric Vanek, 46 ans, Plombier' },
+      { n: 'Laurent Brissaud',       f: 'Laurent Brissaud, 38 ans, Électricien' },
+      { n: 'Pascal Gonthier',        f: 'Pascal Gonthier, 52 ans, Plombier' },
+      { n: 'Thierry Marchand',       f: 'Thierry Marchand, 41 ans, Peintre' },
+      { n: 'Marc Delcourt',          f: 'Marc Delcourt, 35 ans, Plombier' },
+      { n: 'Bruno Teissier',         f: 'Bruno Teissier, 49 ans, Électricien' },
+      { n: 'Christophe Mouries',     f: 'Christophe Mouries, 43 ans, Maçon' },
+      { n: 'Didier Fourneau',        f: 'Didier Fourneau, 57 ans, Plombier' },
+      { n: 'Sébastien Lamour',       f: 'Sébastien Lamour, 33 ans, Électricien' },
+      { n: 'Yannick Prévot',         f: 'Yannick Prévot, 44 ans, Plombier' },
+      { n: 'Gilles Castagnède',      f: 'Gilles Castagnède, 50 ans, Serrurier' },
+      { n: 'Julien Tremblet',        f: 'Julien Tremblet, 29 ans, Plombier' },
+      { n: 'Alain Pouget',           f: 'Alain Pouget, 55 ans, Maçon' },
+      { n: 'Rémi Charlot',           f: 'Rémi Charlot, 37 ans, Électricien' },
+      { n: 'Nicolas Ferriol',        f: 'Nicolas Ferriol, 42 ans, Plombier' },
+      { n: 'Stéphane Bouquillon',    f: 'Stéphane Bouquillon, 48 ans, Peintre' },
+      { n: 'David Lenfant',          f: 'David Lenfant, 31 ans, Plombier' },
+      { n: 'Patrice Vaugelas',       f: 'Patrice Vaugelas, 53 ans, Électricien' },
+      { n: 'Éric Dumarché',          f: 'Éric Dumarché, 45 ans, Plombier' },
+      { n: 'François Bonnard',       f: 'François Bonnard, 39 ans, Serrurier' },
+      { n: 'Olivier Tavernier',      f: 'Olivier Tavernier, 36 ans, Plombier' },
+      { n: 'Jean-Pierre Moulinier',  f: 'Jean-Pierre Moulinier, 59 ans, Maçon' },
+      { n: 'Antoine Brassac',        f: 'Antoine Brassac, 27 ans, Électricien' },
+      { n: 'Hervé Chabrier',         f: 'Hervé Chabrier, 47 ans, Plombier' },
+      { n: 'Maxime Tollet',          f: 'Maxime Tollet, 32 ans, Peintre' },
+      { n: 'Cédric Vidal-Roux',      f: 'Cédric Vidal-Roux, 40 ans, Plombier' },
+      { n: 'Karim Benyounes',        f: 'Karim Benyounes, 38 ans, Électricien' },
+      { n: 'Benoît Lartigau',        f: 'Benoît Lartigau, 51 ans, Plombier' },
+      { n: 'Damien Souquet',         f: 'Damien Souquet, 34 ans, Maçon' },
+      { n: 'Thomas Pérignon',        f: 'Thomas Pérignon, 28 ans, Plombier' },
+      { n: 'Philippe Lauzet',        f: 'Philippe Lauzet, 56 ans, Serrurier' },
+      { n: 'Arnaud Meunier',         f: 'Arnaud Meunier, 43 ans, Électricien' },
+      { n: 'Xavier Bourrelier',      f: 'Xavier Bourrelier, 46 ans, Plombier' },
+      { n: 'Loïc Granger',           f: 'Loïc Granger, 30 ans, Peintre' },
+      { n: 'Mickael Barthas',        f: 'Mickael Barthas, 39 ans, Plombier' },
+      { n: 'Vincent Combes',         f: 'Vincent Combes, 44 ans, Maçon' },
+      { n: 'Romain Escoffier',       f: 'Romain Escoffier, 26 ans, Électricien' },
+      { n: 'Jean-Marc Pelissier',    f: 'Jean-Marc Pelissier, 54 ans, Plombier' },
+      { n: 'Guillaume Sarradet',     f: 'Guillaume Sarradet, 35 ans, Serrurier' },
+      { n: 'Adrien Poudevigne',      f: 'Adrien Poudevigne, 29 ans, Plombier' },
+      { n: 'Samuel Claverie',        f: 'Samuel Claverie, 41 ans, Électricien' },
+      { n: 'Pierre-Antoine Galy',    f: 'Pierre-Antoine Galy, 48 ans, Peintre' },
+      { n: 'Ludovic Fauché',         f: 'Ludovic Fauché, 37 ans, Plombier' },
+      { n: 'Florent Gombaud',        f: 'Florent Gombaud, 33 ans, Maçon' },
+      { n: 'Alexandre Moutet',       f: 'Alexandre Moutet, 45 ans, Plombier' },
+      { n: 'Bertrand Lacassagne',    f: 'Bertrand Lacassagne, 52 ans, Électricien' },
+      { n: 'Jérôme Baylac',          f: 'Jérôme Baylac, 43 ans, Peintre' },
+      { n: 'Cyril Tournadre',        f: 'Cyril Tournadre, 31 ans, Plombier' },
+      { n: 'Emmanuel Sabatier',      f: 'Emmanuel Sabatier, 49 ans, Serrurier' },
+      { n: 'Quentin Dutheil',        f: 'Quentin Dutheil, 27 ans, Plombier' },
     ];
 
     const pool      = [...ALL_NAMES].sort(() => Math.random() - .5);
@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const entry = { wrapper, x, y, w, h, item };
       active.push(entry);
 
-      /* Fade in — sur wrapper seulement */
+      /* Fade in, sur wrapper seulement */
       requestAnimationFrame(() => requestAnimationFrame(() => {
         wrapper.style.opacity = '1';
       }));
