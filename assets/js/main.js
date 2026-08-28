@@ -333,7 +333,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const dur =  6000 + Math.random() * 4000;      // 6–10s = très doux
       const del =  Math.random() * 2000;
       el.style.setProperty('--float-amp', amp + 'px');
-      el.style.animation = `nameFloat ${dur}ms ${del}ms linear infinite alternate`;
+      // Démarrer le float APRÈS la fin du fade-in pour éviter tout conflit GPU opacity/transform
+      el.style.animation = `nameFloat ${dur}ms ${FADE_MS + del}ms linear infinite alternate`;
 
       const entry = { el, x, y, w, h, name };
       active.push(entry);
