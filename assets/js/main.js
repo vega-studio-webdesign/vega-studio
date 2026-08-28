@@ -328,13 +328,13 @@ document.addEventListener('DOMContentLoaded', () => {
       el.style.left = x + 'px';
       el.style.top  = y + 'px';
 
-      // Flottement : petite amplitude, longue durée = gracieux sans vibration
-      const amp = -(4 + Math.random() * 7);          // 4–11px seulement
-      const dur =  6000 + Math.random() * 4000;      // 6–10s = très doux
-      const del =  Math.random() * 2000;
+      // ease-in-out : vitesse 0 aux extremités = retournement imperceptible
+      // amplitude 2-4px + 10-16s = flottement subtil, jamais perçu comme vibration
+      const amp = -(2 + Math.random() * 3);
+      const dur =  10000 + Math.random() * 6000;
+      const del =  Math.random() * 3000;
       el.style.setProperty('--float-amp', amp + 'px');
-      // Démarrer le float APRÈS la fin du fade-in pour éviter tout conflit GPU opacity/transform
-      el.style.animation = `nameFloat ${dur}ms ${FADE_MS + del}ms linear infinite alternate`;
+      el.style.animation = `nameFloat ${dur}ms ${FADE_MS + del}ms ease-in-out infinite alternate`;
 
       const entry = { el, x, y, w, h, name };
       active.push(entry);
