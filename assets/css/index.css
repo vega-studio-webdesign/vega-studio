@@ -330,5 +330,6 @@
 }
 
 @media (max-width: 600px) {
-  .floating-names-zone { height: 320px; }
+  .floating-names-zone { height: 400px; }
+  .section-names { padding-bottom: 4rem; }
 }

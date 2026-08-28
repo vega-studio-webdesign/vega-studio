@@ -183,9 +183,7 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; background: var(-
     position: fixed;
     top: 0; left: 0; right: 0;
     width: 100vw;
-    background: rgba(11,12,16,.97);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(11,12,16,1); /* totalement opaque */
     border-bottom: 1px solid var(--line);
     flex-direction: column;
     align-items: center;
