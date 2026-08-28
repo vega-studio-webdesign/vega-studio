@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulateur — Vega Studio</title>
+  <meta name="description" content="Simulez votre projet web et obtenez un tarif personnalisé." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/page.css" />
+  <link rel="stylesheet" href="assets/css/simulateur.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-wordmark">Vega Studio</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="formules.html" class="active">Formules</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+        <li class="mobile-cta-item"><a href="contact.html" class="mobile-cta">Nous contacter</a>
+          <button class="nav-mobile-close" aria-label="Fermer">✕</button></li>
+      </ul>
+      <div class="nav-right"><a href="contact.html" class="nav-cta">Nous contacter</a></div>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <section class="page-hero sim-hero">
+    <div class="wrap">
+      <h1 class="apropos-hero-title reveal">Simulez votre projet.</h1>
+      <p class="page-sub reveal d1">Cochez ce dont vous avez besoin — on trouve la formule idéale et le tarif exact.</p>
+    </div>
+  </section>
+
+  <section class="sim-section">
+    <div class="wrap">
+
+      <!-- ÉTAPE 1 -->
+      <div class="sim-body" id="sim-step1">
+        <div class="sim-left">
+
+          <div class="sim-group">
+            <span class="sim-group-label">Nombre de pages</span>
+            <div class="sim-pages">
+              <button class="page-btn active" data-pages="1">1</button>
+              <button class="page-btn" data-pages="2">2</button>
+              <button class="page-btn" data-pages="3">3</button>
+              <button class="page-btn" data-pages="4">4</button>
+              <button class="page-btn" data-pages="5">5</button>
+              <button class="page-btn" data-pages="6">6 +</button>
+            </div>
+          </div>
+
+          <div class="sim-group">
+            <span class="sim-group-label">Fonctionnalités</span>
+            <div class="sim-chips">
+              <button class="sim-chip" data-feature="contact">Formulaire de contact</button>
+              <button class="sim-chip" data-feature="galerie">Galerie photos</button>
+              <button class="sim-chip" data-feature="google">Google Business & Maps</button>
+              <button class="sim-chip" data-feature="seo">SEO local</button>
+              <button class="sim-chip" data-feature="anim">Animations visuelles</button>
+              <button class="sim-chip" data-feature="whatsapp">Bouton WhatsApp</button>
+              <button class="sim-chip" data-feature="avis">Section avis clients</button>
+              <button class="sim-chip" data-feature="favicon">Favicon & identité visuelle</button>
+              <button class="sim-chip sim-chip--adv" data-feature="rdv">Prise de RDV en ligne</button>
+              <button class="sim-chip sim-chip--adv" data-feature="espace">Espace client sécurisé</button>
+              <button class="sim-chip sim-chip--adv" data-feature="boutique">Boutique en ligne</button>
+              <button class="sim-chip sim-chip--adv" data-feature="multi">Site multilingue</button>
+            </div>
+          </div>
+
+          <div class="sim-group">
+            <span class="sim-group-label">Options à la carte</span>
+            <div class="sim-chips">
+              <button class="sim-chip" data-option="textes"   data-price="80">Rédaction des textes <em>+80€</em></button>
+              <button class="sim-chip" data-option="identite" data-price="80">Identité visuelle complète <em>+80€</em></button>
+              <button class="sim-chip" data-option="popup"    data-price="40">Pop-up promotionnelle <em>+40€</em></button>
+              <button class="sim-chip" data-option="compteur" data-price="30">Compteur animé <em>+30€</em></button>
+              <button class="sim-chip" data-option="chatbot"  data-price="60">Chatbot de contact <em>+60€</em></button>
+              <button class="sim-chip" data-option="rgpd"     data-price="35">Bannière cookies RGPD <em>+35€</em></button>
+              <button class="sim-chip" data-option="devis"    data-price="70">Formulaire de devis <em>+70€</em></button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sim-right" id="sim-result"></div>
+      </div>
+
+      <!-- ÉTAPE 2 -->
+      <div class="sim-body--duration" id="sim-step2" hidden>
+        <button class="sim-back" id="sim-back">← Modifier ma sélection</button>
+        <div class="sim-duration-grid" id="sim-dur-grid"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="footer-left"><a href="contact.html">Contact</a></span>
+      <span class="footer-mid t-label">© 2025 Vega Studio</span>
+      <span class="footer-right"><a href="mentions.html">Mentions légales</a></span>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
