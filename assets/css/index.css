@@ -314,23 +314,29 @@
   );
 }
 
-.floating-name {
+/* Wrapper : gère UNIQUEMENT l'opacité */
+.name-wrapper {
   position: absolute;
-  white-space: nowrap;
-  font-family: 'Inter', sans-serif;
-  font-weight: 300;
+  will-change: opacity;
+  transition: opacity .8s ease;
   cursor: default;
   user-select: none;
   pointer-events: none;
+}
+
+/* Inner : gère UNIQUEMENT le transform — aucun conflit GPU */
+.name-inner {
+  display: block;
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
   letter-spacing: .01em;
-  will-change: transform, opacity;
-  transform: translateZ(0); /* force GPU, élimine les vibrations */
-  transition: opacity .7s ease;
+  will-change: transform;
 }
 
 @keyframes nameFloat {
-  0%   { transform: translateZ(0) translateY(0px); }
-  100% { transform: translateZ(0) translateY(var(--float-amp, -8px)); }
+  0%   { transform: translateY(0px); }
+  100% { transform: translateY(var(--float-amp, -6px)); }
 }
 
 @media (max-width: 600px) {

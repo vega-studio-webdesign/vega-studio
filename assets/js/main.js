@@ -264,105 +264,93 @@ document.addEventListener('DOMContentLoaded', () => {
       'Emmanuel Sabatier', 'Quentin Dutheil'
     ];
 
-    // Mélanger le pool au départ
-    const pool = [...ALL_NAMES].sort(() => Math.random() - .5);
-    const active = []; // { el, x, y, w, h, name }
-
-    const MAX_ACTIVE   = 13;
-    const FADE_MS      = 700;   // fade plus rapide
-    const PAD_X        = 28;
-    const PAD_Y        = 22;
-
-    const SIZES   = ['.8rem', '.88rem', '.95rem', '1rem', '1.05rem', '1.12rem'];
-    const COLORS  = [
-      'rgba(238,238,245,0.85)',
-      'rgba(238,238,245,0.55)',
-      'rgba(238,238,245,0.38)',
-      'rgba(196,184,255,0.80)',
-      'rgba(196,184,255,0.55)',
-      'rgba(139,124,246,0.70)',
+    const pool      = [...ALL_NAMES].sort(() => Math.random() - .5);
+    const active    = [];
+    const MAX       = 13;
+    const FADE      = 800;   // ms
+    const PAD_X     = 28;
+    const PAD_Y     = 22;
+    const SIZES     = ['.8rem','.88rem','.95rem','1rem','1.05rem','1.12rem'];
+    const COLORS    = [
+      'rgba(238,238,245,0.85)', 'rgba(238,238,245,0.55)', 'rgba(238,238,245,0.38)',
+      'rgba(196,184,255,0.80)', 'rgba(196,184,255,0.55)', 'rgba(139,124,246,0.70)',
     ];
 
     function overlaps(x, y, w, h) {
-      for (const a of active) {
-        if (x < a.x + a.w + PAD_X &&
-            x + w + PAD_X > a.x &&
-            y < a.y + a.h + PAD_Y &&
-            y + h + PAD_Y > a.y) return true;
-      }
+      for (const a of active)
+        if (x < a.x+a.w+PAD_X && x+w+PAD_X > a.x && y < a.y+a.h+PAD_Y && y+h+PAD_Y > a.y)
+          return true;
       return false;
     }
 
     function spawn() {
-      if (active.length >= MAX_ACTIVE || pool.length === 0) return;
-
+      if (active.length >= MAX || pool.length === 0) return;
       const name = pool.shift();
-      const el   = document.createElement('span');
-      el.className   = 'floating-name';
-      el.textContent = name;
-      el.style.fontSize  = SIZES [Math.floor(Math.random() * SIZES .length)];
-      el.style.color     = COLORS[Math.floor(Math.random() * COLORS.length)];
-      el.style.opacity   = '0';
 
-      zone.appendChild(el);
+      /* ---- wrapper : opacity seulement ---- */
+      const wrapper = document.createElement('span');
+      wrapper.className = 'name-wrapper';
+      wrapper.style.opacity = '0';
 
-      const w  = el.offsetWidth  + 2;
-      const h  = el.offsetHeight + 2;
+      /* ---- inner : transform seulement ---- */
+      const inner = document.createElement('span');
+      inner.className  = 'name-inner';
+      inner.textContent = name;
+      inner.style.fontSize = SIZES [Math.floor(Math.random() * SIZES .length)];
+      inner.style.color    = COLORS[Math.floor(Math.random() * COLORS.length)];
+
+      wrapper.appendChild(inner);
+      zone.appendChild(wrapper);
+
+      const w  = wrapper.offsetWidth  + 2;
+      const h  = wrapper.offsetHeight + 2;
       const zW = zone.offsetWidth;
       const zH = zone.offsetHeight;
 
-      // Chercher une position libre
       let x, y, found = false;
       for (let t = 0; t < 40; t++) {
         x = 16 + Math.random() * Math.max(0, zW - w - 32);
         y = 16 + Math.random() * Math.max(0, zH - h - 32);
         if (!overlaps(x, y, w, h)) { found = true; break; }
       }
+      if (!found) { zone.removeChild(wrapper); pool.push(name); return; }
 
-      if (!found) {
-        zone.removeChild(el);
-        pool.push(name);
-        return;
-      }
+      wrapper.style.left = x + 'px';
+      wrapper.style.top  = y + 'px';
 
-      el.style.left = x + 'px';
-      el.style.top  = y + 'px';
-
-      // ease-in-out : vitesse 0 aux extremités = retournement imperceptible
-      // amplitude 2-4px + 10-16s = flottement subtil, jamais perçu comme vibration
-      const amp = -(2 + Math.random() * 3);
+      /* Float sur l'inner uniquement — après le fade-in */
+      const amp = -(2 + Math.random() * 4);
       const dur =  10000 + Math.random() * 6000;
-      const del =  Math.random() * 3000;
-      el.style.setProperty('--float-amp', amp + 'px');
-      el.style.animation = `nameFloat ${dur}ms ${FADE_MS + del}ms ease-in-out infinite alternate`;
+      const del =  FADE + Math.random() * 2000;
+      inner.style.setProperty('--float-amp', amp + 'px');
+      inner.style.animation = `nameFloat ${dur}ms ${del}ms ease-in-out infinite alternate`;
 
-      const entry = { el, x, y, w, h, name };
+      const entry = { wrapper, x, y, w, h, name };
       active.push(entry);
 
-      // Fade in
-      requestAnimationFrame(() => requestAnimationFrame(() => { el.style.opacity = '1'; }));
+      /* Fade in — sur wrapper seulement */
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        wrapper.style.opacity = '1';
+      }));
 
-      // Durée de vie aléatoire
-      const life = 2500 + Math.random() * 3000; // 2.5–5.5s = rotation rapide
+      /* Durée de vie puis fade out */
+      const life = 2500 + Math.random() * 3500;
       setTimeout(() => {
-        el.style.opacity = '0';
+        wrapper.style.opacity = '0';
         setTimeout(() => {
-          if (zone.contains(el)) zone.removeChild(el);
+          if (zone.contains(wrapper)) zone.removeChild(wrapper);
           const i = active.indexOf(entry);
           if (i > -1) active.splice(i, 1);
-          pool.push(name); // retour dans le pool
-        }, FADE_MS);
+          pool.push(name);
+        }, FADE);
       }, life);
     }
 
-    // Spawn initial étalé
-    for (let i = 0; i < 10; i++) setTimeout(spawn, i * 120);
-
-    // Spawn régulier pour maintenir la densité
+    for (let i = 0; i < 10; i++) setTimeout(spawn, i * 130);
     setInterval(() => {
-      const deficit = MAX_ACTIVE - active.length;
-      for (let i = 0; i < Math.min(deficit, 2); i++) spawn();
-    }, 350); // spawn toutes les 350ms
+      const d = MAX - active.length;
+      for (let i = 0; i < Math.min(d, 2); i++) spawn();
+    }, 350);
   }
 
   initFloatingNames();
