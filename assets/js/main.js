@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const active = []; // { el, x, y, w, h, name }
 
     const MAX_ACTIVE   = 13;
-    const FADE_MS      = 900;
+    const FADE_MS      = 700;   // fade plus rapide
     const PAD_X        = 28;
     const PAD_Y        = 22;
 
@@ -328,12 +328,12 @@ document.addEventListener('DOMContentLoaded', () => {
       el.style.left = x + 'px';
       el.style.top  = y + 'px';
 
-      // Flottement unique par élément
-      const amp = -(6 + Math.random() * 12);
-      const dur =  3200 + Math.random() * 2400;
-      const del =  Math.random() * 1200;
+      // Flottement : petite amplitude, longue durée = gracieux sans vibration
+      const amp = -(4 + Math.random() * 7);          // 4–11px seulement
+      const dur =  6000 + Math.random() * 4000;      // 6–10s = très doux
+      const del =  Math.random() * 2000;
       el.style.setProperty('--float-amp', amp + 'px');
-      el.style.animation = `nameFloat ${dur}ms ${del}ms ease-in-out infinite alternate`;
+      el.style.animation = `nameFloat ${dur}ms ${del}ms linear infinite alternate`;
 
       const entry = { el, x, y, w, h, name };
       active.push(entry);
@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(() => requestAnimationFrame(() => { el.style.opacity = '1'; }));
 
       // Durée de vie aléatoire
-      const life = 3500 + Math.random() * 5000;
+      const life = 2500 + Math.random() * 3000; // 2.5–5.5s = rotation rapide
       setTimeout(() => {
         el.style.opacity = '0';
         setTimeout(() => {
@@ -355,13 +355,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Spawn initial étalé
-    for (let i = 0; i < 10; i++) setTimeout(spawn, i * 180);
+    for (let i = 0; i < 10; i++) setTimeout(spawn, i * 120);
 
     // Spawn régulier pour maintenir la densité
     setInterval(() => {
       const deficit = MAX_ACTIVE - active.length;
       for (let i = 0; i < Math.min(deficit, 2); i++) spawn();
-    }, 500);
+    }, 350); // spawn toutes les 350ms
   }
 
   initFloatingNames();
