@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" rx="20" fill="#8B7CF6"/>
-  <text x="50" y="72" font-family="Arial Black,sans-serif" font-size="62" font-weight="900" fill="white" text-anchor="middle">V</text>
+  <!-- Fond aux coins arrondis, couleur du site -->
+  <rect width="100" height="100" rx="22" fill="#0B0C10"/>
+  <!-- V géométrique en violet du site, tracé en path pour un rendu parfait à toute taille -->
+  <path d="M19 24 L50 77 L81 24" stroke="#8B7CF6" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>
