@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /simulateur-total.html
 
-Sitemap: https://vegastudio.fr/sitemap.xml
+Sitemap: https://www.vegastudio.fr/sitemap.xml
