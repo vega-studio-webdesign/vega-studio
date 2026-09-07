@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/a-propos.html", "destination": "/apropos.html", "permanent": true },
+    { "source": "/cgu.html", "destination": "/mentions.html", "permanent": true },
+    { "source": "/simulateur-duree.html", "destination": "/simulateur.html", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true }
+  ]
+}
