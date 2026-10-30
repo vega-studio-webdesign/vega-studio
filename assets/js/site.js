@@ -43,95 +43,123 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* ── Écran du téléphone ──
-     Un cycle, quatre temps : pause en haut, défilement intégral à
-     vitesse constante, pause en bas, puis fondu court vers le modèle
-     suivant qui démarre en haut de sa page.
+  /* ── La démonstration ──
+     La fenêtre et le téléphone affichent le même modèle et défilent
+     ENSEMBLE, puis basculent sur le suivant d'un seul fondu.
 
-     La durée suit la hauteur réelle de chaque image. À vitesse
-     constante, un site deux fois plus long doit prendre deux fois
-     plus de temps ; une durée fixe ferait filer les pages longues.
+     Les deux images n'ont pas la même longueur : la version bureau
+     est plus large donc plus courte en pixels. On calcule donc une
+     durée commune à partir de la plus longue course, et chacun se
+     déplace à sa propre vitesse pour arriver en bas au même instant.
+     Sans ça l'un attendrait l'autre et la synchronisation se verrait.
 
-     Le cycle ne tourne que lorsque le téléphone est visible : une
-     animation qui continue hors champ consomme du GPU pour rien. */
-  const screen = document.querySelector('.phone-screen');
+     Le défilement est le contenu de cette page, pas une décoration :
+     sous préférence de mouvement réduit il ralentit, il ne se fige
+     pas. Un écran figé ne démontre plus rien. */
+  const scene = document.querySelector('.showcase');
 
-  if (screen) {
-    const phone = document.querySelector('.phone');
-    const stage = document.querySelector('.stage');
-    const shots = [...screen.querySelectorAll('.shot')];
+  if (scene) {
+    const vues = [...scene.querySelectorAll('.screen')];       // .browser-view et .phone-screen
+    const legende = document.querySelector('.showcase-name');
+    const adresse = document.querySelector('.browser-url');
+    const nb = vues[0] ? vues[0].querySelectorAll('.shot').length : 0;
 
-    const VITESSE = 125;   // pixels par seconde, proche d'une lecture au pouce
-    const HAUT    = 700;   // pause en haut de page
-    const BAS     = 550;   // pause en bas de page
-    const FONDU   = 280;   // durée du fondu entre deux modèles
+    const HAUT  = 800;   // pause en haut de page
+    const BAS   = 650;   // pause en bas de page
+    const FONDU = 300;   // fondu entre deux modèles
 
     const calme = window.matchMedia('(prefers-reduced-motion: reduce)');
     let i = 0, t = null, actif = false;
 
-    const haut = (img) => { img.style.transition = 'none'; img.style.transform = 'translateY(0)'; };
+    const course = (vue, n) => {
+      const img = vue.querySelectorAll('.shot')[n].querySelector('img');
+      return { img, d: Math.max(0, img.offsetHeight - vue.clientHeight) };
+    };
+
+    // Le défilement est piloté image par image en JavaScript, pas par
+    // une transition CSS. La règle globale de mouvement réduit porte
+    // un !important sur transition-duration : elle écrasait la durée
+    // et l'aperçu sautait d'un coup tout en bas, puis restait figé.
+    // Un transform posé à chaque frame échappe à cette règle.
+    let raf = null;
+    const stopper = () => { if (raf) cancelAnimationFrame(raf); raf = null; };
+    const enHaut = (img) => { img.style.transform = 'translateY(0)'; };
+
+    const glisser = (paires, duree, fini) => {
+      const t0 = performance.now();
+      const pas = (now) => {
+        const k = Math.min(1, (now - t0) / duree);
+        paires.forEach(p => { p.img.style.transform = `translateY(${-p.d * k}px)`; });
+        if (k < 1) raf = requestAnimationFrame(pas); else { raf = null; fini(); }
+      };
+      raf = requestAnimationFrame(pas);
+    };
 
     const cycle = () => {
-      clearTimeout(t);
-      if (!actif) return;
+      clearTimeout(t); stopper();
+      if (!actif || !nb) return;
 
-      const img = shots[i].querySelector('img');
-      const course = img.offsetHeight - screen.clientHeight;
+      const paires = vues.map(v => course(v, i));
 
-      // Image pas encore décodée : on repasse au rendu suivant.
-      if (course <= 0) { t = setTimeout(cycle, 250); return; }
+      // Images pas encore décodées : on repasse au rendu suivant.
+      if (paires.every(p => p.d <= 0)) { t = setTimeout(cycle, 250); return; }
 
-      haut(img);
+      paires.forEach(p => enHaut(p.img));
 
-      if (calme.matches) { t = setTimeout(suivant, 3500); return; }
+      // Vitesse de référence, en pixels par seconde. Sous préférence
+      // de mouvement réduit on ralentit : un écran figé ne démontre
+      // plus rien, et le défilement est ici le contenu de la page.
+      const vitesse = calme.matches ? 55 : 115;
+      const duree = (Math.max(...paires.map(p => p.d)) / vitesse) * 1000;
 
-      const duree = (course / VITESSE) * 1000;
-
-      // Double rAF : la première image laisse le navigateur appliquer
-      // la position de départ. Sans elle la transition part de la
-      // valeur précédente et l'aperçu saute.
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        t = setTimeout(() => {
-          img.style.transition = `transform ${duree}ms linear`;
-          img.style.transform  = `translateY(${-course}px)`;
-          t = setTimeout(suivant, duree + BAS);
-        }, HAUT);
-      }));
+      t = setTimeout(() => {
+        glisser(paires, duree, () => { t = setTimeout(suivant, BAS); });
+      }, HAUT);
     };
 
     const suivant = () => {
-      const sortant = shots[i];
-      const entrant = shots[(i + 1) % shots.length];
+      stopper();
+      const j = (i + 1) % nb;
 
-      // L'entrant est remis en haut AVANT d'apparaître, pour qu'on
-      // ne le voie jamais reprendre en pleine course.
-      haut(entrant.querySelector('img'));
+      vues.forEach(v => {
+        const shots = v.querySelectorAll('.shot');
+        // L'entrant est remis en haut AVANT d'apparaître, pour qu'on
+        // ne le voie jamais reprendre en pleine course.
+        enHaut(shots[j].querySelector('img'));
+        shots[i].style.transition = `opacity ${FONDU}ms linear`;
+        shots[j].style.transition = `opacity ${FONDU}ms linear`;
+        shots[i].classList.remove('is-on');
+        shots[j].classList.add('is-on');
+      });
 
-      sortant.style.transition = `opacity ${FONDU}ms linear`;
-      entrant.style.transition = `opacity ${FONDU}ms linear`;
-      sortant.classList.remove('is-on');
-      entrant.classList.add('is-on');
-
-      i = (i + 1) % shots.length;
-      t = setTimeout(() => { haut(sortant.querySelector('img')); cycle(); }, FONDU);
+      const prec = i; i = j;
+      nommer(i);
+      t = setTimeout(() => {
+        vues.forEach(v => enHaut(v.querySelectorAll('.shot')[prec].querySelector('img')));
+        cycle();
+      }, FONDU);
     };
 
-    // Le téléphone n'apparaît que pendant la scène, et il est fixé au
-    // viewport : hors de cette zone il flotterait sur le hero.
-    if (stage && phone) {
-      new IntersectionObserver((es) => {
-        es.forEach(e => phone.classList.toggle('is-here', e.isIntersecting));
-      }, { rootMargin: '-10% 0px -10% 0px' }).observe(stage);
-    }
+    // L'adresse du navigateur nomme le site affiché : une barre
+    // d'adresse figée sur un domaine pendant qu'un autre site défile
+    // dessous trahit immédiatement le montage.
+    const nommer = (n) => {
+      const d = vues[0].querySelectorAll('.shot')[n].dataset;
+      if (legende) legende.textContent = d.name || '';
+      if (adresse) adresse.textContent = d.url || '';
+    };
+    if (vues[0]) nommer(0);
 
+    // Le cycle ne tourne que lorsque la démonstration est à l'écran :
+    // une animation qui continue hors champ consomme du GPU pour rien.
     new IntersectionObserver((es) => {
       es.forEach(e => {
         const avant = actif;
         actif = e.isIntersecting;
         if (actif && !avant) cycle();
-        if (!actif) clearTimeout(t);
+        if (!actif) { clearTimeout(t); stopper(); }
       });
-    }, { threshold: 0.1 }).observe(screen);
+    }, { threshold: 0.08 }).observe(scene);
   }
 
   /* ── Apparitions ──

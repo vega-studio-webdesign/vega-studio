@@ -1,152 +1,151 @@
 /* ═══════════════════════════════════════════════════════════════════
    VEGA STUDIO — accueil
 
-   Thèse : une pièce sombre, une source de lumière, un seul objet
-   dedans. L'objet est un téléphone qui montre du vrai travail, et il
-   ne bouge pas. Tout le reste est de la typographie et des filets.
+   L'idée de la page : on vend des sites, donc on montre des sites.
+   Un seul objet le fait, posé juste sous le titre : une fenêtre de
+   navigateur et un téléphone, qui affichent le MÊME site et défilent
+   ensemble, puis passent au suivant d'un seul fondu.
 
-   Trois décisions qui tiennent la page :
-   1. Le téléphone est fixé au viewport. Il ne glisse pas, ne colle
-      pas, ne sort pas : il est posé dans la pièce et le texte défile
-      devant lui. C'est le seul mouvement voulu de la page.
-   2. Aucune animation d'entrée. Une entrée identique répétée sur
-      chaque section est un effet éparpillé, pas une intention.
-   3. Le rythme vertical oppose franchement le serré et le généreux,
-      au lieu de répéter la même valeur partout.
+   C'est la démonstration que tout le texte essayait de faire :
+   « le même site, sur tous les écrans » n'est plus une phrase, c'est
+   ce qu'on regarde.
+
+   Le bloc appartient à la page. Il défile avec elle, comme n'importe
+   quel paragraphe.
    ═══════════════════════════════════════════════════════════════════ */
 
 /* ═══ OUVERTURE ══════════════════════════════════════════════════ */
 
-.hero {
-  min-height: 92svh;
-  display: flex; align-items: center;
-  padding-block: var(--s32) var(--s16);
-}
-.hero-inner { max-width: 50rem; }
+.hero { padding-block: var(--s16) 0; }
+/* Une seule colonne. La version à deux colonnes laissait un grand
+   vide en haut à droite, au-dessus des boutons. */
+.hero-top { margin-bottom: var(--s8); }
 
-/* L'étoile est la source de lumière de la page. Son halo est un
-   élément flouté distinct : une ombre se déforme, une source rayonne.
-   C'est le seul halo coloré du site, et il est motivé. */
-.hero-star { position: relative; width: 40px; height: 55px; margin-bottom: var(--s8); }
+.hero-star { position: relative; width: 38px; height: 52px; margin-bottom: var(--s6); }
 .hero-star svg { position: relative; z-index: 1; width: 100%; height: 100%; overflow: visible; }
+/* Le seul halo coloré du site, et il est motivé : l'étoile est la
+   source de lumière dont tout le reste capte les arêtes. */
 .hero-star::before {
   content: ''; position: absolute; left: 50%; top: 50%;
-  width: 300px; height: 300px; margin: -150px 0 0 -150px;
+  width: 280px; height: 280px; margin: -140px 0 0 -140px;
   background: radial-gradient(circle, rgba(139,124,246,.4) 0%, rgba(139,124,246,.09) 38%, transparent 68%);
-  filter: blur(26px);
-  animation: pulse 8s ease-in-out infinite;
+  filter: blur(26px); animation: pulse 8s ease-in-out infinite;
 }
-@keyframes pulse {
-  0%, 100% { opacity: .7; transform: scale(1); }
-  50%      { opacity: 1;  transform: scale(1.08); }
+@keyframes pulse { 0%,100% { opacity:.7; transform:scale(1); } 50% { opacity:1; transform:scale(1.08); } }
+
+/* 16ch cassait le titre sur quatre lignes et le bloc mangeait tout
+   l'écran : la démonstration n'apparaissait plus du tout. */
+.hero h1 { font-size: clamp(2.2rem, 4.1vw, 3.35rem); max-width: 20ch; margin-bottom: var(--s4); }
+.hero .lead { max-width: 46ch; }
+
+.hero-side { display: flex; align-items: center; gap: var(--s6); flex-wrap: wrap; margin-top: var(--s8); }
+.hero-actions { display: flex; gap: var(--s3); flex-wrap: wrap; }
+.hero-note strong { color: var(--ink); font-weight: 500; }
+
+/* ═══ LA DÉMONSTRATION ═══════════════════════════════════════════ */
+
+.showcase { position: relative; padding-bottom: var(--s16); }
+
+/* Fenêtre de navigateur. Le chrome est dessiné, pas suggéré : une
+   barre de titre, trois pastilles, une adresse. C'est ce qui fait
+   lire l'image comme un site et non comme une illustration. */
+.browser {
+  position: relative;
+  border-radius: 14px 14px 10px 10px;
+  overflow: hidden;
+  border: 1px solid var(--edge);
+  border-top-color: var(--edge-lit);
+  background: var(--d2);
+  box-shadow: 0 50px 90px -50px #000, 0 20px 40px -30px rgba(0,0,0,.8);
 }
 
-.hero h1 { font-size: var(--t-display); margin-bottom: var(--s6); }
-.hero .lead { max-width: 42ch; }
-.hero-actions { display: flex; gap: var(--s3); margin-top: var(--s8); flex-wrap: wrap; }
+.browser-bar {
+  position: relative; z-index: 3;
+  display: flex; align-items: center; gap: var(--s3);
+  padding: 0 var(--s4); height: 38px;
+  background: linear-gradient(180deg, #1C1E26, #15171D);
+  border-bottom: 1px solid rgba(0,0,0,.6);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+}
+.browser-dots { display: flex; gap: 7px; }
+.browser-dots i { width: 11px; height: 11px; border-radius: 50%; background: #353843; }
+.browser-url {
+  flex: 1; max-width: 300px; margin-inline: auto;
+  height: 22px; border-radius: 6px;
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.05);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--ink-45); letter-spacing: .01em;
+}
 
-.hero-foot { margin-top: var(--s16); }
-.hero-foot-row { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s4); flex-wrap: wrap; margin-top: var(--s4); }
-.hero-price strong { color: var(--ink); font-weight: 500; }
+.browser-view { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #0A0B0F; }
 
-/* ═══ LA SCÈNE ═══════════════════════════════════════════════════
-   La colonne de texte occupe la gauche, le téléphone la droite. Le
-   bloc de droite n'est qu'une réserve d'espace : le téléphone lui-
-   même est fixé au viewport, donc hors du flux.
-   ═══════════════════════════════════════════════════════════════ */
-
-.stage { padding-block: var(--s12) var(--s24); }
-.stage-grid { display: grid; grid-template-columns: minmax(0,1fr) 274px; gap: var(--s16); align-items: start; }
-/* 40rem donne une mesure de 75 caractères, la limite haute du
-   confort de lecture. En dessous, la colonne laissait 200 px
-   inutilisés dans sa propre cellule. */
-.stage-text { max-width: 40rem; }
-
-/* Rythme : très serré dans un bloc, très ouvert entre deux blocs.
-   C'est ce contraste qui crée une cadence ; une valeur unique donne
-   à chaque élément exactement le même poids. */
-.chapter + .chapter { margin-top: var(--s24); }
-.chapter h2 { font-size: var(--t-h2); margin-bottom: var(--s6); }
-
-.lines { border-top: 1px solid var(--edge); }
-.line  { padding-block: var(--s4); border-bottom: 1px solid var(--edge); }
-.line h3 { margin-bottom: var(--s1); }
-.line p  { color: var(--ink-70); font-size: .96rem; }
-
-/* ═══ LE TÉLÉPHONE ═══════════════════════════════════════════════ */
-
-.phone-slot { position: relative; height: 100%; }
-
+/* Téléphone posé devant la fenêtre, en bas à droite. Il déborde du
+   cadre : c'est ce chevauchement qui donne la profondeur et évite
+   deux rectangles alignés côte à côte. */
 .phone {
-  position: fixed;
-  top: 50%;
-  right: max(var(--gut), calc(50vw - 560px + var(--gut)));
-  transform: translateY(-50%);
-  z-index: 3;
-  width: 274px;
-  aspect-ratio: 274 / 575;
-  border-radius: 42px;
-  padding: 11px;
-  /* Châssis métallique : il capte la lumière sur son arête haute
-     gauche, comme toute autre surface de la page. */
+  position: absolute; z-index: 4;
+  right: 4%; bottom: calc(var(--s16) * -1 + 1rem);
+  width: 190px; aspect-ratio: 190 / 399;
+  border-radius: 30px; padding: 8px;
   background: linear-gradient(152deg, #4a4e5e 0%, #20232d 16%, #0e0f15 52%, #171a23 78%, #3a3e4c 100%);
   box-shadow:
     inset 0 0 0 1px rgba(255,255,255,.09),
     inset 0 1px 1px rgba(255,255,255,.26),
-    0 40px 80px -45px #000;
-  /* Caché tant que la scène n'est pas à l'écran. La visibilité est
-     pilotée en JS ; sans elle le téléphone flotterait au-dessus du
-     hero et du pied de page. */
-  opacity: 0; visibility: hidden;
-  transition: opacity .45s var(--ease-out), visibility .45s;
+    0 40px 70px -35px #000;
 }
-.phone.is-here { opacity: 1; visibility: visible; }
-
-/* Boutons latéraux */
 .phone::before, .phone::after {
   content: ''; position: absolute; width: 2px; border-radius: 2px;
   background: linear-gradient(90deg, #2a2d38, #4b4f5f);
 }
-.phone::before { left: -2px; top: 116px; height: 56px; }
-.phone::after  { right: -2px; top: 140px; height: 76px; }
+.phone::before { left: -2px; top: 80px; height: 38px; }
+.phone::after  { right: -2px; top: 98px; height: 52px; }
 
 .phone-screen {
   position: relative; width: 100%; height: 100%;
-  border-radius: 31px; overflow: hidden; background: #000;
+  border-radius: 23px; overflow: hidden; background: #000;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.85);
 }
-
-/* Bande de statut assombrie. Sans elle l'îlot se pose au milieu
-   d'une phrase du site qui défile et se lit comme une censure. */
+/* Bande de statut assombrie : sans elle l'îlot se pose au milieu
+   d'une phrase du site et se lit comme une censure. */
 .phone-screen::before {
-  content: ''; position: absolute; inset: 0 0 auto 0; z-index: 4;
-  height: 46px; pointer-events: none;
+  content: ''; position: absolute; inset: 0 0 auto 0; z-index: 4; height: 34px; pointer-events: none;
   background: linear-gradient(180deg, rgba(0,0,0,.7), rgba(0,0,0,.3) 58%, transparent);
 }
-/* Reflet de vitre, figé : il appartient à l'écran, pas au contenu. */
 .phone-screen::after {
   content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
   background: linear-gradient(118deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.028) 22%, transparent 42%);
 }
-
 .phone-island {
-  position: absolute; z-index: 6; top: 9px; left: 50%; transform: translateX(-50%);
-  width: 74px; height: 21px; border-radius: 12px; background: #000;
+  position: absolute; z-index: 6; top: 7px; left: 50%; transform: translateX(-50%);
+  width: 54px; height: 15px; border-radius: 9px; background: #000;
 }
 
+/* Les deux écrans affichent le même modèle et basculent ensemble. */
 .shot { position: absolute; inset: 0; opacity: 0; }
 .shot.is-on { opacity: 1; }
 .shot img { position: absolute; top: 0; left: 0; width: 100%; height: auto; display: block; will-change: transform; }
 
+/* Légende sous la démonstration : elle nomme ce qu'on regarde. */
+/* Une seule ligne, à gauche, calée pour ne jamais passer sous le
+   téléphone qui déborde du cadre. */
+.showcase-foot { margin-top: var(--s4); max-width: 60%; }
+
+/* ═══ TEXTE ══════════════════════════════════════════════════════ */
+
+.cols { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border-top: 1px solid var(--edge); }
+.col  { padding: var(--s6) var(--s6) var(--s6) 0; }
+.col + .col { padding-left: var(--s6); border-left: 1px solid var(--edge); }
+.col h3 { margin-bottom: var(--s2); }
+.col p  { color: var(--ink-70); font-size: .95rem; }
+
+.band { padding-block: var(--s16); }
+.band-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--s8); flex-wrap: wrap; margin-bottom: var(--s8); }
+.band-head h2 { font-size: var(--t-h2); flex: 1 1 20rem; max-width: 20ch; }
+.band-head p  { flex: 0 1 26rem; color: var(--ink-70); font-size: .97rem; }
+
 /* ═══ FORMULES ═══════════════════════════════════════════════════ */
 
-.tiers-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--s8); flex-wrap: wrap; margin-bottom: var(--s8); }
-.tiers-head h2 { font-size: var(--t-h2); flex: 1 1 22rem; max-width: 20ch; }
-.tiers-head p  { flex: 0 1 26rem; color: var(--ink-70); font-size: .98rem; }
-
-/* Trois offres comparables : la colonne est la bonne forme, parce
-   qu'on lit en travers. Ce sont des surfaces, pas des cartes
-   décoratives, et elles ne portent ni icône ni ombre portée. */
 .tiers { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border-top: 1px solid var(--edge); }
 .tier  { padding: var(--s8) var(--s6) var(--s8) 0; border-bottom: 1px solid var(--edge); }
 .tier + .tier { padding-left: var(--s6); border-left: 1px solid var(--edge); }
@@ -155,7 +154,7 @@
 .tier-sub   { font-size: var(--t-small); color: var(--ink-45); }
 .tier-desc  { font-size: .94rem; color: var(--ink-70); margin-top: var(--s4); }
 
-/* L'offre conseillée est signalée par un trait de lumière sur son
+/* L'offre conseillée est marquée par un trait de lumière sur son
    arête haute, pas par une autre couleur de fond. */
 .tier-lit { position: relative; }
 .tier-lit::before {
@@ -163,61 +162,55 @@
   background: linear-gradient(90deg, transparent, var(--purple), transparent);
 }
 .tier-lit .tier-price { color: var(--lilac); }
-
 .tiers-foot { margin-top: var(--s6); display: flex; align-items: center; gap: var(--s6); flex-wrap: wrap; }
 
-/* ═══ SORTIE ═════════════════════════════════════════════════════
-   Une ligne, pas un panneau. Un grand bloc centré pour deux phrases
-   et un bouton creuse la page sans rien ajouter.
-   ═══════════════════════════════════════════════════════════════ */
+/* ═══ SORTIE ═════════════════════════════════════════════════════ */
 
 .close { padding-block: var(--s16) var(--s24); border-top: 1px solid var(--edge); }
 .close-row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s8); flex-wrap: wrap; }
 .close h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); }
 .close p  { color: var(--ink-70); font-size: .98rem; max-width: 38ch; margin-top: var(--s2); }
 
-/* ═══ SOUS 1140 px ═══════════════════════════════════════════════
-   Il n'y a plus la place pour une colonne de texte lisible plus un
-   téléphone de 274 px fixé : il repasse dans le flux, centré entre
-   les deux chapitres.
-   ═══════════════════════════════════════════════════════════════ */
+/* ═══ TABLETTE ═══════════════════════════════════════════════════ */
 
-@media (max-width: 1140px) {
-  .stage-grid { grid-template-columns: 1fr; gap: var(--s12); }
-  .stage-text { max-width: none; order: 2; }
-  .phone-slot { order: 1; }
-  .phone {
-    position: static; transform: none; margin-inline: auto;
-    opacity: 1; visibility: visible;
-  }
-  .chapter + .chapter { margin-top: var(--s16); }
+@media (max-width: 980px) {
+  .hero-top { grid-template-columns: 1fr; gap: var(--s6); align-items: start; }
+  .hero-side { align-items: stretch; flex-direction: column; }
+  .phone { width: 150px; border-radius: 24px; padding: 6px; right: 3%; bottom: calc(var(--s12) * -1); }
+  .phone-screen { border-radius: 19px; }
+  .phone-island { width: 44px; height: 12px; }
+  .showcase { padding-bottom: var(--s12); }
+  .showcase-foot { max-width: 62%; }
+  .cols { grid-template-columns: 1fr; }
+  .col, .col + .col { padding: var(--s5, 1.25rem) 0; border-left: 0; border-bottom: 1px solid var(--edge); }
 }
 
-/* ═══ MOBILE ═════════════════════════════════════════════════════ */
+/* ═══ MOBILE ═════════════════════════════════════════════════════
+   Sous 700 px une fenêtre de navigateur devient illisible : on ne
+   garde que le téléphone, qui est de toute façon le bon format.
+   ═══════════════════════════════════════════════════════════════ */
 
-@media (max-width: 860px) {
-  .hero { min-height: auto; padding-block: var(--s24) var(--s12); text-align: center; }
-  .hero-inner { display: flex; flex-direction: column; align-items: center; }
-  .hero-star { margin-inline: auto; }
-  /* À 390 px l'échelle de bureau tombe sur cinq lignes et le titre
-     écrase le reste. Quatre lignes est le maximum tenable. */
-  .hero h1 { font-size: clamp(2rem, 8.4vw, 2.55rem); }
-  .hero .lead { max-width: 36ch; font-size: 1.02rem; }
-  .hero-actions { width: 100%; flex-direction: column; align-items: stretch; }
-  .hero-foot { margin-top: var(--s12); }
-  .hero-foot-row { justify-content: center; flex-direction: column; gap: var(--s1); }
+@media (max-width: 700px) {
+  .hero { padding-block: var(--s20, 5rem) 0; }
+  .hero h1 { font-size: clamp(2rem, 8.4vw, 2.6rem); max-width: none; }
+  .hero .lead { max-width: none; font-size: 1.02rem; }
+  .hero-actions { width: 100%; flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
 
-  .stage { padding-block: var(--s8) var(--s16); }
+  .browser { display: none; }
+  .showcase { padding-bottom: var(--s8); display: flex; justify-content: center; }
+  .phone {
+    position: static; width: 240px; border-radius: 34px; padding: 9px;
+    aspect-ratio: 240 / 504;
+  }
+  .phone-screen { border-radius: 26px; }
+  .phone-island { width: 62px; height: 17px; }
+  .showcase-foot { max-width: none; text-align: center; }
 
+  .band { padding-block: var(--s12); }
   .tiers { grid-template-columns: 1fr; }
   .tier, .tier + .tier { padding: var(--s6) 0; border-left: 0; }
-
   .close { padding-block: var(--s12) var(--s16); }
   .close-row { flex-direction: column; align-items: stretch; }
   .close .btn { width: 100%; margin-top: var(--s2); }
-}
-
-@media (max-width: 380px) {
-  .phone { width: 240px; border-radius: 36px; padding: 9px; }
-  .phone-screen { border-radius: 27px; }
 }
