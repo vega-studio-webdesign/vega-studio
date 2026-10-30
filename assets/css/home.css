@@ -1,0 +1,161 @@
+/* ═══════════════════════════════════════════════════════════════════
+   VEGA STUDIO — page d'accueil
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ═══ HERO ═══════════════════════════════════════════════════════
+   Composition alignée à gauche, pas centrée. L'étoile est en haut à
+   gauche, à l'origine de la lumière de la page : l'œil part de la
+   source et descend vers le texte. Un bloc centré n'a pas de point
+   de départ, et c'est ce qui le rend inerte.
+   ═══════════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-block: 7.5rem 4rem;
+}
+
+/* Calé pour que le titre tombe sur trois lignes pleines : une
+   ligne orpheline en bas de titre casse le bloc. */
+.hero-inner { max-width: 54rem; }
+
+/* L'étoile émet. Le halo est un élément flouté séparé, pas une
+   ombre portée : une ombre se déforme, une source rayonne. */
+.hero-star { position: relative; width: 46px; height: 64px; margin-bottom: 2.2rem; }
+.hero-star svg { width: 100%; height: 100%; overflow: visible; position: relative; z-index: 1; }
+.hero-star::before {
+  content: ''; position: absolute;
+  left: 50%; top: 50%; width: 320px; height: 320px;
+  margin: -160px 0 0 -160px;
+  background: radial-gradient(circle, rgba(139,124,246,.42) 0%, rgba(139,124,246,.1) 38%, transparent 68%);
+  filter: blur(26px);
+  animation: pulse 7s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: .72; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.09); }
+}
+
+.hero h1 { font-size: var(--t-display); margin-bottom: 1.7rem; }
+
+.hero .lead { max-width: 44ch; }
+
+.hero-actions { display: flex; gap: .85rem; margin-top: 2.4rem; flex-wrap: wrap; }
+
+/* Pied de hero : une ligne de fait, pas un slogan. Les deux
+   informations sont posées aux extrémités plutôt que jointes par
+   un séparateur, qui est le tic de mise en page par excellence. */
+.hero-foot { margin-top: clamp(2.8rem, 6vw, 4.5rem); }
+.hero-foot-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 1rem; flex-wrap: wrap; margin-top: 1.1rem;
+}
+.hero-price { color: var(--ink-70); }
+.hero-price strong { color: var(--ink); font-weight: 500; }
+
+/* ═══ LE CONSTAT ═════════════════════════════════════════════════ */
+
+.split { display: grid; grid-template-columns: minmax(0,.92fr) minmax(0,1.08fr); gap: clamp(2.5rem, 6vw, 6rem); }
+
+.facts { display: flex; flex-direction: column; }
+.fact { padding-block: 1.9rem; border-top: 1px solid var(--edge); }
+.fact:first-child { border-top: 0; padding-top: 0; }
+.fact:last-child  { padding-bottom: 0; }
+.fact h3 { margin-bottom: .55rem; }
+.fact p  { color: var(--ink-70); font-size: .99rem; }
+
+/* ═══ CE QUE VOUS OBTENEZ ════════════════════════════════════════
+   Pas quatre cartes identiques posées côte à côte. Une grille dont
+   les filets sont la structure : les traits appartiennent à la
+   page, les cellules ne flottent pas dessus.
+   ═══════════════════════════════════════════════════════════════ */
+.offer {
+  display: grid; grid-template-columns: repeat(2, minmax(0,1fr));
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  border-top: 1px solid var(--edge);
+}
+.offer-item {
+  position: relative;
+  padding: clamp(2rem, 3.4vw, 2.9rem) clamp(1.6rem, 3vw, 2.6rem);
+  border-bottom: 1px solid var(--edge);
+  transition: background .3s;
+}
+.offer-item:nth-child(odd)  { border-right: 1px solid var(--edge); }
+.offer-item h3 { margin-bottom: .7rem; }
+.offer-item p  { color: var(--ink-70); font-size: .99rem; }
+
+/* Au survol, l'arête haute de la cellule capte la lumière. La
+   couleur n'apparaît qu'à cet endroit, et seulement en réaction. */
+.offer-item::before {
+  content: ''; position: absolute; inset: -1px 0 auto 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--purple), transparent);
+  opacity: 0; transition: opacity .35s;
+}
+.offer-item:hover { background: rgba(240,239,245,.018); }
+.offer-item:hover::before { opacity: .85; }
+
+/* ═══ FORMULES ═══════════════════════════════════════════════════ */
+
+.tiers { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+.tier { padding: 2rem 1.75rem; display: flex; flex-direction: column; }
+.tier-name  { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: -.02em; }
+.tier-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.3rem; letter-spacing: -.04em; line-height: 1; margin-block: 1.1rem .4rem; }
+.tier-sub   { font-size: var(--t-small); color: var(--ink-45); }
+.tier-desc  { font-size: .95rem; color: var(--ink-70); margin-top: 1.4rem; }
+
+/* L'offre mise en avant n'a pas une autre couleur de fond : elle est
+   simplement plus près de la lumière. Même matériau, plus exposé. */
+.tier-lit {
+  background: linear-gradient(168deg, var(--d3) 0%, var(--d2) 60%, var(--d1) 100%);
+  border-top-color: rgba(139,124,246,.5);
+  box-shadow:
+    inset 0 1px 0 rgba(196,184,255,.22),
+    0 30px 70px -45px rgba(139,124,246,.55),
+    0 26px 60px -40px #000;
+}
+
+.tiers-foot { margin-top: 2rem; display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap; }
+
+/* ═══ MODÈLES ════════════════════════════════════════════════════ */
+
+.models { margin-top: clamp(2.5rem, 5vw, 3.5rem); border-top: 1px solid var(--edge); }
+.model {
+  display: flex; align-items: baseline; gap: 1.4rem;
+  padding-block: 1.35rem;
+  border-bottom: 1px solid var(--edge);
+  transition: padding-left .3s, color .3s;
+}
+.model:hover { padding-left: .7rem; }
+.model-name  { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.12rem; letter-spacing: -.02em; }
+.model-trade { font-size: var(--t-small); color: var(--ink-45); margin-right: auto; }
+.model-go    { font-size: var(--t-small); color: var(--ink-28); transition: color .3s; }
+.model:hover .model-go { color: var(--purple); }
+
+/* ═══ APPEL ══════════════════════════════════════════════════════ */
+
+.cta { padding: clamp(3rem, 7vw, 5rem) clamp(1.75rem, 5vw, 4rem); text-align: center; overflow: hidden; }
+.cta h2 { font-size: var(--t-h2); margin-bottom: 1.2rem; }
+.cta p  { max-width: 46ch; margin-inline: auto; margin-bottom: 2.4rem; }
+
+/* ═══ MOBILE ═════════════════════════════════════════════════════ */
+
+@media (max-width: 860px) {
+  .hero { padding-block: 7.5rem 3.5rem; text-align: center; }
+  /* Sur 390 px, l'échelle de bureau tombe sur cinq lignes et le titre
+     écrase tout le reste du hero. Quatre lignes est le maximum tenable. */
+  .hero h1 { font-size: clamp(2rem, 8.4vw, 2.55rem); }
+  .hero .lead { font-size: 1.02rem; }
+  .hero-inner { display: flex; flex-direction: column; align-items: center; }
+  .hero-star { margin-inline: auto; }
+  .hero .lead { max-width: 38ch; }
+  .hero-actions { width: 100%; flex-direction: column; align-items: stretch; }
+  .hero-foot-row { justify-content: center; flex-direction: column; gap: .4rem; }
+
+  .split { grid-template-columns: 1fr; }
+  .offer { grid-template-columns: 1fr; }
+  .offer-item:nth-child(odd) { border-right: 0; }
+  .tiers { grid-template-columns: 1fr; }
+  .model { gap: .8rem; flex-wrap: wrap; }
+  .model-trade { margin-right: 0; width: 100%; }
+}

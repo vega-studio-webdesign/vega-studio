@@ -2,48 +2,54 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <link rel="canonical" href="https://www.vegastudio.fr/">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vega Studio — Sites web pour artisans</title>
+
+  <meta name="description" content="Vega Studio crée des sites vitrines professionnels pour artisans : plombiers, électriciens, peintres, maçons. Formules claires à partir de 149 €. Devis gratuit." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.vegastudio.fr/" />
+
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="apple-touch-icon" href="assets/favicon.svg" />
   <meta name="application-name" content="Vega Studio" />
-  <!-- SEO -->
-  <meta name="description" content="Vega Studio crée des sites vitrines professionnels pour artisans (plombiers, électriciens, peintres…). Forfaits clairs à partir de 149€. Devis gratuit." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://www.vegastudio.fr/" />
-  <!-- Open Graph -->
+  <meta name="theme-color" content="#07080B" />
+
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Vega Studio — Sites web pour artisans" />
-  <meta property="og:description" content="Vega Studio crée des sites vitrines professionnels pour artisans (plombiers, électriciens, peintres…). Forfaits clairs à partir de 149€. Devis gratuit." />
+  <meta property="og:description" content="Sites vitrines professionnels pour artisans. Formules claires à partir de 149 €. Devis gratuit." />
   <meta property="og:url" content="https://www.vegastudio.fr/" />
   <meta property="og:site_name" content="Vega Studio" />
-  <meta property="og:image" content="https://www.vegastudio.fr/assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://www.vegastudio.fr/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Vega Studio — Sites web pour artisans" />
-  <meta name="twitter:description" content="Vega Studio crée des sites vitrines professionnels pour artisans (plombiers, électriciens, peintres…). Forfaits clairs à partir de 149€. Devis gratuit." />
-  <meta name="description" content="Vega Studio crée des sites vitrines professionnels pour les artisans." />
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="assets/css/index.css" />
+  <meta name="twitter:description" content="Sites vitrines professionnels pour artisans. Formules claires à partir de 149 €." />
+  <meta name="twitter:image" content="https://www.vegastudio.fr/assets/og-image.png" />
 
-  <!-- Données structurées Schema.org -->
+  <!-- Les polices sont chargées ici plutôt que par @import dans le CSS :
+       un @import attend que la feuille soit lue avant de commencer son
+       propre téléchargement, ce qui retarde le premier texte affiché. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" />
+
+  <!-- Posée avant le CSS : conditionne le masquage des blocs à la
+       présence du JavaScript, pour ne jamais servir une page vide. -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/home.css" />
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Vega Studio",
     "url": "https://www.vegastudio.fr",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.vegastudio.fr/assets/logo.png",
-      "width": 512,
-      "height": 512
-    },
-    "description": "Agence web spécialisée dans la création de sites vitrines pour artisans. Formules claires à partir de 149€.",
+    "logo": "https://www.vegastudio.fr/assets/logo3.png",
+    "image": "https://www.vegastudio.fr/assets/og-image.png",
+    "description": "Agence web spécialisée dans la création de sites vitrines pour artisans. Formules claires à partir de 149 €.",
     "email": "vega.studio.webdesign@gmail.com",
     "areaServed": "FR",
     "priceRange": "€€"
@@ -54,157 +60,228 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Vega Studio",
-    "alternateName": "Vega Studio — Sites web pour artisans",
     "url": "https://www.vegastudio.fr"
   }
   </script>
 </head>
 <body>
 
+  <!-- La source lumineuse et le grain sont fixés au viewport : ils
+       appartiennent à la pièce, pas au document qui défile devant. -->
+  <div class="room" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
   <nav>
     <div class="nav-inner">
-      <a href="index.html" class="nav-wordmark">Vega Studio</a>
+      <a href="index.html" class="nav-wordmark">
+        <svg viewBox="0 0 100 140" aria-hidden="true">
+          <defs>
+            <radialGradient id="nvs" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"   stop-color="#FFFFFF"/>
+              <stop offset="45%"  stop-color="#C4B8FF"/>
+              <stop offset="100%" stop-color="#8B7CF6"/>
+            </radialGradient>
+          </defs>
+          <path d="M50 0 C53 50 58 65 92 70 C58 75 53 90 50 140 C47 90 42 75 8 70 C42 65 47 50 50 0 Z" fill="url(#nvs)"/>
+        </svg>
+        Vega Studio
+      </a>
+
       <ul class="nav-links">
-        <li><a href="index.html" class="active">Accueil</a><button class="nav-mobile-close" aria-label="Fermer">✕</button></li>
+        <li><a href="index.html" class="active">Accueil</a></li>
         <li><a href="formules.html">Formules</a></li>
         <li><a href="apropos.html">À propos</a></li>
         <li class="mobile-cta-item"><a href="contact.html" class="mobile-cta">Nous contacter</a></li>
       </ul>
+
       <div class="nav-right">
         <a href="contact.html" class="nav-cta">Nous contacter</a>
       </div>
-      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
-  <section class="hero">
-    <div class="hero-bg">
-      <div class="aurora-1" data-parallax="0.08"></div>
-      <div class="aurora-2" data-parallax="0.12"></div>
-      <div class="aurora-3" data-parallax="0.06"></div>
-    </div>
-    <div class="hero-inner">
-      <h1 class="hero-title reveal">
-        Votre présence en ligne,<br /><span class="t-accent">enfin à votre image.</span>
-      </h1>
-      <p class="hero-sub reveal d1">Vous exercez un métier qui demande expertise et confiance.
-Votre site web devrait refléter la même réalité.</p>
-      <div class="hero-actions reveal d2">
-        <a href="formules.html" class="btn btn-primary">Découvrir nos formules</a>
-        <a href="contact.html" class="btn btn-secondary">Nous contacter</a>
-      </div>
-    </div>
-  </section>
+  <main>
 
-  <section class="section-numbers">
-    <div class="wrap">
-      <div class="numbers-grid">
-        <div class="number-block reveal">
-          <span class="number-val" data-count="70" data-suffix="%">0%</span>
-          <p class="number-label">des recherches locales depuis un <span class="stat-glow">mobile</span></p>
-        </div>
-        <div class="number-sep"></div>
-        <div class="number-block reveal d1">
-          <span class="number-val" data-count="3" data-suffix=" sec">0</span>
-          <p class="number-label">pour <span class="stat-glow">convaincre</span> un visiteur de rester</p>
-        </div>
-        <div class="number-sep"></div>
-        <div class="number-block reveal d2">
-          <span class="number-val" data-count="60" data-suffix="%">0%</span>
-          <p class="number-label">des artisans <span class="stat-glow">sans site web</span> professionnel</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- ═══ HERO ═══════════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-inner">
 
-  <section class="section-why">
-    <div class="wrap why-grid">
-      <div class="why-left">
-        <p class="section-eyebrow reveal">Pourquoi un site web ?</p>
-        <h2 class="why-title reveal d1">
-          Vos clients vous cherchent<br />sur internet.<br />
-          <span class="t-accent">Soyez au rendez-vous.</span>
-        </h2>
-        <p class="why-body reveal d2" style="margin-top:2rem;">
-          Aujourd'hui, la première impression se fait en ligne — avant même que votre téléphone ne sonne. Un site bien construit, c'est une vitrine ouverte 24h/24, 7j/7.
-        </p>
-      </div>
+          <div class="hero-star reveal" aria-hidden="true">
+            <svg viewBox="0 0 100 140">
+              <defs>
+                <radialGradient id="hvs" cx="50%" cy="50%" r="52%">
+                  <stop offset="0%"   stop-color="#FFFFFF"/>
+                  <stop offset="30%"  stop-color="#DCD4FF"/>
+                  <stop offset="70%"  stop-color="#8B7CF6"/>
+                  <stop offset="100%" stop-color="#6A5CD4"/>
+                </radialGradient>
+              </defs>
+              <path d="M50 0 C53 50 58 65 92 70 C58 75 53 90 50 140 C47 90 42 75 8 70 C42 65 47 50 50 0 Z" fill="url(#hvs)"/>
+            </svg>
+          </div>
 
-      <div class="why-right">
-        <p class="why-body reveal d1">
-          Chaque jour, des particuliers tapent <em class="why-em">plombier</em>, <em class="why-em">électricien</em> ou <em class="why-em">peintre</em> suivi du nom de leur ville sur Google. Sans site web, <span class="glow-text">vous n'apparaissez pas.</span> C'est un concurrent qui décroche à votre place.
-        </p>
-        <p class="why-body reveal d2">
-          Un site vitrine bien construit présente vos services, rassure vos futurs clients avant même le premier appel, et vous positionne là où les recherches se font — en ligne, et surtout sur mobile.
-        </p>
-        <p class="why-body reveal d3">
-          Avec Vega Studio, votre site est conçu pour convaincre : rapide, lisible sur tous les appareils, visible sur Google Maps, et maintenu dans la durée. Vous vous concentrez sur votre métier, nous gérons le reste.
-        </p>
-      </div>
-    </div>
-  </section>
+          <h1 class="lit reveal d1">Votre présence en ligne, enfin à votre image.</h1>
 
-  <section class="section-offer">
-    <div class="wrap">
-      <p class="section-eyebrow reveal">Ce qu'on propose</p>
-      <h2 class="offer-title reveal d1">Une solution complète,<br /><span class="t-accent">de A à Z.</span></h2>
-      <div class="offer-grid">
-        <div class="offer-card reveal" style="--float-delay:0s">
-          <div class="card-shimmer"></div>
-          <div class="offer-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-          <h3>Design responsive</h3>
-          <p class="t-body">Ordinateur, tablette, smartphone — votre site s'adapte parfaitement à tous les écrans. Conçu mobile-first, parce que 70 % de vos futurs clients vous trouveront depuis leur téléphone.</p>
-        </div>
-        <div class="offer-card reveal d1" style="--float-delay:-1.8s">
-          <div class="card-shimmer"></div>
-          <div class="offer-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
-          <h3>Visibilité locale</h3>
-          <p class="t-body">Optimisation SEO locale et fiche Google Business incluses. Vous apparaissez dans les recherches et sur Maps quand un client cherche votre métier près de chez lui.</p>
-        </div>
-        <div class="offer-card reveal d2" style="--float-delay:-3.5s">
-          <div class="card-shimmer"></div>
-          <div class="offer-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-          <h3>Hébergement inclus</h3>
-          <p class="t-body">Nom de domaine et hébergement compris dans l'abonnement mensuel. Aucune démarche technique — nous gérons tout de bout en bout.</p>
-        </div>
-        <div class="offer-card reveal d3" style="--float-delay:-5.2s">
-          <div class="card-shimmer"></div>
-          <div class="offer-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <h3>Accompagnement durable</h3>
-          <p class="t-body">Chaque abonnement inclut une modification mensuelle. Un interlocuteur réel, disponible, qui connaît votre site et répond à vos questions.</p>
+          <p class="lead reveal d2">
+            Vous exercez un métier qui demande expertise et confiance.
+            Votre site devrait refléter la même réalité.
+          </p>
+
+          <div class="hero-actions reveal d3">
+            <a href="formules.html" class="btn btn-primary">Découvrir les formules</a>
+            <a href="contact.html" class="btn btn-ghost">Nous contacter</a>
+          </div>
+
+          <div class="hero-foot reveal d3">
+            <hr class="rule" />
+            <div class="hero-foot-row">
+              <span class="small">Sites vitrines pour artisans, partout en France.</span>
+              <span class="small hero-price">À partir de <strong>149 €</strong> puis <strong>19 €</strong> par mois.</span>
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ARTISANS FLOTTANTS -->
-  <section class="section-names">
-    <div class="wrap">
-      <p class="section-eyebrow reveal">Ils nous font confiance</p>
-      <p class="names-subtitle reveal d1">Des artisans partout en France qui ont choisi Vega Studio.</p>
-    </div>
-    <div id="floating-names" class="floating-names-zone" aria-hidden="true"></div>
-  </section>
+    <!-- ═══ LE CONSTAT ═════════════════════════════════════════ -->
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <h2 class="lit reveal">Vos clients vous cherchent. Soyez au rendez-vous.</h2>
+        </div>
 
-  <section class="section-cta">
-    <div class="wrap">
-      <div class="cta-box reveal">
-        <div class="cta-glow"></div>
-        <h2 class="t-headline">Un projet ?<br /><span class="t-accent">Parlons-en.</span></h2>
-        <p class="t-body">Nous étudions votre situation gratuitement et sans engagement. Dites-nous ce que vous faites, nous proposons la formule adaptée.</p>
-        <a href="contact.html" class="btn btn-primary">Nous contacter</a>
+        <div class="facts">
+          <div class="fact reveal d1">
+            <h3>La recherche part du téléphone</h3>
+            <p>Un particulier qui a une fuite tape le métier et le nom de sa ville, depuis son canapé. Si vous n'avez pas de site, vous n'êtes pas dans la liste qu'il consulte.</p>
+          </div>
+          <div class="fact reveal d2">
+            <h3>Le premier contact est visuel</h3>
+            <p>La page qu'il ouvre décide s'il compose votre numéro ou s'il passe au suivant. Tout se joue avant la première sonnerie.</p>
+          </div>
+          <div class="fact reveal d3">
+            <h3>Un concurrent décroche à votre place</h3>
+            <p>Ce n'est pas une ligne perdue dans un classement. C'est un chantier qui part ailleurs, et vous ne saurez jamais qu'il a existé.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- ═══ CE QUE VOUS OBTENEZ ════════════════════════════════ -->
+    <section class="section">
+      <div class="wrap">
+        <h2 class="lit reveal">Une solution complète, de bout en bout.</h2>
+
+        <div class="offer">
+          <div class="offer-item reveal">
+            <h3>Conçu pour le mobile</h3>
+            <p>Ordinateur, tablette, téléphone. Le site est dessiné d'abord pour le petit écran, parce que c'est là que vos futurs clients vous trouveront.</p>
+          </div>
+          <div class="offer-item reveal d1">
+            <h3>Visible dans votre ville</h3>
+            <p>Référencement local et fiche Google Business compris. Vous apparaissez dans les résultats et sur Maps quand on cherche votre métier près de chez vous.</p>
+          </div>
+          <div class="offer-item reveal d2">
+            <h3>Domaine et hébergement inclus</h3>
+            <p>Tout est compris dans l'abonnement mensuel. Aucune démarche technique de votre côté, aucun prestataire supplémentaire à gérer.</p>
+          </div>
+          <div class="offer-item reveal d3">
+            <h3>Un interlocuteur, pas un ticket</h3>
+            <p>Chaque abonnement comprend une modification par mois. Vous écrivez à quelqu'un qui connaît votre site et qui répond.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FORMULES ═══════════════════════════════════════════ -->
+    <section class="section">
+      <div class="wrap">
+        <h2 class="lit reveal">Trois formules, aucun devis surprise.</h2>
+
+        <div class="tiers">
+          <div class="tier panel reveal">
+            <span class="tier-name">Starter</span>
+            <span class="tier-price">149 €</span>
+            <span class="tier-sub">puis 19 € par mois</span>
+            <p class="tier-desc">Une page unique, complète, qui présente votre activité et vos coordonnées.</p>
+          </div>
+
+          <div class="tier panel tier-lit reveal d1">
+            <span class="tier-name">Standard</span>
+            <span class="tier-price">299 €</span>
+            <span class="tier-sub">puis 29 € par mois</span>
+            <p class="tier-desc">Plusieurs pages, galerie de réalisations et formulaire de contact.</p>
+          </div>
+
+          <div class="tier panel reveal d2">
+            <span class="tier-name">Pro</span>
+            <span class="tier-price">499 €</span>
+            <span class="tier-sub">puis 39 € par mois</span>
+            <p class="tier-desc">Site complet sur mesure, avec les options de votre choix et un suivi renforcé.</p>
+          </div>
+        </div>
+
+        <div class="tiers-foot reveal d2">
+          <a href="formules.html" class="btn btn-ghost">Voir le détail des formules</a>
+          <a href="simulateur.html" class="small">Estimer mon tarif</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ MODÈLES ════════════════════════════════════════════ -->
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <h2 class="lit reveal">Nos modèles, à regarder avant de décider.</h2>
+          <p class="body reveal d1" style="margin-top:1.4rem; max-width:34ch;">
+            Quatre sites complets, construits et consultables. Votre site part de l'un d'eux, puis reprend vos couleurs, vos photos et vos textes.
+          </p>
+        </div>
+
+        <div class="models">
+          <a class="model reveal d1" href="https://templates.vegastudio.fr/template-robuste.html" target="_blank" rel="noopener">
+            <span class="model-name">Robuste</span><span class="model-trade">Plomberie</span><span class="model-go">Voir</span>
+          </a>
+          <a class="model reveal d1" href="https://templates.vegastudio.fr/template-confiance.html" target="_blank" rel="noopener">
+            <span class="model-name">Confiance</span><span class="model-trade">Électricité</span><span class="model-go">Voir</span>
+          </a>
+          <a class="model reveal d2" href="https://templates.vegastudio.fr/template-local.html" target="_blank" rel="noopener">
+            <span class="model-name">Local</span><span class="model-trade">Menuiserie</span><span class="model-go">Voir</span>
+          </a>
+          <a class="model reveal d2" href="https://templates.vegastudio.fr/template-direct.html" target="_blank" rel="noopener">
+            <span class="model-name">Direct</span><span class="model-trade">Studio créatif</span><span class="model-go">Voir</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ APPEL ══════════════════════════════════════════════ -->
+    <section class="section">
+      <div class="wrap">
+        <div class="cta panel reveal">
+          <h2 class="lit">Un projet ? Parlons-en.</h2>
+          <p class="lead">Dites-nous ce que vous faites et où vous travaillez. Nous revenons vers vous avec la formule adaptée, gratuitement et sans engagement.</p>
+          <a href="contact.html" class="btn btn-primary">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <footer>
     <div class="wrap footer-inner">
-      <span class="footer-left"><a href="contact.html">Contact</a></span>
-      <span class="footer-mid t-label">© 2025 Vega Studio</span>
-      <span class="footer-right"><a href="mentions.html">Mentions légales</a></span>
+      <a href="contact.html">Contact</a>
+      <span class="footer-mid">© 2026 Vega Studio</span>
+      <a href="mentions.html">Mentions légales</a>
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/site.js"></script>
 </body>
 </html>
