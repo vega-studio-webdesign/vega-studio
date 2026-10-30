@@ -1,8 +1,44 @@
 {
   "redirects": [
-    { "source": "/a-propos.html", "destination": "/apropos.html", "permanent": true },
-    { "source": "/cgu.html", "destination": "/mentions.html", "permanent": true },
-    { "source": "/simulateur-duree.html", "destination": "/simulateur.html", "permanent": true },
-    { "source": "/index.html", "destination": "/", "permanent": true }
+    {
+      "source": "/a-propos.html",
+      "destination": "/apropos.html",
+      "permanent": true
+    },
+    {
+      "source": "/cgu.html",
+      "destination": "/mentions.html",
+      "permanent": true
+    },
+    {
+      "source": "/simulateur-duree.html",
+      "destination": "/simulateur.html",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*\\.html)?",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
   ]
 }
