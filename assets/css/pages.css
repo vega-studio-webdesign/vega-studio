@@ -1,0 +1,161 @@
+/* ═══════════════════════════════════════════════════════════════════
+   VEGA STUDIO — pages intérieures
+   Formules, à propos, contact, mentions légales.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ═══ EN-TÊTE DE PAGE ════════════════════════════════════════════
+   Plus court que le hero d'accueil : sur une page intérieure, le
+   visiteur sait déjà où il est et vient chercher une information.
+   ═══════════════════════════════════════════════════════════════ */
+.page-hero { padding-block: clamp(7rem, 12vw, 9.5rem) clamp(2rem, 4vw, 3rem); }
+.page-hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.6rem); margin-bottom: 1.2rem; max-width: 18ch; }
+.page-hero .lead { max-width: 52ch; }
+
+/* ═══ FORMULES ═══════════════════════════════════════════════════ */
+
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; align-items: start; }
+
+.plan { padding: 1.9rem 1.7rem; display: flex; flex-direction: column; position: relative; }
+.plan-name  { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: -.02em; }
+.plan-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.4rem; letter-spacing: -.04em; line-height: 1; margin-block: .9rem .3rem; }
+.plan-sub   { font-size: var(--t-small); color: var(--ink-45); }
+.plan-desc  { font-size: .95rem; color: var(--ink-70); margin-block: 1.2rem; }
+
+/* Les prestations sont séparées par des filets plutôt que marquées
+   par des coches. Le filet est déjà la structure de tout le site,
+   et une colonne de coches identiques n'ajoute aucune information. */
+.plan-list { list-style: none; margin-top: auto; border-top: 1px solid var(--edge); }
+.plan-list li { padding-block: .72rem; border-bottom: 1px solid var(--edge); font-size: .92rem; color: var(--ink-70); line-height: 1.45; }
+.plan-cta { margin-top: 1.5rem; }
+
+/* L'offre mise en avant n'a pas une autre couleur : elle est plus
+   près de la lumière. Même matériau, plus exposé. */
+.plan-lit {
+  background: linear-gradient(168deg, var(--d3) 0%, var(--d2) 60%, var(--d1) 100%);
+  border-top-color: rgba(139,124,246,.5);
+  box-shadow:
+    inset 0 1px 0 rgba(196,184,255,.22),
+    0 30px 70px -45px rgba(139,124,246,.55),
+    0 26px 60px -40px #000;
+}
+.plan-tag {
+  position: absolute; top: -1px; right: 1.5rem;
+  transform: translateY(-50%);
+  padding: .3rem .7rem; border-radius: 999px;
+  background: var(--purple); color: #0A0812;
+  font-size: .7rem; font-weight: 600; letter-spacing: .02em;
+  box-shadow: 0 8px 22px -10px rgba(139,124,246,.9);
+}
+
+/* Premium : pleine largeur, en deux colonnes, parce que son offre
+   est une extension des autres et non une quatrième colonne. */
+.plan-wide { margin-top: 1rem; padding: 2rem 1.9rem; display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 2rem; }
+.plan-wide .plan-list { margin-top: 0; columns: 2; column-gap: 2rem; }
+.plan-wide .plan-list li { break-inside: avoid; }
+
+/* ═══ OPTIONS À LA CARTE ═════════════════════════════════════════ */
+
+.options { border-top: 1px solid var(--edge); }
+.option {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem;
+  padding-block: 1rem; border-bottom: 1px solid var(--edge);
+}
+.option-name  { font-size: .99rem; color: var(--ink); }
+.option-price { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.02rem; color: var(--lilac); letter-spacing: -.02em; white-space: nowrap; }
+
+/* ═══ BLOC D'INFORMATION ═════════════════════════════════════════ */
+
+.note { padding: 1.7rem 1.8rem; }
+.note h3 { margin-bottom: .9rem; }
+.note p  { color: var(--ink-70); font-size: .97rem; }
+.note-list { list-style: none; margin-top: .3rem; }
+.note-list li { padding-block: .55rem; border-bottom: 1px solid var(--edge); font-size: .97rem; color: var(--ink-70); }
+.note-list li:last-child { border-bottom: 0; }
+
+/* ═══ À PROPOS ═══════════════════════════════════════════════════ */
+
+.story { display: grid; grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr); gap: clamp(2rem, 5vw, 4.5rem); }
+.story p + p { margin-top: 1.1rem; }
+.story p { color: var(--ink-70); }
+
+.values { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); border-top: 1px solid var(--edge); }
+.value { position: relative; padding: 1.8rem 2rem; border-bottom: 1px solid var(--edge); transition: background .3s; }
+.value:nth-child(odd)  { border-right: 1px solid var(--edge); padding-left: 0; }
+.value:nth-child(even) { padding-right: 0; }
+.value h3 { margin-bottom: .6rem; }
+.value p  { color: var(--ink-70); font-size: .97rem; }
+.value::before {
+  content: ''; position: absolute; inset: -1px 0 auto 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--purple), transparent);
+  opacity: 0; transition: opacity .35s;
+}
+.value:hover { background: rgba(240,239,245,.018); }
+.value:hover::before { opacity: .85; }
+
+/* ═══ CONTACT ════════════════════════════════════════════════════ */
+
+.contact-grid { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(0,.75fr); gap: clamp(1.5rem, 3vw, 2.5rem); align-items: start; }
+
+.form-card { padding: clamp(1.6rem, 3vw, 2.2rem); }
+.field { margin-bottom: 1.1rem; }
+.field label { display: block; font-size: .85rem; color: var(--ink-45); margin-bottom: .45rem; }
+.field label span { color: var(--ink-28); }
+
+/* Les champs suivent la même règle que les autres surfaces : arête
+   haute éclairée, fond légèrement plus clair que la page. */
+.field input, .field textarea {
+  width: 100%;
+  padding: .78rem .95rem;
+  background: linear-gradient(176deg, rgba(240,239,245,.045), rgba(240,239,245,.012));
+  border: 1px solid var(--edge); border-top-color: var(--edge-lit);
+  border-radius: 9px;
+  color: var(--ink);
+  font-family: 'Inter', sans-serif; font-size: .97rem; font-weight: 300;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.field textarea { resize: vertical; min-height: 7.5rem; line-height: 1.6; }
+.field input::placeholder, .field textarea::placeholder { color: var(--ink-28); }
+.field input:focus, .field textarea:focus {
+  outline: none;
+  border-color: rgba(139,124,246,.55);
+  box-shadow: 0 0 0 3px rgba(139,124,246,.14);
+  background: linear-gradient(176deg, rgba(240,239,245,.06), rgba(240,239,245,.02));
+}
+.form-card .btn { width: 100%; margin-top: .4rem; }
+
+.contact-info { display: flex; flex-direction: column; gap: 1rem; }
+.info-card { padding: 1.4rem 1.5rem; }
+.info-label { font-size: .82rem; color: var(--ink-45); display: block; margin-bottom: .3rem; }
+.info-value { font-size: 1rem; color: var(--ink); word-break: break-word; }
+.info-value a:hover { color: var(--lilac); }
+
+/* ═══ MENTIONS LÉGALES ═══════════════════════════════════════════ */
+
+.legal { max-width: 68ch; }
+.legal h2 { font-size: 1.25rem; margin-block: 2.2rem .7rem; }
+.legal h2:first-child { margin-top: 0; }
+.legal p  { color: var(--ink-70); font-size: .99rem; }
+.legal a  { color: var(--lilac); }
+.legal a:hover { text-decoration: underline; }
+
+/* ═══ MOBILE ═════════════════════════════════════════════════════ */
+
+@media (max-width: 860px) {
+  .page-hero { padding-block: 6.5rem 2rem; }
+
+  .plans { grid-template-columns: 1fr; }
+  .plan-wide { grid-template-columns: 1fr; gap: 1.2rem; }
+  .plan-wide .plan-list { columns: 1; }
+  .plan-tag { right: 1.2rem; }
+
+  .story { grid-template-columns: 1fr; }
+
+  .values { grid-template-columns: 1fr; }
+  .value,
+  .value:nth-child(odd),
+  .value:nth-child(even) { padding: 1.6rem 0; border-right: 0; }
+
+  .contact-grid { grid-template-columns: 1fr; }
+
+  .option { gap: 1rem; }
+}

@@ -2,133 +2,153 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <link rel="canonical" href="https://www.vegastudio.fr/contact.html">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nous contacter — Vega Studio</title>
+
+  <meta name="description" content="Contactez Vega Studio pour un devis gratuit de site vitrine. Réponse sous 24 heures, sans engagement. Sites web pour artisans partout en France." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.vegastudio.fr/contact.html" />
+
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="apple-touch-icon" href="assets/favicon.svg" />
   <meta name="application-name" content="Vega Studio" />
-  <!-- SEO -->
-  <meta name="description" content="Contactez Vega Studio pour obtenir un devis gratuit. Réponse sous 24h. Nous créons votre site web sur mesure, adapté à votre métier." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://www.vegastudio.fr/contact.html" />
-  <!-- Open Graph -->
+  <meta name="theme-color" content="#07080B" />
+
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Nous contacter — Vega Studio" />
-  <meta property="og:description" content="Contactez Vega Studio pour obtenir un devis gratuit. Réponse sous 24h. Nous créons votre site web sur mesure, adapté à votre métier." />
+  <meta property="og:description" content="Contactez Vega Studio pour un devis gratuit de site vitrine. Réponse sous 24 heures, sans engagement. Sites web pour artisans partout en France." />
   <meta property="og:url" content="https://www.vegastudio.fr/contact.html" />
   <meta property="og:site_name" content="Vega Studio" />
-  <meta property="og:image" content="https://www.vegastudio.fr/assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://www.vegastudio.fr/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Nous contacter — Vega Studio" />
-  <meta name="twitter:description" content="Contactez Vega Studio pour obtenir un devis gratuit. Réponse sous 24h. Nous créons votre site web sur mesure, adapté à votre métier." />
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="assets/css/page.css" />
-  <link rel="stylesheet" href="assets/css/contact.css" />
+  <meta name="twitter:description" content="Contactez Vega Studio pour un devis gratuit de site vitrine. Réponse sous 24 heures, sans engagement. Sites web pour artisans partout en France." />
+  <meta name="twitter:image" content="https://www.vegastudio.fr/assets/og-image.png" />
+
+  <!-- Les polices sont chargées ici plutôt que par @import dans le CSS :
+       un @import attend que la feuille soit lue avant de commencer son
+       propre téléchargement, ce qui retarde le premier texte affiché. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" />
+
+  <!-- Posée avant le CSS : conditionne le masquage des blocs à la
+       présence du JavaScript, pour ne jamais servir une page vide. -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Accueil",
-        "item": "https://www.vegastudio.fr/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Nous contacter",
-        "item": "https://www.vegastudio.fr/contact.html"
-      }
-    ]
+    "@type": "Organization",
+    "name": "Vega Studio",
+    "url": "https://www.vegastudio.fr",
+    "logo": "https://www.vegastudio.fr/assets/logo3.png",
+    "image": "https://www.vegastudio.fr/assets/og-image.png",
+    "description": "Agence web spécialisée dans la création de sites vitrines pour artisans. Formules claires à partir de 149 €.",
+    "email": "vega.studio.webdesign@gmail.com",
+    "areaServed": "FR",
+    "priceRange": "€€"
   }
   </script>
 </head>
 <body>
+
+  <!-- La source lumineuse et le grain sont fixés au viewport : ils
+       appartiennent à la pièce, pas au document qui défile devant. -->
+  <div class="room" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
   <nav>
     <div class="nav-inner">
       <a href="index.html" class="nav-wordmark">Vega Studio</a>
+
       <ul class="nav-links">
-        <li><a href="index.html">Accueil</a><button class="nav-mobile-close" aria-label="Fermer">✕</button></li>
+        <li><a href="index.html">Accueil</a></li>
         <li><a href="formules.html">Formules</a></li>
         <li><a href="apropos.html">À propos</a></li>
         <li class="mobile-cta-item"><a href="contact.html" class="mobile-cta">Nous contacter</a></li>
       </ul>
-      <div class="nav-right"><a href="contact.html" class="nav-cta">Nous contacter</a></div>
-      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+
+      <div class="nav-right">
+        <a href="contact.html" class="nav-cta">Nous contacter</a>
+      </div>
+
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
-  <section class="page-hero">
-    <div class="wrap">
-      <h1 class="apropos-hero-title reveal d1">Parlons de<br /><span class="t-accent">votre projet.</span></h1>
-      <p class="page-sub reveal d2">Vous avez une question, vous souhaitez un devis, ou simplement en savoir plus ?<br />Écrivez-nous — nous répondons sous 24 heures.</p>
-    </div>
-  </section>
+  <main>
+    <section class="page-hero">
+      <div class="wrap">
+        <h1 class="lit reveal">Parlons de votre projet.</h1>
+        <p class="lead reveal d1">Une question, un devis, ou simplement envie d'en savoir plus. Écrivez-nous, nous répondons sous 24 heures.</p>
+      </div>
+    </section>
 
-  <section class="section-contact">
-    <div class="wrap contact-grid">
-      <div class="contact-form-wrap reveal">
-        <form action="https://formspree.io/f/mnpaenjz" method="POST">
-          <div class="form-row">
-            <div class="form-field">
-              <label for="name">Nom</label>
-              <input type="text" id="name" name="name" placeholder="Jean Dupont" required />
-            </div>
-            <div class="form-field">
-              <label for="metier">Métier</label>
-              <input type="text" id="metier" name="metier" placeholder="Plombier, électricien..." required />
-            </div>
+    <section class="section" style="padding-top:0;">
+      <div class="wrap contact-grid">
+
+        <form class="form-card panel reveal" action="https://formspree.io/f/mnpaenjz" method="POST">
+          <div class="field">
+            <label for="name">Nom</label>
+            <input type="text" id="name" name="name" placeholder="Jean Dupont" autocomplete="name" required />
           </div>
-          <div class="form-field">
+          <div class="field">
+            <label for="metier">Métier</label>
+            <input type="text" id="metier" name="metier" placeholder="Plombier, électricien, maçon…" required />
+          </div>
+          <div class="field">
             <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" placeholder="jean@exemple.fr" required />
+            <input type="email" id="email" name="email" placeholder="jean@exemple.fr" autocomplete="email" required />
           </div>
-          <div class="form-field">
-            <label for="phone">Téléphone <span class="opt">(facultatif)</span></label>
-            <input type="tel" id="phone" name="phone" placeholder="06 00 00 00 00" />
+          <div class="field">
+            <label for="phone">Téléphone <span>(facultatif)</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="06 00 00 00 00" autocomplete="tel" />
           </div>
-          <div class="form-field">
+          <div class="field">
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="6" placeholder="Décrivez votre projet..." required></textarea>
+            <textarea id="message" name="message" rows="6" placeholder="Décrivez votre activité, votre ville, et ce que vous attendez du site." required></textarea>
           </div>
-          <div class="form-submit-row">
-            <button type="submit" class="btn btn-primary submit-btn">Envoyer le message</button>
-          </div>
+          <button type="submit" class="btn btn-primary">Envoyer le message</button>
         </form>
+
+        <div class="contact-info">
+          <div class="info-card panel reveal d1">
+            <span class="info-label">E-mail</span>
+            <span class="info-value"><a href="mailto:vega.studio.webdesign@gmail.com">vega.studio.webdesign@gmail.com</a></span>
+          </div>
+          <div class="info-card panel reveal d1">
+            <span class="info-label">Délai de réponse</span>
+            <span class="info-value">Sous 24 heures</span>
+          </div>
+          <div class="info-card panel reveal d2">
+            <span class="info-label">Devis</span>
+            <span class="info-value">Gratuit, sans engagement</span>
+          </div>
+          <div class="info-card panel reveal d2">
+            <p class="small" style="margin:0;">Chaque demande est traitée personnellement. Aucun message ne reste sans réponse.</p>
+          </div>
+        </div>
+
       </div>
-      <div class="contact-info reveal d2">
-        <div class="info-block">
-          <p class="t-label">E-mail</p>
-          <a href="mailto:vega.studio.webdesign@gmail.com" class="info-link">vega.studio.webdesign@gmail.com</a>
-        </div>
-        <div class="info-block">
-          <p class="t-label">Délai de réponse</p>
-          <p class="info-val">Sous 24 heures</p>
-        </div>
-        <div class="info-block">
-          <p class="t-label">Devis</p>
-          <p class="info-val">Gratuit, sans engagement</p>
-        </div>
-        <p class="info-note t-body">Nous traitons chaque demande sérieusement et personnellement. Aucun message ne reste sans réponse.</p>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
     <div class="wrap footer-inner">
-      <span class="footer-left"><a href="contact.html">Contact</a></span>
-      <span class="footer-mid t-label">© 2025 Vega Studio</span>
-      <span class="footer-right"><a href="mentions.html">Mentions légales</a></span>
+      <a href="contact.html">Contact</a>
+      <span class="footer-mid">© 2026 Vega Studio</span>
+      <a href="mentions.html">Mentions légales</a>
     </div>
   </footer>
-  <script src="assets/js/main.js"></script>
+
+  <script src="assets/js/site.js"></script>
 </body>
 </html>

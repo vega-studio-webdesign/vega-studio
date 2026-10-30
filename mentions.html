@@ -2,85 +2,125 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <link rel="canonical" href="https://www.vegastudio.fr/mentions.html">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="apple-touch-icon" href="assets/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mentions légales — Vega Studio</title>
-  <!-- SEO -->
-  <meta name="description" content="Mentions légales de Vega Studio, agence web spécialisée dans la création de sites pour artisans." />
+
+  <meta name="description" content="Mentions légales de Vega Studio : éditeur, hébergement, propriété intellectuelle, traitement des données personnelles et politique de cookies." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.vegastudio.fr/mentions.html" />
-  <!-- Open Graph -->
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/favicon.svg" />
+  <meta name="application-name" content="Vega Studio" />
+  <meta name="theme-color" content="#07080B" />
+
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Mentions légales — Vega Studio" />
-  <meta property="og:description" content="Mentions légales de Vega Studio, agence web spécialisée dans la création de sites pour artisans." />
+  <meta property="og:description" content="Mentions légales de Vega Studio : éditeur, hébergement, propriété intellectuelle, traitement des données personnelles et politique de cookies." />
   <meta property="og:url" content="https://www.vegastudio.fr/mentions.html" />
   <meta property="og:site_name" content="Vega Studio" />
-  <meta property="og:image" content="https://www.vegastudio.fr/assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://www.vegastudio.fr/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Mentions légales — Vega Studio" />
-  <meta name="twitter:description" content="Mentions légales de Vega Studio, agence web spécialisée dans la création de sites pour artisans." />
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="assets/css/page.css" />
+  <meta name="twitter:description" content="Mentions légales de Vega Studio : éditeur, hébergement, propriété intellectuelle, traitement des données personnelles et politique de cookies." />
+  <meta name="twitter:image" content="https://www.vegastudio.fr/assets/og-image.png" />
+
+  <!-- Les polices sont chargées ici plutôt que par @import dans le CSS :
+       un @import attend que la feuille soit lue avant de commencer son
+       propre téléchargement, ce qui retarde le premier texte affiché. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" />
+
+  <!-- Posée avant le CSS : conditionne le masquage des blocs à la
+       présence du JavaScript, pour ne jamais servir une page vide. -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Vega Studio",
+    "url": "https://www.vegastudio.fr",
+    "logo": "https://www.vegastudio.fr/assets/logo3.png",
+    "image": "https://www.vegastudio.fr/assets/og-image.png",
+    "description": "Agence web spécialisée dans la création de sites vitrines pour artisans. Formules claires à partir de 149 €.",
+    "email": "vega.studio.webdesign@gmail.com",
+    "areaServed": "FR",
+    "priceRange": "€€"
+  }
+  </script>
 </head>
 <body>
+
+  <!-- La source lumineuse et le grain sont fixés au viewport : ils
+       appartiennent à la pièce, pas au document qui défile devant. -->
+  <div class="room" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
   <nav>
     <div class="nav-inner">
       <a href="index.html" class="nav-wordmark">Vega Studio</a>
+
       <ul class="nav-links">
-        <li><a href="index.html">Accueil</a><button class="nav-mobile-close" aria-label="Fermer">✕</button></li>
+        <li><a href="index.html">Accueil</a></li>
         <li><a href="formules.html">Formules</a></li>
         <li><a href="apropos.html">À propos</a></li>
         <li class="mobile-cta-item"><a href="contact.html" class="mobile-cta">Nous contacter</a></li>
       </ul>
-      <div class="nav-right"><a href="contact.html" class="nav-cta">Nous contacter</a></div>
-      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+
+      <div class="nav-right">
+        <a href="contact.html" class="nav-cta">Nous contacter</a>
+      </div>
+
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
-  <section class="page-hero" style="padding: 7rem 0 2rem;">
-    <div class="wrap">
-      <h1 class="page-title title-centered reveal">Mentions légales</h1>
-    </div>
-  </section>
+  <main>
+    <section class="page-hero">
+      <div class="wrap">
+        <h1 class="lit reveal">Mentions légales</h1>
+      </div>
+    </section>
 
-  <section class="mentions-content">
-    <div class="wrap wrap--narrow">
-      <div class="mention-block reveal">
-        <h2>Éditeur du site</h2>
-        <p>Vega Studio<br />Activité exercée à titre personnel<br />Contact : <a href="mailto:vega.studio.webdesign@gmail.com">vega.studio.webdesign@gmail.com</a></p>
+    <section class="section" style="padding-top:0;">
+      <div class="wrap">
+        <div class="legal reveal">
+          <h2>Éditeur du site</h2>
+          <p>Vega Studio, agence web spécialisée dans la création de sites vitrines pour artisans. Contact : <a href="mailto:vega.studio.webdesign@gmail.com">vega.studio.webdesign@gmail.com</a></p>
+
+          <h2>Hébergement</h2>
+          <p>Le site est hébergé par Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.</p>
+
+          <h2>Propriété intellectuelle</h2>
+          <p>L'ensemble des contenus de ce site, textes, images, modèles de sites et éléments graphiques, est la propriété de Vega Studio, sauf mention contraire. Toute reproduction sans autorisation écrite est interdite.</p>
+
+          <h2>Données personnelles</h2>
+          <p>Les informations transmises via le formulaire de contact sont utilisées uniquement pour répondre à votre demande. Elles ne sont ni revendues, ni transmises à des tiers à des fins commerciales. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données : il suffit d'en faire la demande par e-mail.</p>
+
+          <h2>Cookies</h2>
+          <p>Ce site ne dépose aucun cookie de suivi ni de mesure d'audience.</p>
+        </div>
       </div>
-      <div class="mention-block reveal d1">
-        <h2>Hébergement</h2>
-        <p>Ce site est hébergé par <strong>Vercel Inc.</strong><br />340 Pine Street, Suite 701, San Francisco, CA 94104<br /><a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a></p>
-      </div>
-      <div class="mention-block reveal d2">
-        <h2>Propriété intellectuelle</h2>
-        <p>L'ensemble des contenus présents sur ce site (textes, images, logos, structure) est la propriété exclusive de Vega Studio. Toute reproduction sans autorisation préalable est interdite.</p>
-      </div>
-      <div class="mention-block reveal d3">
-        <h2>Données personnelles</h2>
-        <p>Les informations collectées via le formulaire de contact sont utilisées exclusivement pour répondre à vos demandes. Elles ne sont ni cédées ni vendues à des tiers. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression.</p>
-      </div>
-      <div class="mention-block reveal d3">
-        <h2>Cookies</h2>
-        <p>Ce site n'utilise pas de cookies de suivi ou de publicité. Aucune donnée de navigation n'est collectée à des fins commerciales.</p>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
     <div class="wrap footer-inner">
-      <span class="footer-left"><a href="contact.html">Contact</a></span>
-      <span class="footer-mid t-label">© 2025 Vega Studio</span>
-      <span class="footer-right"><a href="mentions.html">Mentions légales</a></span>
+      <a href="contact.html">Contact</a>
+      <span class="footer-mid">© 2026 Vega Studio</span>
+      <a href="mentions.html">Mentions légales</a>
     </div>
   </footer>
-  <script src="assets/js/main.js"></script>
+
+  <script src="assets/js/site.js"></script>
 </body>
 </html>

@@ -2,116 +2,143 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <link rel="canonical" href="https://www.vegastudio.fr/apropos.html">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>À propos — Vega Studio</title>
+
+  <meta name="description" content="Vega Studio, agence web spécialisée dans les sites vitrines pour artisans. Prix fixes, délais tenus, un interlocuteur joignable dans la durée." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.vegastudio.fr/apropos.html" />
+
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="apple-touch-icon" href="assets/favicon.svg" />
   <meta name="application-name" content="Vega Studio" />
-  <!-- SEO -->
-  <meta name="description" content="Vega Studio, agence web spécialisée dans la création de sites vitrines pour artisans. Une approche simple, des résultats concrets." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://www.vegastudio.fr/apropos.html" />
-  <!-- Open Graph -->
+  <meta name="theme-color" content="#07080B" />
+
   <meta property="og:type" content="website" />
   <meta property="og:title" content="À propos — Vega Studio" />
-  <meta property="og:description" content="Vega Studio, agence web spécialisée dans la création de sites vitrines pour artisans. Une approche simple, des résultats concrets." />
+  <meta property="og:description" content="Vega Studio, agence web spécialisée dans les sites vitrines pour artisans. Prix fixes, délais tenus, un interlocuteur joignable dans la durée." />
   <meta property="og:url" content="https://www.vegastudio.fr/apropos.html" />
   <meta property="og:site_name" content="Vega Studio" />
-  <meta property="og:image" content="https://www.vegastudio.fr/assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://www.vegastudio.fr/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="À propos — Vega Studio" />
-  <meta name="twitter:description" content="Vega Studio, agence web spécialisée dans la création de sites vitrines pour artisans. Une approche simple, des résultats concrets." />
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="assets/css/page.css" />
-  <link rel="stylesheet" href="assets/css/apropos.css" />
+  <meta name="twitter:description" content="Vega Studio, agence web spécialisée dans les sites vitrines pour artisans. Prix fixes, délais tenus, un interlocuteur joignable dans la durée." />
+  <meta name="twitter:image" content="https://www.vegastudio.fr/assets/og-image.png" />
+
+  <!-- Les polices sont chargées ici plutôt que par @import dans le CSS :
+       un @import attend que la feuille soit lue avant de commencer son
+       propre téléchargement, ce qui retarde le premier texte affiché. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" />
+
+  <!-- Posée avant le CSS : conditionne le masquage des blocs à la
+       présence du JavaScript, pour ne jamais servir une page vide. -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Accueil",
-        "item": "https://www.vegastudio.fr/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "À propos",
-        "item": "https://www.vegastudio.fr/apropos.html"
-      }
-    ]
+    "@type": "Organization",
+    "name": "Vega Studio",
+    "url": "https://www.vegastudio.fr",
+    "logo": "https://www.vegastudio.fr/assets/logo3.png",
+    "image": "https://www.vegastudio.fr/assets/og-image.png",
+    "description": "Agence web spécialisée dans la création de sites vitrines pour artisans. Formules claires à partir de 149 €.",
+    "email": "vega.studio.webdesign@gmail.com",
+    "areaServed": "FR",
+    "priceRange": "€€"
   }
   </script>
 </head>
 <body>
+
+  <!-- La source lumineuse et le grain sont fixés au viewport : ils
+       appartiennent à la pièce, pas au document qui défile devant. -->
+  <div class="room" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
   <nav>
     <div class="nav-inner">
       <a href="index.html" class="nav-wordmark">Vega Studio</a>
+
       <ul class="nav-links">
-        <li><a href="index.html">Accueil</a><button class="nav-mobile-close" aria-label="Fermer">✕</button></li>
+        <li><a href="index.html">Accueil</a></li>
         <li><a href="formules.html">Formules</a></li>
         <li><a href="apropos.html" class="active">À propos</a></li>
         <li class="mobile-cta-item"><a href="contact.html" class="mobile-cta">Nous contacter</a></li>
       </ul>
-      <div class="nav-right"><a href="contact.html" class="nav-cta">Nous contacter</a></div>
-      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+
+      <div class="nav-right">
+        <a href="contact.html" class="nav-cta">Nous contacter</a>
+      </div>
+
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
-  <section class="page-hero">
-    <div class="wrap">
-      <h1 class="apropos-hero-title reveal d1">Une agence web<br /><span class="t-accent">pensée pour les artisans.</span></h1>
-    </div>
-  </section>
+  <main>
+    <section class="page-hero">
+      <div class="wrap">
+        <h1 class="lit reveal">Une agence web pensée pour les artisans.</h1>
+        <p class="lead reveal d1">Un seul métier visé, pour le faire correctement.</p>
+      </div>
+    </section>
 
-  <section class="section-story">
-    <div class="wrap story-grid">
-      <div class="story-left">
-        <p class="section-eyebrow reveal">Notre constat</p>
-        <p class="t-body reveal d1">Vega Studio est née d'un constat simple : trop d'artisans qualifiés, sérieux, reconnus dans leur métier, n'ont aucune présence en ligne. Non par manque d'ambition, mais parce que les agences web traditionnelles sont souvent trop chères, trop complexes, et rarement adaptées aux réalités du terrain.</p>
-        <p class="t-body reveal d2" style="margin-top:1.25rem">Nous avons voulu changer cela. En proposant une offre claire, abordable, et réellement orientée vers les besoins des artisans.</p>
+    <section class="section">
+      <div class="wrap story">
+        <div>
+          <h2 class="lit reveal">Notre constat</h2>
+        </div>
+        <div class="reveal d1">
+          <p>Vega Studio est née d'un constat simple : trop d'artisans qualifiés, sérieux, reconnus dans leur métier, n'ont aucune présence en ligne. Non par manque d'ambition, mais parce que les agences web traditionnelles sont souvent trop chères, trop complexes, et rarement adaptées aux réalités du terrain.</p>
+          <p>Nous avons voulu changer cela, avec une offre claire, abordable, et réellement tournée vers les besoins des artisans.</p>
+        </div>
       </div>
-      <div class="story-right reveal d2">
-        <canvas id="particles-canvas"></canvas>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section-values">
-    <div class="wrap">
-      <p class="section-eyebrow reveal">Nos engagements</p>
-      <div class="values-list">
-        <div class="value-row reveal">
-<div><h3>Transparence totale</h3><p class="t-body">Pas de devis incompréhensible. Un prix fixe, clair dès le départ, qui ne change pas en cours de route.</p></div>
+    <section class="section">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="lit reveal">Nos engagements</h2>
         </div>
-        <div class="value-row reveal d1">
-<div><h3>Spécialisation artisans</h3><p class="t-body">Nous choisissons de nous concentrer sur un seul type de client pour leur offrir un service réellement adapté à leur activité.</p></div>
-        </div>
-        <div class="value-row reveal d2">
-<div><h3>Délais tenus</h3><p class="t-body">Votre site livré en moins de deux semaines après réception de vos contenus. Pas de délais à rallonge.</p></div>
-        </div>
-        <div class="value-row reveal d3">
-<div><h3>Présence durable</h3><p class="t-body">Nous ne livrons pas un site et disparaissons. Nous restons présents, mois après mois, pour faire évoluer votre présence en ligne.</p></div>
+        <div class="values">
+          <div class="value reveal"><h3>Transparence totale</h3><p>Pas de devis incompréhensible. Un prix fixe, clair dès le départ, qui ne change pas en cours de route.</p></div>
+          <div class="value reveal"><h3>Spécialisation artisans</h3><p>Nous nous concentrons sur un seul type de client, pour offrir un service réellement adapté à son activité.</p></div>
+          <div class="value reveal"><h3>Délais tenus</h3><p>Votre site est livré en moins de deux semaines après réception de vos contenus. Pas de délais à rallonge.</p></div>
+          <div class="value reveal"><h3>Présence durable</h3><p>Nous ne livrons pas un site avant de disparaître. Nous restons là, mois après mois, pour le faire évoluer.</p></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="cta panel reveal">
+          <div>
+            <h2 class="lit">Un projet ? Parlons-en.</h2>
+            <p>Dites-nous ce que vous faites et où vous travaillez. Nous revenons vers vous avec la formule adaptée, gratuitement et sans engagement.</p>
+          </div>
+          <a href="contact.html" class="btn btn-primary">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
     <div class="wrap footer-inner">
-      <span class="footer-left"><a href="contact.html">Contact</a></span>
-      <span class="footer-mid t-label">© 2025 Vega Studio</span>
-      <span class="footer-right"><a href="mentions.html">Mentions légales</a></span>
+      <a href="contact.html">Contact</a>
+      <span class="footer-mid">© 2026 Vega Studio</span>
+      <a href="mentions.html">Mentions légales</a>
     </div>
   </footer>
-  <script src="assets/js/main.js"></script>
+
+  <script src="assets/js/site.js"></script>
 </body>
 </html>

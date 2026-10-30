@@ -2,244 +2,231 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <link rel="canonical" href="https://www.vegastudio.fr/formules.html">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formules & tarifs — Vega Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formules et tarifs — Vega Studio</title>
+
+  <meta name="description" content="Trois formules de site vitrine pour artisans : Starter 149 €, Standard 299 €, Pro 499 €, plus un devis Premium. Options à la carte et abonnement détaillé." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.vegastudio.fr/formules.html" />
+
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="apple-touch-icon" href="assets/favicon.svg" />
   <meta name="application-name" content="Vega Studio" />
-  <!-- SEO -->
-  <meta name="description" content="Découvrez nos formules Starter (149€), Standard (299€) et Pro (499€). Prix fixes, abonnement mensuel, devis gratuit. Sites web pour artisans." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://www.vegastudio.fr/formules.html" />
-  <!-- Open Graph -->
+  <meta name="theme-color" content="#07080B" />
+
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Formules & tarifs — Vega Studio" />
-  <meta property="og:description" content="Découvrez nos formules Starter (149€), Standard (299€) et Pro (499€). Prix fixes, abonnement mensuel, devis gratuit. Sites web pour artisans." />
+  <meta property="og:title" content="Formules et tarifs — Vega Studio" />
+  <meta property="og:description" content="Trois formules de site vitrine pour artisans : Starter 149 €, Standard 299 €, Pro 499 €, plus un devis Premium. Options à la carte et abonnement détaillé." />
   <meta property="og:url" content="https://www.vegastudio.fr/formules.html" />
   <meta property="og:site_name" content="Vega Studio" />
-  <meta property="og:image" content="https://www.vegastudio.fr/assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Formules & tarifs — Vega Studio" />
-  <meta name="twitter:description" content="Découvrez nos formules Starter (149€), Standard (299€) et Pro (499€). Prix fixes, abonnement mensuel, devis gratuit. Sites web pour artisans." />
-  <meta name="description" content="Des offres claires pour les artisans. Site vitrine à partir de 100€." />
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="assets/css/page.css" />
-  <link rel="stylesheet" href="assets/css/formules.css" />
+  <meta property="og:image" content="https://www.vegastudio.fr/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Formules et tarifs — Vega Studio" />
+  <meta name="twitter:description" content="Trois formules de site vitrine pour artisans : Starter 149 €, Standard 299 €, Pro 499 €, plus un devis Premium. Options à la carte et abonnement détaillé." />
+  <meta name="twitter:image" content="https://www.vegastudio.fr/assets/og-image.png" />
+
+  <!-- Les polices sont chargées ici plutôt que par @import dans le CSS :
+       un @import attend que la feuille soit lue avant de commencer son
+       propre téléchargement, ce qui retarde le premier texte affiché. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" />
+
+  <!-- Posée avant le CSS : conditionne le masquage des blocs à la
+       présence du JavaScript, pour ne jamais servir une page vide. -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Accueil",
-        "item": "https://www.vegastudio.fr/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Formules & tarifs",
-        "item": "https://www.vegastudio.fr/formules.html"
-      }
-    ]
+    "@type": "Organization",
+    "name": "Vega Studio",
+    "url": "https://www.vegastudio.fr",
+    "logo": "https://www.vegastudio.fr/assets/logo3.png",
+    "image": "https://www.vegastudio.fr/assets/og-image.png",
+    "description": "Agence web spécialisée dans la création de sites vitrines pour artisans. Formules claires à partir de 149 €.",
+    "email": "vega.studio.webdesign@gmail.com",
+    "areaServed": "FR",
+    "priceRange": "€€"
   }
   </script>
 </head>
 <body>
+
+  <!-- La source lumineuse et le grain sont fixés au viewport : ils
+       appartiennent à la pièce, pas au document qui défile devant. -->
+  <div class="room" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
   <nav>
     <div class="nav-inner">
       <a href="index.html" class="nav-wordmark">Vega Studio</a>
+
       <ul class="nav-links">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="formules.html" class="active">Formules</a></li>
         <li><a href="apropos.html">À propos</a></li>
-        <li class="mobile-cta-item"><a href="contact.html" class="mobile-cta">Nous contacter</a><button class="nav-mobile-close" aria-label="Fermer">✕</button></li>
+        <li class="mobile-cta-item"><a href="contact.html" class="mobile-cta">Nous contacter</a></li>
       </ul>
-      <div class="nav-right"><a href="contact.html" class="nav-cta">Nous contacter</a></div>
-      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+
+      <div class="nav-right">
+        <a href="contact.html" class="nav-cta">Nous contacter</a>
+      </div>
+
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="page-hero">
-    <div class="wrap">
-      <h1 class="apropos-hero-title reveal">Des offres claires,<br /><span class="t-accent">sans surprise.</span></h1>
-      <p class="page-sub reveal d1">Prix fixes, délais tenus, résultats concrets.<br />Choisissez la formule adaptée à votre activité.</p>
-    </div>
-  </section>
+  <main>
+    <section class="page-hero">
+      <div class="wrap">
+        <h1 class="lit reveal">Des offres claires, sans surprise.</h1>
+        <p class="lead reveal d1">Prix fixes, délais tenus, résultats concrets. La création se règle une fois, l'abonnement couvre ensuite l'hébergement, le domaine et le suivi.</p>
+      </div>
+    </section>
 
-  <!-- OFFRES -->
-  <section class="section-offers">
-    <div class="wrap-wide">
-      <div class="offers-grid">
-
-        <!-- STARTER -->
-        <article class="offer-card reveal">
-          <div class="offer-top">
-            <span class="offer-name">Starter</span>
-            <div class="offer-price">
-              <strong>149€</strong><span>+ 19€ / mois maximum</span>
-            </div>
-            <p class="offer-pitch">Pour démarrer simplement, avec une présence professionnelle en ligne.</p>
-          </div>
-          <ul class="offer-features">
-            <li>1 page complète (présentation, services, contact)</li>
-            <li>Design responsive — mobile, tablette, ordinateur</li>
+    <section class="section">
+      <div class="wrap">
+        <div class="plans">
+          <div class="plan panel reveal">
+            
+            <span class="plan-name">Starter</span>
+            <span class="plan-price">149 €</span>
+            <span class="plan-sub">puis 19 € par mois</span>
+            <p class="plan-desc">Pour démarrer simplement, avec une présence professionnelle en ligne.</p>
+            <ul class="plan-list">
+            <li>1 page complète : présentation, services, contact</li>
+            <li>Design responsive, mobile, tablette, ordinateur</li>
             <li>Bouton d'appel direct</li>
-            <li>Nom de domaine & hébergement inclus</li>
+            <li>Nom de domaine et hébergement inclus</li>
             <li>Mise en ligne assurée</li>
-          </ul>
-          <a href="contact.html" class="offer-cta offer-cta--ghost">Choisir →</a>
-        </article>
-
-        <!-- STANDARD -->
-        <article class="offer-card reveal d1">
-          <div class="offer-top">
-            <span class="offer-name">Standard</span>
-            <div class="offer-price">
-              <strong>299€</strong><span>+ 29€ / mois maximum</span>
-            </div>
-            <p class="offer-pitch">Pour convaincre avant même le premier appel.</p>
+            </ul>
+            <a href="contact.html" class="btn btn-ghost plan-cta">Choisir Starter</a>
           </div>
-          <ul class="offer-features">
+          <div class="plan panel plan-lit reveal">
+            <span class="plan-tag">Recommandé</span>
+            <span class="plan-name">Standard</span>
+            <span class="plan-price">299 €</span>
+            <span class="plan-sub">puis 29 € par mois</span>
+            <p class="plan-desc">Pour convaincre avant même le premier appel.</p>
+            <ul class="plan-list">
             <li>3 pages complètes</li>
             <li>Design responsive</li>
             <li>Formulaire de contact</li>
             <li>Galerie photos de réalisations</li>
-            <li>Fiche Google Business créée & optimisée</li>
+            <li>Fiche Google Business créée et optimisée</li>
             <li>Optimisation SEO locale</li>
-            <li>Nom de domaine & hébergement inclus</li>
+            <li>Nom de domaine et hébergement inclus</li>
             <li>Mise en ligne assurée</li>
-          </ul>
-          <a href="contact.html" class="offer-cta offer-cta--ghost">Choisir →</a>
-        </article>
-
-        <!-- PRO -->
-        <article class="offer-card offer-card--featured reveal d2">
-          <div class="offer-badge">Recommandé</div>
-          <div class="offer-top">
-            <span class="offer-name">Pro</span>
-            <div class="offer-price">
-              <strong>499€</strong><span>+ 39€ / mois maximum</span>
-            </div>
-            <p class="offer-pitch">Un site complet, soigné, qui se démarque vraiment.</p>
+            </ul>
+            <a href="contact.html" class="btn btn-primary plan-cta">Choisir Standard</a>
           </div>
-          <ul class="offer-features">
+          <div class="plan panel reveal">
+            
+            <span class="plan-name">Pro</span>
+            <span class="plan-price">499 €</span>
+            <span class="plan-sub">puis 39 € par mois</span>
+            <p class="plan-desc">Un site complet, soigné, qui se démarque vraiment.</p>
+            <ul class="plan-list">
             <li>5 pages complètes</li>
-            <li>Design responsive & animations CSS</li>
+            <li>Design responsive et animations</li>
             <li>Formulaire de contact</li>
             <li>Galerie photos de réalisations</li>
-            <li>Fiche Google Business créée & optimisée</li>
+            <li>Fiche Google Business créée et optimisée</li>
             <li>Optimisation SEO locale</li>
             <li>Bouton WhatsApp flottant</li>
             <li>Section avis clients</li>
             <li>Carte Google Maps intégrée</li>
-            <li>Favicon & identité visuelle de base</li>
-            <li>Nom de domaine & hébergement inclus</li>
+            <li>Favicon et identité visuelle de base</li>
+            <li>Nom de domaine et hébergement inclus</li>
             <li>Mise en ligne assurée</li>
-          </ul>
-          <a href="contact.html" class="offer-cta offer-cta--filled">Choisir →</a>
-        </article>
-
-        <!-- PREMIUM -->
-        <article class="offer-card reveal d3">
-          <div class="offer-top">
-            <span class="offer-name">Premium</span>
-            <div class="offer-price offer-price--devis">
-              <strong>Sur devis</strong>
-            </div>
-            <p class="offer-pitch">Pour les projets complexes qui vont au-delà du site vitrine.</p>
+            </ul>
+            <a href="contact.html" class="btn btn-ghost plan-cta">Choisir Pro</a>
           </div>
-          <ul class="offer-features">
+        </div>
+
+        <div class="plan panel plan-wide reveal">
+          <div>
+            <span class="plan-name">Premium</span>
+            <span class="plan-price">Sur devis</span>
+            <p class="plan-desc">Pour les projets qui vont au-delà du site vitrine. On en discute, puis on chiffre.</p>
+            <a href="contact.html" class="btn btn-ghost">Nous contacter</a>
+          </div>
+          <ul class="plan-list">
             <li>Tout ce qu'inclut la formule Pro</li>
-            <li>Base de données & espace client sécurisé</li>
-            <li>Boutique en ligne & paiement intégré</li>
-            <li>Formulaires avancés & automatisations</li>
+            <li>Base de données et espace client sécurisé</li>
+            <li>Boutique en ligne et paiement intégré</li>
+            <li>Formulaires avancés et automatisations</li>
             <li>Site multilingue</li>
             <li>Tableau de bord d'administration</li>
-            <li>Hébergement dédié & performances optimisées</li>
+            <li>Hébergement dédié et performances optimisées</li>
             <li>Accompagnement personnalisé</li>
           </ul>
-          <a href="contact.html" class="offer-cta offer-cta--ghost">Nous contacter →</a>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- LIEN SIMULATEUR -->
-  <section class="section-sim-cta">
-    <div class="wrap-wide">
-      <div class="sim-cta-block reveal">
-        <div class="sim-cta-text">
-          <strong>Estimez votre projet</strong>
-          <p>Cochez vos besoins, obtenez les combinaisons possibles et le tarif exact.</p>
-        </div>
-        <a href="simulateur.html" class="btn btn-secondary sim-cta-btn">Démarrer la simulation →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABONNEMENT + OPTIONS -->
-  <section class="section-details">
-    <div class="wrap details-grid">
-
-      <!-- OPTIONS -->
-      <div class="detail-block reveal d2">
-        <h2 class="detail-title">Options à la carte</h2>
-        <div class="options-table">
-          <div class="opt-row"><span>Page supplémentaire</span><span class="opt-price">+60€</span></div>
-          <div class="opt-row"><span>Rédaction des textes du site</span><span class="opt-price">+90€</span></div>
-          <div class="opt-row"><span>Identité visuelle complète</span><span class="opt-price">+90€</span></div>
-          <div class="opt-row"><span>Pop-up promotionnelle</span><span class="opt-price">+40€</span></div>
-          <div class="opt-row"><span>Compteur de réalisations animé</span><span class="opt-price">+30€</span></div>
-          <div class="opt-row"><span>Chatbot de contact basique</span><span class="opt-price">+70€</span></div>
-          <div class="opt-row"><span>Bannière de cookies (RGPD)</span><span class="opt-price">+30€</span></div>
-          <div class="opt-row"><span>Formulaire avancé (devis en ligne…)</span><span class="opt-price">+80€</span></div>
         </div>
       </div>
+    </section>
 
-      <!-- ABONNEMENT -->
-      <div class="detail-block reveal">
-        <h2 class="detail-title">L'abonnement mensuel couvre</h2>
-        <ul class="detail-list">
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Nom de domaine & hébergement
-          </li>
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Maintenance technique
-          </li>
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-1 modification légère gratuite tous les mois
-          </li>
-          <li>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Un interlocuteur humain disponible et réactif
-          </li>
-        </ul>
-        <p class="detail-extra">Une <strong>modification légère</strong> désigne un changement simple qui ne nécessite pas de refonte : remplacer une photo, mettre à jour un texte, ajuster un tarif, ajouter un horaire… Toute modification plus importante (nouvelle page, refonte d'une section, intégration technique) est facturée à partir de 20€, selon la nature et les frais éventuels.</p>
+    <section class="section">
+      <div class="wrap">
+        <div class="cta panel reveal">
+          <div>
+            <h2 class="lit">Estimez votre projet en deux minutes.</h2>
+            <p>Cochez vos besoins, obtenez les combinaisons possibles et le tarif exact.</p>
+          </div>
+          <a href="simulateur.html" class="btn btn-primary">Démarrer la simulation</a>
+        </div>
       </div>
+    </section>
 
-    </div>
-  </section>
+    <section class="section">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="lit reveal">Options à la carte.</h2>
+          <p class="reveal d1">À ajouter à n'importe quelle formule, au moment de la création ou plus tard.</p>
+        </div>
+
+        <div class="story">
+          <div class="options reveal">
+            <div class="option"><span class="option-name">Page supplémentaire</span><span class="option-price">+ 60 €</span></div>
+            <div class="option"><span class="option-name">Rédaction des textes du site</span><span class="option-price">+ 90 €</span></div>
+            <div class="option"><span class="option-name">Identité visuelle complète</span><span class="option-price">+ 90 €</span></div>
+            <div class="option"><span class="option-name">Pop-up promotionnelle</span><span class="option-price">+ 40 €</span></div>
+            <div class="option"><span class="option-name">Compteur de réalisations animé</span><span class="option-price">+ 30 €</span></div>
+            <div class="option"><span class="option-name">Chatbot de contact basique</span><span class="option-price">+ 70 €</span></div>
+            <div class="option"><span class="option-name">Bannière de cookies, RGPD</span><span class="option-price">+ 30 €</span></div>
+            <div class="option"><span class="option-name">Formulaire avancé, devis en ligne</span><span class="option-price">+ 80 €</span></div>
+          </div>
+
+          <div class="note panel reveal d1">
+            <h3>Ce que couvre l'abonnement</h3>
+            <ul class="note-list">
+              <li>Nom de domaine et hébergement</li>
+              <li>Maintenance technique</li>
+              <li>Une modification légère par mois</li>
+              <li>Un interlocuteur joignable</li>
+            </ul>
+            <p style="margin-top:1.2rem;">Une modification légère, c'est un changement simple : remplacer une photo, mettre à jour un texte, ajuster un tarif, ajouter un horaire. Au-delà, comme une nouvelle page ou la refonte d'une section, c'est facturé à partir de 20 € selon l'ampleur.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
     <div class="wrap footer-inner">
-      <span class="footer-left"><a href="contact.html">Contact</a></span>
-      <span class="footer-mid t-label">© 2025 Vega Studio</span>
-      <span class="footer-right"><a href="mentions.html">Mentions légales</a></span>
+      <a href="contact.html">Contact</a>
+      <span class="footer-mid">© 2026 Vega Studio</span>
+      <a href="mentions.html">Mentions légales</a>
     </div>
   </footer>
-  <script src="assets/js/main.js"></script>
+
+  <script src="assets/js/site.js"></script>
 </body>
 </html>
