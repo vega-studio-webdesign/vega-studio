@@ -73,19 +73,7 @@
 
   <nav>
     <div class="nav-inner">
-      <a href="index.html" class="nav-wordmark">
-        <svg viewBox="0 0 100 140" aria-hidden="true">
-          <defs>
-            <radialGradient id="nvs" cx="50%" cy="50%" r="50%">
-              <stop offset="0%"   stop-color="#FFFFFF"/>
-              <stop offset="45%"  stop-color="#C4B8FF"/>
-              <stop offset="100%" stop-color="#8B7CF6"/>
-            </radialGradient>
-          </defs>
-          <path d="M50 0 C53 50 58 65 92 70 C58 75 53 90 50 140 C47 90 42 75 8 70 C42 65 47 50 50 0 Z" fill="url(#nvs)"/>
-        </svg>
-        Vega Studio
-      </a>
+      <a href="index.html" class="nav-wordmark">Vega Studio</a>
 
       <ul class="nav-links">
         <li><a href="index.html" class="active">Accueil</a></li>
@@ -149,23 +137,62 @@
       </div>
     </section>
 
+    <!-- ═══ MODÈLES ════════════════════════════════════════════
+         Placés juste après le hero : montrer le travail avant de
+         l'expliquer. C'est l'argument le plus solide de la page. -->
+    <section class="section">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="lit reveal">Quatre modèles, déjà construits.</h2>
+          <p class="reveal d1">Votre site part de l'un d'eux, puis reprend vos couleurs, vos photos et vos textes. Cliquez pour le parcourir en entier.</p>
+        </div>
+
+        <div class="models">
+          <a class="model reveal" href="https://templates.vegastudio.fr/template-robuste.html" target="_blank" rel="noopener">
+            <div class="model-shot">
+              <img src="assets/modeles/robuste.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Aperçu du modèle Robuste, site de plomberie sur fond sombre et orange" />
+            </div>
+            <div class="model-meta"><span class="model-name">Robuste</span><span class="model-trade">Plomberie</span><span class="model-go">Parcourir</span></div>
+          </a>
+          <a class="model reveal d1" href="https://templates.vegastudio.fr/template-confiance.html" target="_blank" rel="noopener">
+            <div class="model-shot">
+              <img src="assets/modeles/confiance.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Aperçu du modèle Confiance, site d'électricité en bleu nuit et ambre" />
+            </div>
+            <div class="model-meta"><span class="model-name">Confiance</span><span class="model-trade">Électricité</span><span class="model-go">Parcourir</span></div>
+          </a>
+          <a class="model reveal d1" href="https://templates.vegastudio.fr/template-local.html" target="_blank" rel="noopener">
+            <div class="model-shot">
+              <img src="assets/modeles/local.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Aperçu du modèle Local, site de menuiserie en vert et terre cuite" />
+            </div>
+            <div class="model-meta"><span class="model-name">Local</span><span class="model-trade">Menuiserie</span><span class="model-go">Parcourir</span></div>
+          </a>
+          <a class="model reveal d2" href="https://templates.vegastudio.fr/template-direct.html" target="_blank" rel="noopener">
+            <div class="model-shot">
+              <img src="assets/modeles/direct.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Aperçu du modèle Direct, mise en page claire et typographique" />
+            </div>
+            <div class="model-meta"><span class="model-name">Direct</span><span class="model-trade">Studio créatif</span><span class="model-go">Parcourir</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- ═══ LE CONSTAT ═════════════════════════════════════════ -->
     <section class="section">
-      <div class="wrap split">
-        <div>
+      <div class="wrap">
+        <div class="head">
           <h2 class="lit reveal">Vos clients vous cherchent. Soyez au rendez-vous.</h2>
         </div>
 
         <div class="facts">
-          <div class="fact reveal d1">
+          <div class="fact reveal">
             <h3>La recherche part du téléphone</h3>
-            <p>Un particulier qui a une fuite tape le métier et le nom de sa ville, depuis son canapé. Si vous n'avez pas de site, vous n'êtes pas dans la liste qu'il consulte.</p>
+            <p>Un particulier qui a une fuite tape le métier et le nom de sa ville. Sans site, vous n'êtes pas dans la liste qu'il consulte.</p>
           </div>
-          <div class="fact reveal d2">
+          <div class="fact reveal d1">
             <h3>Le premier contact est visuel</h3>
             <p>La page qu'il ouvre décide s'il compose votre numéro ou s'il passe au suivant. Tout se joue avant la première sonnerie.</p>
           </div>
-          <div class="fact reveal d3">
+          <div class="fact reveal d2">
             <h3>Un concurrent décroche à votre place</h3>
             <p>Ce n'est pas une ligne perdue dans un classement. C'est un chantier qui part ailleurs, et vous ne saurez jamais qu'il a existé.</p>
           </div>
@@ -176,7 +203,9 @@
     <!-- ═══ CE QUE VOUS OBTENEZ ════════════════════════════════ -->
     <section class="section">
       <div class="wrap">
-        <h2 class="lit reveal">Une solution complète, de bout en bout.</h2>
+        <div class="head">
+          <h2 class="lit reveal">Une solution complète, de bout en bout.</h2>
+        </div>
 
         <div class="offer">
           <div class="offer-item reveal">
@@ -187,11 +216,11 @@
             <h3>Visible dans votre ville</h3>
             <p>Référencement local et fiche Google Business compris. Vous apparaissez dans les résultats et sur Maps quand on cherche votre métier près de chez vous.</p>
           </div>
-          <div class="offer-item reveal d2">
+          <div class="offer-item reveal d1">
             <h3>Domaine et hébergement inclus</h3>
             <p>Tout est compris dans l'abonnement mensuel. Aucune démarche technique de votre côté, aucun prestataire supplémentaire à gérer.</p>
           </div>
-          <div class="offer-item reveal d3">
+          <div class="offer-item reveal d2">
             <h3>Un interlocuteur, pas un ticket</h3>
             <p>Chaque abonnement comprend une modification par mois. Vous écrivez à quelqu'un qui connaît votre site et qui répond.</p>
           </div>
@@ -202,7 +231,10 @@
     <!-- ═══ FORMULES ═══════════════════════════════════════════ -->
     <section class="section">
       <div class="wrap">
-        <h2 class="lit reveal">Trois formules, aucun devis surprise.</h2>
+        <div class="head">
+          <h2 class="lit reveal">Trois formules, aucun devis surprise.</h2>
+          <p class="reveal d1">Création réglée une fois, puis un abonnement qui couvre l'hébergement, le domaine et le suivi.</p>
+        </div>
 
         <div class="tiers">
           <div class="tier panel reveal">
@@ -211,14 +243,12 @@
             <span class="tier-sub">puis 19 € par mois</span>
             <p class="tier-desc">Une page unique, complète, qui présente votre activité et vos coordonnées.</p>
           </div>
-
           <div class="tier panel tier-lit reveal d1">
             <span class="tier-name">Standard</span>
             <span class="tier-price">299 €</span>
             <span class="tier-sub">puis 29 € par mois</span>
             <p class="tier-desc">Plusieurs pages, galerie de réalisations et formulaire de contact.</p>
           </div>
-
           <div class="tier panel reveal d2">
             <span class="tier-name">Pro</span>
             <span class="tier-price">499 €</span>
@@ -234,44 +264,18 @@
       </div>
     </section>
 
-    <!-- ═══ MODÈLES ════════════════════════════════════════════ -->
-    <section class="section">
-      <div class="wrap split">
-        <div>
-          <h2 class="lit reveal">Nos modèles, à regarder avant de décider.</h2>
-          <p class="body reveal d1" style="margin-top:1.4rem; max-width:34ch;">
-            Quatre sites complets, construits et consultables. Votre site part de l'un d'eux, puis reprend vos couleurs, vos photos et vos textes.
-          </p>
-        </div>
-
-        <div class="models">
-          <a class="model reveal d1" href="https://templates.vegastudio.fr/template-robuste.html" target="_blank" rel="noopener">
-            <span class="model-name">Robuste</span><span class="model-trade">Plomberie</span><span class="model-go">Voir</span>
-          </a>
-          <a class="model reveal d1" href="https://templates.vegastudio.fr/template-confiance.html" target="_blank" rel="noopener">
-            <span class="model-name">Confiance</span><span class="model-trade">Électricité</span><span class="model-go">Voir</span>
-          </a>
-          <a class="model reveal d2" href="https://templates.vegastudio.fr/template-local.html" target="_blank" rel="noopener">
-            <span class="model-name">Local</span><span class="model-trade">Menuiserie</span><span class="model-go">Voir</span>
-          </a>
-          <a class="model reveal d2" href="https://templates.vegastudio.fr/template-direct.html" target="_blank" rel="noopener">
-            <span class="model-name">Direct</span><span class="model-trade">Studio créatif</span><span class="model-go">Voir</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
     <!-- ═══ APPEL ══════════════════════════════════════════════ -->
     <section class="section">
       <div class="wrap">
         <div class="cta panel reveal">
-          <h2 class="lit">Un projet ? Parlons-en.</h2>
-          <p class="lead">Dites-nous ce que vous faites et où vous travaillez. Nous revenons vers vous avec la formule adaptée, gratuitement et sans engagement.</p>
+          <div>
+            <h2 class="lit">Un projet ? Parlons-en.</h2>
+            <p>Dites-nous ce que vous faites et où vous travaillez. Nous revenons vers vous avec la formule adaptée, gratuitement et sans engagement.</p>
+          </div>
           <a href="contact.html" class="btn btn-primary">Nous contacter</a>
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
