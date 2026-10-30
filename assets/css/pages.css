@@ -111,7 +111,7 @@
   border-radius: 9px;
   color: var(--ink);
   font-family: 'Inter', sans-serif; font-size: .97rem; font-weight: 300;
-  transition: border-color .2s, box-shadow .2s, background .2s;
+  transition: border-color .16s ease, box-shadow .16s ease, background .16s ease;
 }
 .field textarea { resize: vertical; min-height: 7.5rem; line-height: 1.6; }
 .field input::placeholder, .field textarea::placeholder { color: var(--ink-28); }

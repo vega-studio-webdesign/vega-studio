@@ -37,6 +37,14 @@
   --edge:       rgba(240,239,245,.07);
   --edge-shade: rgba(0,0,0,.45);
 
+  /* ── mouvement ──
+     Courbes reprises des standards d'Emil Kowalski. Les courbes
+     natives du CSS sont trop molles, et une bezier improvisée au
+     jugé se voit. Jamais d'ease-in sur de l'interface : il démarre
+     lentement, pile au moment où l'œil regarde. */
+  --ease-out:    cubic-bezier(.23, 1, .32, 1);
+  --ease-in-out: cubic-bezier(.77, 0, .175, 1);
+
   /* ── mesures ── */
   --col: 1120px;
   --gut: clamp(1.25rem, 5vw, 3.5rem);
@@ -186,9 +194,11 @@ h3 { font-size: var(--t-h3); line-height: 1.3; letter-spacing: -.015em; font-wei
   border: 1px solid transparent; border-radius: 10px;
   font-family: 'Inter', sans-serif; font-size: .95rem; font-weight: 500;
   letter-spacing: -.005em; cursor: pointer;
-  transition: transform .18s cubic-bezier(.2,.7,.3,1), box-shadow .22s, background .22s, border-color .22s;
+  transition: transform .16s var(--ease-out), box-shadow .2s var(--ease-out), background .2s ease, border-color .2s ease;
 }
-.btn:active { transform: translateY(1px); }
+/* L'appui enfonce le bouton au lieu de le décaler : un objet pressé
+   se comprime, il ne glisse pas vers le bas. */
+.btn:active { transform: scale(.97); }
 
 /* Le bouton primaire est un objet qui émet : halo au sol, arête
    supérieure plus claire que le corps. */
@@ -244,12 +254,12 @@ nav.scrolled { padding-block: .9rem; background: rgba(7,8,11,.94); border-bottom
   justify-self: start;
   font-family: 'Syne', sans-serif; font-weight: 800;
   font-size: 1.02rem; letter-spacing: .22em; text-transform: uppercase;
-  transition: color .2s;
+  transition: color .16s ease;
 }
 .nav-wordmark:hover { color: var(--lilac); }
 
 .nav-links { justify-self: center; list-style: none; display: flex; align-items: center; gap: 2.5rem; }
-.nav-links a { position: relative; font-size: .97rem; font-weight: 400; color: var(--ink-45); transition: color .2s; }
+.nav-links a { position: relative; font-size: .97rem; font-weight: 400; color: var(--ink-45); transition: color .16s ease; }
 .nav-links a:hover, .nav-links a.active { color: var(--ink); }
 
 /* Trait sous l'onglet actif, qui s'eteint sur les bords comme les
@@ -267,7 +277,7 @@ nav.scrolled { padding-block: .9rem; background: rgba(7,8,11,.94); border-bottom
   border: 1px solid var(--edge); border-top-color: var(--edge-lit);
   border-radius: 8px; font-size: .875rem; font-weight: 500;
   background: linear-gradient(176deg, rgba(240,239,245,.05), rgba(240,239,245,.012));
-  transition: background .2s, border-color .2s;
+  transition: background .16s ease, border-color .16s ease;
 }
 .nav-cta:hover { background: rgba(240,239,245,.1); border-color: var(--edge-lit); }
 
@@ -284,7 +294,7 @@ nav.scrolled { padding-block: .9rem; background: rgba(7,8,11,.94); border-bottom
 
 footer { border-top: 1px solid var(--edge); padding-block: 2.4rem; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-.footer-inner a { color: var(--ink-45); font-size: var(--t-small); transition: color .2s; }
+.footer-inner a { color: var(--ink-45); font-size: var(--t-small); transition: color .16s ease; }
 .footer-inner a:hover { color: var(--ink); }
 .footer-mid { font-size: var(--t-small); color: var(--ink-28); }
 
@@ -296,11 +306,11 @@ footer { border-top: 1px solid var(--edge); padding-block: 2.4rem; }
    dans le <head>. Si le JavaScript ne s'exécute pas, le contenu
    reste visible au lieu de laisser une page vide.
    ═══════════════════════════════════════════════════════════════ */
-.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
+.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .56s var(--ease-out), transform .56s var(--ease-out); }
 .js .reveal.visible { opacity: 1; transform: none; }
-.d1 { transition-delay: .09s; }
-.d2 { transition-delay: .18s; }
-.d3 { transition-delay: .27s; }
+.d1 { transition-delay: .07s; }
+.d2 { transition-delay: .14s; }
+.d3 { transition-delay: .21s; }
 
 /* ═══ MOBILE ═════════════════════════════════════════════════════ */
 
@@ -316,7 +326,7 @@ footer { border-top: 1px solid var(--edge); padding-block: 2.4rem; }
     background: var(--d0);
     border-bottom: 1px solid var(--edge);
     transform: translateY(-100%);
-    transition: transform .42s cubic-bezier(.4,0,.2,1);
+    transition: transform .42s var(--ease-in-out);
     z-index: -1;
   }
   .nav-links.open { transform: translateY(0); }

@@ -126,7 +126,7 @@
 }
 
 /* Les aperçus sont empilés ; un seul est visible à la fois. */
-.shot { position: absolute; inset: 0; opacity: 0; transition: opacity .75s ease; }
+.shot { position: absolute; inset: 0; opacity: 0; transition: opacity .6s var(--ease-out); }
 .shot.is-on { opacity: 1; }
 .shot img { position: absolute; top: 0; left: 0; width: 100%; height: auto; display: block; will-change: transform; }
 
@@ -144,7 +144,7 @@
 .phone-trade { font-size: var(--t-small); color: var(--ink-45); margin-right: auto; }
 
 .phone-dots { display: flex; gap: 5px; }
-.phone-dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--ink-28); transition: background .4s, box-shadow .4s; }
+.phone-dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--ink-28); transition: background .3s var(--ease-out), box-shadow .3s var(--ease-out); }
 .phone-dots i.is-on { background: var(--purple); box-shadow: 0 0 8px 1px rgba(139,124,246,.8); }
 
 /* ═══ FORMULES ═══════════════════════════════════════════════════ */
