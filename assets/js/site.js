@@ -43,94 +43,95 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* ── Aperçus téléphone ──
-     Un seul aperçu visible à la fois. Il défile de haut en bas à
-     vitesse constante, marque un temps d'arrêt en bas, puis cède la
-     place au suivant en fondu.
+  /* ── Écran du téléphone ──
+     Un cycle, quatre temps : pause en haut, défilement intégral à
+     vitesse constante, pause en bas, puis fondu court vers le modèle
+     suivant qui démarre en haut de sa page.
 
-     La durée est proportionnelle à la hauteur réelle de l'image et
-     non fixe : à vitesse constante, un modèle deux fois plus long
-     doit prendre deux fois plus de temps, sinon le défilement
-     s'emballe sur les pages longues.
+     La durée suit la hauteur réelle de chaque image. À vitesse
+     constante, un site deux fois plus long doit prendre deux fois
+     plus de temps ; une durée fixe ferait filer les pages longues.
 
-     Le cycle ne tourne que lorsque le téléphone est à l'écran. Une
-     animation qui continue hors champ consomme du GPU pour rien et
-     fait chauffer les portables. */
+     Le cycle ne tourne que lorsque le téléphone est visible : une
+     animation qui continue hors champ consomme du GPU pour rien. */
   const screen = document.querySelector('.phone-screen');
 
   if (screen) {
+    const phone = document.querySelector('.phone');
+    const stage = document.querySelector('.stage');
     const shots = [...screen.querySelectorAll('.shot')];
-    const dots  = [...document.querySelectorAll('.phone-dots i')];
-    const nameEl  = document.querySelector('.phone-name');
-    const tradeEl = document.querySelector('.phone-trade');
 
-    const VITESSE = 118;   // pixels par seconde, proche d'un défilement humain
-    const PAUSE   = 900;   // arrêt en haut et en bas, en millisecondes
+    const VITESSE = 125;   // pixels par seconde, proche d'une lecture au pouce
+    const HAUT    = 700;   // pause en haut de page
+    const BAS     = 550;   // pause en bas de page
+    const FONDU   = 280;   // durée du fondu entre deux modèles
 
-    let i = 0, timer = null, visible = false;
     const calme = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let i = 0, t = null, actif = false;
 
-    const afficher = (n) => {
-      shots.forEach((s, k) => s.classList.toggle('is-on', k === n));
-      dots.forEach((d, k) => d.classList.toggle('is-on', k === n));
-      const s = shots[n];
-      if (nameEl)  nameEl.textContent  = s.dataset.name  || '';
-      if (tradeEl) tradeEl.textContent = s.dataset.trade || '';
-    };
+    const haut = (img) => { img.style.transition = 'none'; img.style.transform = 'translateY(0)'; };
 
-    const jouer = () => {
-      clearTimeout(timer);
-      if (!visible) return;
+    const cycle = () => {
+      clearTimeout(t);
+      if (!actif) return;
 
       const img = shots[i].querySelector('img');
       const course = img.offsetHeight - screen.clientHeight;
 
-      // Image pas encore décodée : on repasse au prochain rendu.
-      if (course <= 0) { timer = setTimeout(jouer, 300); return; }
+      // Image pas encore décodée : on repasse au rendu suivant.
+      if (course <= 0) { t = setTimeout(cycle, 250); return; }
 
-      if (calme.matches) {
-        img.style.transition = 'none';
-        img.style.transform  = 'translateY(0)';
-        timer = setTimeout(suivant, 4000);
-        return;
-      }
+      haut(img);
+
+      if (calme.matches) { t = setTimeout(suivant, 3500); return; }
 
       const duree = (course / VITESSE) * 1000;
-      img.style.transition = 'none';
-      img.style.transform  = 'translateY(0)';
 
-      // Deux images imbriquées : la première laisse le navigateur
-      // appliquer la position de départ, sinon la transition part
-      // de la valeur précédente et l'aperçu saute.
+      // Double rAF : la première image laisse le navigateur appliquer
+      // la position de départ. Sans elle la transition part de la
+      // valeur précédente et l'aperçu saute.
       requestAnimationFrame(() => requestAnimationFrame(() => {
-        timer = setTimeout(() => {
+        t = setTimeout(() => {
           img.style.transition = `transform ${duree}ms linear`;
           img.style.transform  = `translateY(${-course}px)`;
-          timer = setTimeout(suivant, duree + PAUSE);
-        }, PAUSE);
+          t = setTimeout(suivant, duree + BAS);
+        }, HAUT);
       }));
     };
 
     const suivant = () => {
-      const prec = shots[i].querySelector('img');
+      const sortant = shots[i];
+      const entrant = shots[(i + 1) % shots.length];
+
+      // L'entrant est remis en haut AVANT d'apparaître, pour qu'on
+      // ne le voie jamais reprendre en pleine course.
+      haut(entrant.querySelector('img'));
+
+      sortant.style.transition = `opacity ${FONDU}ms linear`;
+      entrant.style.transition = `opacity ${FONDU}ms linear`;
+      sortant.classList.remove('is-on');
+      entrant.classList.add('is-on');
+
       i = (i + 1) % shots.length;
-      afficher(i);
-      // On remet l'aperçu sortant en haut une fois le fondu terminé,
-      // pour qu'il ne réapparaisse pas en pleine course au tour suivant.
-      setTimeout(() => { prec.style.transition = 'none'; prec.style.transform = 'translateY(0)'; }, 800);
-      jouer();
+      t = setTimeout(() => { haut(sortant.querySelector('img')); cycle(); }, FONDU);
     };
 
-    afficher(0);
+    // Le téléphone n'apparaît que pendant la scène, et il est fixé au
+    // viewport : hors de cette zone il flotterait sur le hero.
+    if (stage && phone) {
+      new IntersectionObserver((es) => {
+        es.forEach(e => phone.classList.toggle('is-here', e.isIntersecting));
+      }, { rootMargin: '-10% 0px -10% 0px' }).observe(stage);
+    }
 
-    new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        const avant = visible;
-        visible = e.isIntersecting;
-        if (visible && !avant) jouer();
-        if (!visible) clearTimeout(timer);
+    new IntersectionObserver((es) => {
+      es.forEach(e => {
+        const avant = actif;
+        actif = e.isIntersecting;
+        if (actif && !avant) cycle();
+        if (!actif) clearTimeout(t);
       });
-    }, { threshold: 0.15 }).observe(screen);
+    }, { threshold: 0.1 }).observe(screen);
   }
 
   /* ── Apparitions ──

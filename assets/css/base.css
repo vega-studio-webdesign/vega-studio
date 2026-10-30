@@ -45,6 +45,13 @@
   --ease-out:    cubic-bezier(.23, 1, .32, 1);
   --ease-in-out: cubic-bezier(.77, 0, .175, 1);
 
+  /* ── espacement, base 4 ──
+     Une seule valeur répétée donne le même poids à tout. Ces paliers
+     servent à opposer franchement le serré et le généreux. */
+  --s1: .25rem; --s2: .5rem;  --s3: .75rem; --s4: 1rem;
+  --s6: 1.5rem; --s8: 2rem;   --s12: 3rem;  --s16: 4rem;
+  --s24: 6rem;  --s32: 8rem;
+
   /* ── mesures ── */
   --col: 1120px;
   --gut: clamp(1.25rem, 5vw, 3.5rem);
@@ -123,36 +130,41 @@ h1, h2, h3 {
   text-wrap: balance;
 }
 
+/* Le texte en dégradé est un réflexe de générateur, pas une
+   décision : l'emphase vient du poids et de la taille. La classe
+   reste pour ne pas toucher aux autres pages, mais ne fait plus
+   que poser une couleur pleine. */
+.lit { color: var(--ink); }
+
 h3 { font-size: var(--t-h3); line-height: 1.3; letter-spacing: -.015em; font-weight: 700; }
 
-/* Titre éclairé.
-   Au lieu de colorer un mot en violet — le réflexe que produit
-   n'importe quel générateur — le titre reçoit la lumière par le
-   haut et s'éteint vers le bas, comme n'importe quel objet de la
-   page. La différence de valeur fait le travail, pas la teinte. */
-.lit {
-  background: linear-gradient(180deg, #FFFFFF 0%, var(--ink) 42%, rgba(240,239,245,.82) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
 
-/* Strictement vertical : au moindre degré d'inclinaison, un titre sur
-   une seule ligne s'assombrit vers la droite et l'effet se lit comme
-   une erreur plutôt que comme de la lumière.
-   Le hero descend plus bas dans les gris : il a trois lignes pour le
-   faire, donc la chute se lit comme un volume. */
-.hero h1.lit {
-  background: linear-gradient(180deg, #FFFFFF 0%, var(--ink) 34%, rgba(240,239,245,.68) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
 
 .lead  { font-size: clamp(1.08rem, 1.7vw, 1.28rem); color: var(--ink-70); line-height: 1.68; font-weight: 300; }
 .body  { color: var(--ink-70); }
 .small { font-size: var(--t-small); color: var(--ink-45); line-height: 1.6; }
 
-::selection { background: rgba(139,124,246,.32); color: #fff; }
+/* ── Surfaces du navigateur ──
+   Sélection, curseur, anneau de focus, barre de défilement et
+   chiffres des prix arrivent par défaut sans appartenir à aucun
+   système. Les habiller est ce qui distingue une page construite
+   d'une page assemblée. */
+::selection { background: rgba(139,124,246,.3); color: #fff; }
+
+html { scrollbar-color: #2A2C36 var(--d0); scrollbar-width: thin; }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--d0); }
+::-webkit-scrollbar-thumb { background: #2A2C36; border: 3px solid var(--d0); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #3A3D4A; }
+
+input, textarea { caret-color: var(--purple); }
+
+:focus-visible { outline: 2px solid var(--purple); outline-offset: 3px; border-radius: 4px; }
+:focus:not(:focus-visible) { outline: none; }
+
+/* Chiffres de même chasse : sans ça les prix dansent d'une colonne
+   à l'autre parce que le 1 est plus étroit que le 9. */
+.tier-price, .plan-price, .option-price, .hero-price { font-variant-numeric: tabular-nums; }
 
 /* ═══ TRAME ══════════════════════════════════════════════════════ */
 
@@ -206,16 +218,13 @@ h3 { font-size: var(--t-h3); line-height: 1.3; letter-spacing: -.015em; font-wei
   background: linear-gradient(176deg, #9C8FF8, var(--purple) 55%, #7265E4 100%);
   color: #0A0812; font-weight: 600;
   border-top-color: rgba(255,255,255,.4);
+  /* Pas de halo coloré : une ombre portée a une direction et un
+     flou, un halo centré n'est que de la décoration. */
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.45),
-    0 14px 34px -16px rgba(139,124,246,.72);
+    0 2px 4px rgba(0,0,0,.4);
 }
-.btn-primary:hover {
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.55),
-    0 20px 46px -16px rgba(139,124,246,.9);
-  transform: translateY(-2px);
-}
+.btn-primary:hover { background: linear-gradient(176deg, #A99DFA, #9487F8 55%, #7B6EE8 100%); }
 
 .btn-ghost {
   background: linear-gradient(176deg, rgba(240,239,245,.055), rgba(240,239,245,.015));
@@ -223,7 +232,7 @@ h3 { font-size: var(--t-h3); line-height: 1.3; letter-spacing: -.015em; font-wei
   border-color: var(--edge);
   border-top-color: var(--edge-lit);
 }
-.btn-ghost:hover { background: linear-gradient(176deg, rgba(240,239,245,.1), rgba(240,239,245,.03)); border-color: var(--edge-lit); transform: translateY(-2px); }
+.btn-ghost:hover { background: linear-gradient(176deg, rgba(240,239,245,.1), rgba(240,239,245,.03)); border-color: var(--edge-lit); }
 
 /* ═══ NAVIGATION ═════════════════════════════════════════════════
    Grille en trois colonnes : le titre tient la gauche, les onglets
@@ -299,18 +308,14 @@ footer { border-top: 1px solid var(--edge); padding-block: 2.4rem; }
 .footer-mid { font-size: var(--t-small); color: var(--ink-28); }
 
 /* ═══ APPARITIONS ════════════════════════════════════════════════
-   Uniquement transform et opacity : tout le reste déclenche un
-   repaint et fait vibrer le texte pendant l'animation.
-
-   Le masquage est conditionné à .js, posée par un script en ligne
-   dans le <head>. Si le JavaScript ne s'exécute pas, le contenu
-   reste visible au lieu de laisser une page vide.
+   Il n'y en a plus. Une entrée identique répétée sur chaque section
+   est un effet éparpillé, pas un moment travaillé : la page gagne à
+   s'afficher d'un bloc. Le seul mouvement voulu de cette page est
+   l'écran du téléphone. Les classes restent neutres pour les autres
+   pages, qui n'ont pas encore été reprises.
    ═══════════════════════════════════════════════════════════════ */
-.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .56s var(--ease-out), transform .56s var(--ease-out); }
-.js .reveal.visible { opacity: 1; transform: none; }
-.d1 { transition-delay: .07s; }
-.d2 { transition-delay: .14s; }
-.d3 { transition-delay: .21s; }
+.reveal, .reveal.visible { opacity: 1; transform: none; }
+.js .reveal, .js .reveal.visible { opacity: 1; transform: none; transition: none; }
 
 /* ═══ MOBILE ═════════════════════════════════════════════════════ */
 
