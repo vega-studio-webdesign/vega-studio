@@ -137,101 +137,96 @@
       </div>
     </section>
 
-    <!-- ═══ MODÈLES ════════════════════════════════════════════
-         Placés juste après le hero : montrer le travail avant de
-         l'expliquer. C'est l'argument le plus solide de la page. -->
-    <section class="section">
-      <div class="wrap">
-        <div class="head">
-          <h2 class="lit reveal">Quatre modèles, déjà construits.</h2>
-          <p class="reveal d1">Votre site part de l'un d'eux, puis reprend vos couleurs, vos photos et vos textes. Cliquez pour le parcourir en entier.</p>
-        </div>
+    <!-- ═══ LE CORPS ═══════════════════════════════════════════
+         Une seule zone à deux colonnes au lieu de deux sections
+         empilées. Le téléphone reste en place pendant que le texte
+         défile à côté : c'est lui qui relie les deux blocs. -->
+    <section>
+      <div class="wrap body-grid">
 
-        <div class="models">
-          <a class="model reveal" href="https://templates.vegastudio.fr/template-robuste.html" target="_blank" rel="noopener">
-            <div class="model-shot">
-              <img src="assets/modeles/robuste.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Aperçu du modèle Robuste, site de plomberie sur fond sombre et orange" />
+        <div class="body-left">
+
+          <div class="block">
+            <h2 class="lit reveal">Vos clients vous cherchent. Soyez au rendez-vous.</h2>
+            <div class="items">
+              <div class="item reveal">
+                <h3>La recherche part du téléphone</h3>
+                <p>Un particulier qui a une fuite tape le métier et le nom de sa ville. Sans site, vous n'êtes pas dans la liste qu'il consulte.</p>
+              </div>
+              <div class="item reveal">
+                <h3>Le premier contact est visuel</h3>
+                <p>La page qu'il ouvre décide s'il compose votre numéro ou s'il passe au suivant. Tout se joue avant la première sonnerie.</p>
+              </div>
+              <div class="item reveal">
+                <h3>Un concurrent décroche à votre place</h3>
+                <p>Ce n'est pas une ligne perdue dans un classement. C'est un chantier qui part ailleurs, et vous ne saurez jamais qu'il a existé.</p>
+              </div>
             </div>
-            <div class="model-meta"><span class="model-name">Robuste</span><span class="model-trade">Plomberie</span><span class="model-go">Parcourir</span></div>
-          </a>
-          <a class="model reveal d1" href="https://templates.vegastudio.fr/template-confiance.html" target="_blank" rel="noopener">
-            <div class="model-shot">
-              <img src="assets/modeles/confiance.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Aperçu du modèle Confiance, site d'électricité en bleu nuit et ambre" />
+          </div>
+
+          <div class="block">
+            <h2 class="lit reveal">Et voilà ce que vous obtenez.</h2>
+            <div class="items">
+              <div class="item reveal">
+                <h3>Conçu pour le mobile</h3>
+                <p>Le site est dessiné d'abord pour le petit écran, parce que c'est là que vos futurs clients vous trouveront. C'est exactement ce que montre l'écran à côté.</p>
+              </div>
+              <div class="item reveal">
+                <h3>Visible dans votre ville</h3>
+                <p>Référencement local et fiche Google Business compris. Vous apparaissez dans les résultats et sur Maps quand on cherche votre métier près de chez vous.</p>
+              </div>
+              <div class="item reveal">
+                <h3>Domaine et hébergement inclus</h3>
+                <p>Tout est compris dans l'abonnement mensuel. Aucune démarche technique de votre côté, aucun prestataire supplémentaire à gérer.</p>
+              </div>
+              <div class="item reveal">
+                <h3>Un interlocuteur, pas un ticket</h3>
+                <p>Chaque abonnement comprend une modification par mois. Vous écrivez à quelqu'un qui connaît votre site et qui répond.</p>
+              </div>
             </div>
-            <div class="model-meta"><span class="model-name">Confiance</span><span class="model-trade">Électricité</span><span class="model-go">Parcourir</span></div>
-          </a>
-          <a class="model reveal d1" href="https://templates.vegastudio.fr/template-local.html" target="_blank" rel="noopener">
-            <div class="model-shot">
-              <img src="assets/modeles/local.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Aperçu du modèle Local, site de menuiserie en vert et terre cuite" />
+          </div>
+
+        </div>
+
+        <!-- Le téléphone n'est pas cliquable : c'est une démonstration,
+             pas une porte de sortie vers un autre site. -->
+        <div class="phone-col reveal d1">
+          <div class="phone">
+            <div class="phone-screen">
+            <div class="shot is-on" data-name="Robuste" data-trade="Plomberie">
+              <img src="assets/apercus/robuste.webp" width="390" height="4200" alt="Aperçu du modèle Robuste, défilement de la version téléphone" fetchpriority="high" decoding="async" />
             </div>
-            <div class="model-meta"><span class="model-name">Local</span><span class="model-trade">Menuiserie</span><span class="model-go">Parcourir</span></div>
-          </a>
-          <a class="model reveal d2" href="https://templates.vegastudio.fr/template-direct.html" target="_blank" rel="noopener">
-            <div class="model-shot">
-              <img src="assets/modeles/direct.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Aperçu du modèle Direct, mise en page claire et typographique" />
+            <div class="shot" data-name="Confiance" data-trade="Électricité">
+              <img src="assets/apercus/confiance.webp" width="390" height="4200" alt="Aperçu du modèle Confiance, défilement de la version téléphone" loading="lazy" decoding="async" />
             </div>
-            <div class="model-meta"><span class="model-name">Direct</span><span class="model-trade">Studio créatif</span><span class="model-go">Parcourir</span></div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ LE CONSTAT ═════════════════════════════════════════ -->
-    <section class="section">
-      <div class="wrap">
-        <div class="head">
-          <h2 class="lit reveal">Vos clients vous cherchent. Soyez au rendez-vous.</h2>
-        </div>
-
-        <div class="facts">
-          <div class="fact reveal">
-            <h3>La recherche part du téléphone</h3>
-            <p>Un particulier qui a une fuite tape le métier et le nom de sa ville. Sans site, vous n'êtes pas dans la liste qu'il consulte.</p>
+            <div class="shot" data-name="Local" data-trade="Menuiserie">
+              <img src="assets/apercus/local.webp" width="390" height="4200" alt="Aperçu du modèle Local, défilement de la version téléphone" loading="lazy" decoding="async" />
+            </div>
+            <div class="shot" data-name="Direct" data-trade="Studio créatif">
+              <img src="assets/apercus/direct.webp" width="390" height="4200" alt="Aperçu du modèle Direct, défilement de la version téléphone" loading="lazy" decoding="async" />
+            </div>
+              <div class="phone-island"></div>
+            </div>
           </div>
-          <div class="fact reveal d1">
-            <h3>Le premier contact est visuel</h3>
-            <p>La page qu'il ouvre décide s'il compose votre numéro ou s'il passe au suivant. Tout se joue avant la première sonnerie.</p>
+          <div class="phone-foot">
+            <span class="phone-name">Robuste</span>
+            <span class="phone-trade">Plomberie</span>
+            <span class="phone-dots" aria-hidden="true">
+              <i class="is-on"></i>
+              <i></i>
+              <i></i>
+              <i></i>
+            </span>
           </div>
-          <div class="fact reveal d2">
-            <h3>Un concurrent décroche à votre place</h3>
-            <p>Ce n'est pas une ligne perdue dans un classement. C'est un chantier qui part ailleurs, et vous ne saurez jamais qu'il a existé.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ CE QUE VOUS OBTENEZ ════════════════════════════════ -->
-    <section class="section">
-      <div class="wrap">
-        <div class="head">
-          <h2 class="lit reveal">Une solution complète, de bout en bout.</h2>
         </div>
 
-        <div class="offer">
-          <div class="offer-item reveal">
-            <h3>Conçu pour le mobile</h3>
-            <p>Ordinateur, tablette, téléphone. Le site est dessiné d'abord pour le petit écran, parce que c'est là que vos futurs clients vous trouveront.</p>
-          </div>
-          <div class="offer-item reveal d1">
-            <h3>Visible dans votre ville</h3>
-            <p>Référencement local et fiche Google Business compris. Vous apparaissez dans les résultats et sur Maps quand on cherche votre métier près de chez vous.</p>
-          </div>
-          <div class="offer-item reveal d1">
-            <h3>Domaine et hébergement inclus</h3>
-            <p>Tout est compris dans l'abonnement mensuel. Aucune démarche technique de votre côté, aucun prestataire supplémentaire à gérer.</p>
-          </div>
-          <div class="offer-item reveal d2">
-            <h3>Un interlocuteur, pas un ticket</h3>
-            <p>Chaque abonnement comprend une modification par mois. Vous écrivez à quelqu'un qui connaît votre site et qui répond.</p>
-          </div>
-        </div>
       </div>
     </section>
 
     <!-- ═══ FORMULES ═══════════════════════════════════════════ -->
     <section class="section">
-      <div class="wrap">
-        <div class="head">
+      <div class="wrap-wide">
+        <div class="tiers-head">
           <h2 class="lit reveal">Trois formules, aucun devis surprise.</h2>
           <p class="reveal d1">Création réglée une fois, puis un abonnement qui couvre l'hébergement, le domaine et le suivi.</p>
         </div>
@@ -266,7 +261,7 @@
 
     <!-- ═══ APPEL ══════════════════════════════════════════════ -->
     <section class="section">
-      <div class="wrap">
+      <div class="wrap-wide">
         <div class="cta panel reveal">
           <div>
             <h2 class="lit">Un projet ? Parlons-en.</h2>
@@ -276,6 +271,7 @@
         </div>
       </div>
     </section>
+
   </main>
 
   <footer>

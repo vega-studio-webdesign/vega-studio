@@ -1,22 +1,24 @@
 /* ═══════════════════════════════════════════════════════════════════
    VEGA STUDIO — page d'accueil
+
+   Le défaut de la version précédente : une suite de bandes pleine
+   largeur, toutes calées sur la même marge, toutes séparées par le
+   même blanc. La page se lisait comme une pile de rectangles.
+   La correction tient en une pièce : un téléphone collant à droite,
+   qui reste à l'écran pendant que deux blocs de texte défilent à sa
+   gauche. Il traverse ce qui était deux sections, et la frontière
+   entre elles disparaît.
    ═══════════════════════════════════════════════════════════════════ */
 
-/* ═══ HERO ═══════════════════════════════════════════════════════
-   Aligné à gauche, pas centré : l'étoile est à l'origine de la
-   lumière de la page, l'œil part de la source et descend vers le
-   texte. Un bloc centré n'a pas de point de départ.
-   Volontairement sous la hauteur d'écran pour que les aperçus en
-   dessous affleurent et appellent le défilement.
-   ═══════════════════════════════════════════════════════════════ */
+/* ═══ HERO ═══════════════════════════════════════════════════════ */
+
 .hero {
   position: relative;
-  min-height: 88svh;
+  min-height: 86svh;
   display: flex;
   align-items: center;
-  padding-block: 7.5rem 3rem;
+  padding-block: 7.5rem 2.5rem;
 }
-
 .hero-inner { max-width: 54rem; }
 
 /* L'étoile émet. Le halo est un élément flouté distinct, pas une
@@ -35,85 +37,115 @@
   50%      { opacity: 1;   transform: scale(1.09); }
 }
 
-.hero h1   { font-size: var(--t-display); margin-bottom: 1.5rem; }
+.hero h1    { font-size: var(--t-display); margin-bottom: 1.5rem; }
 .hero .lead { max-width: 44ch; }
 .hero-actions { display: flex; gap: .85rem; margin-top: 2.2rem; flex-wrap: wrap; }
 
-/* Pied de hero : deux faits posés aux extrémités plutôt que joints
-   par un séparateur, qui est le tic de mise en page par excellence. */
-.hero-foot { margin-top: clamp(2.4rem, 4.5vw, 3.5rem); }
+.hero-foot { margin-top: clamp(2.2rem, 4vw, 3.2rem); }
 .hero-foot-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
 .hero-price strong { color: var(--ink); font-weight: 500; }
 
-/* ═══ EN-TÊTES DE SECTION ════════════════════════════════════════ */
-
-.head { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-bottom: 2.4rem; }
-.head h2 { font-size: var(--t-h2); max-width: 20ch; }
-.head p  { max-width: 40ch; color: var(--ink-70); font-size: .99rem; }
-
-/* ═══ MODÈLES ════════════════════════════════════════════════════
-   Quatre sites réels, montrés. C'est le meilleur argument de la
-   page : il se regarde, il ne se raconte pas.
+/* ═══ LE CORPS ═══════════════════════════════════════════════════
+   Une seule grande zone à deux colonnes. La colonne de gauche
+   enchaîne l'argument et le détail de l'offre sans rupture ; la
+   droite tient le téléphone.
    ═══════════════════════════════════════════════════════════════ */
 
-.models { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1.15rem; }
-
-.model { display: block; transition: transform .35s cubic-bezier(.2,.7,.3,1); }
-.model:hover { transform: translateY(-4px); }
-
-.model-shot {
-  position: relative; overflow: hidden; border-radius: var(--r);
-  border: 1px solid var(--edge); border-top-color: var(--edge-lit); border-bottom-color: var(--edge-shade);
-  background: var(--d1);
-  box-shadow: 0 26px 60px -40px #000;
+.body-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+  align-items: start;
+  padding-block: clamp(3rem, 6vw, 5rem) clamp(3.5rem, 7vw, 6rem);
 }
-.model-shot img { width: 100%; height: auto; display: block; transition: transform .5s cubic-bezier(.2,.7,.3,1); }
-.model:hover .model-shot img { transform: scale(1.025); }
 
-/* Le libellé est posé SOUS la vignette, pas dessus. Chaque modèle a
-   ses propres couleurs : un voile sombre qui marche sur Robuste
-   rendait le texte illisible sur Direct, qui est blanc. Sous l'image,
-   le libellé est toujours sur le fond de la page. */
-.model-meta { display: flex; align-items: baseline; gap: .7rem; padding: .95rem .2rem 0; }
-.model-name  { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: -.02em; }
-.model-trade { font-size: var(--t-small); color: var(--ink-45); margin-right: auto; }
-.model-go    { font-size: var(--t-small); color: var(--ink-28); transition: color .3s; }
-.model:hover .model-go { color: var(--lilac); }
+.body-left { max-width: 38rem; }
 
-/* ═══ LE CONSTAT ═════════════════════════════════════════════════
-   Trois colonnes sous un titre pleine largeur. La version en deux
-   colonnes laissait la moitié gauche de l'écran vide sur toute la
-   hauteur du bloc, et c'est ce qui creusait la page.
+.block + .block { margin-top: clamp(3rem, 5.5vw, 4.5rem); }
+.block h2 { font-size: var(--t-h2); margin-bottom: 1.6rem; }
+
+/* Les items sont séparés par des filets, pas posés dans des cartes :
+   le trait appartient à la page, la carte flotte dessus. */
+.items { border-top: 1px solid var(--edge); }
+.item  { padding-block: 1.3rem; border-bottom: 1px solid var(--edge); }
+.item h3 { margin-bottom: .4rem; }
+.item p  { color: var(--ink-70); font-size: .96rem; }
+
+/* ═══ LE TÉLÉPHONE ═══════════════════════════════════════════════
+   Collant : il reste en place pendant que la colonne de gauche
+   défile. C'est ce qui relie les deux blocs et casse l'empilement.
    ═══════════════════════════════════════════════════════════════ */
 
-.facts { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 0; border-top: 1px solid var(--edge); }
-.fact { padding: 1.8rem 1.6rem 0 0; }
-.fact + .fact { padding-left: 1.6rem; border-left: 1px solid var(--edge); }
-.fact h3 { margin-bottom: .55rem; }
-.fact p  { color: var(--ink-70); font-size: .97rem; }
+.phone-col { position: sticky; top: 6.5rem; width: 274px; }
 
-/* ═══ CE QUE VOUS OBTENEZ ════════════════════════════════════════
-   Pas quatre cartes identiques posées côte à côte. Une grille dont
-   les filets sont la structure : les traits appartiennent à la
-   page, les cellules ne flottent pas dessus.
-   ═══════════════════════════════════════════════════════════════ */
-
-.offer { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); border-top: 1px solid var(--edge); }
-.offer-item { position: relative; padding: 1.9rem 2rem; border-bottom: 1px solid var(--edge); transition: background .3s; }
-.offer-item:nth-child(odd) { border-right: 1px solid var(--edge); padding-left: 0; }
-.offer-item:nth-child(even) { padding-right: 0; }
-.offer-item h3 { margin-bottom: .6rem; }
-.offer-item p  { color: var(--ink-70); font-size: .97rem; }
-
-/* Au survol, l'arête haute capte la lumière. La couleur n'apparaît
-   qu'à cet endroit, et seulement en réaction. */
-.offer-item::before {
-  content: ''; position: absolute; inset: -1px 0 auto 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--purple), transparent);
-  opacity: 0; transition: opacity .35s;
+.phone {
+  position: relative;
+  width: 274px;
+  aspect-ratio: 274 / 575;
+  border-radius: 42px;
+  padding: 11px;
+  /* Le châssis est un objet métallique : il capte la lumière sur son
+     arête haute-gauche, comme tout le reste de la page. */
+  background: linear-gradient(152deg, #4a4e5e 0%, #20232d 16%, #0e0f15 52%, #171a23 78%, #3a3e4c 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.09),
+    inset 0 1px 1px rgba(255,255,255,.26),
+    0 60px 100px -50px #000,
+    0 20px 50px -30px rgba(0,0,0,.9);
 }
-.offer-item:hover { background: rgba(240,239,245,.018); }
-.offer-item:hover::before { opacity: .85; }
+
+/* Boutons latéraux */
+.phone::before,
+.phone::after {
+  content: ''; position: absolute; width: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, #2a2d38, #4b4f5f);
+}
+.phone::before { left: -2px; top: 112px; height: 58px; box-shadow: 0 78px 0 #3a3e4c, 0 78px 0 2px transparent; }
+.phone::after  { right: -2px; top: 136px; height: 74px; }
+
+.phone-screen {
+  position: relative; width: 100%; height: 100%;
+  border-radius: 31px; overflow: hidden;
+  background: #000;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.85);
+}
+
+/* Bande de statut assombrie en haut de l'écran. Sans elle, l'îlot
+   noir se pose au milieu d'une phrase du site qui défile et se lit
+   comme une barre de censure plutôt que comme une partie du
+   téléphone. Les vrais appareils ont cette zone translucide. */
+.phone-screen::before {
+  content: ''; position: absolute; inset: 0 0 auto 0; z-index: 4;
+  height: 46px; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,.68), rgba(0,0,0,.3) 58%, transparent);
+}
+
+.phone-island {
+  position: absolute; z-index: 6; top: 9px; left: 50%; transform: translateX(-50%);
+  width: 74px; height: 21px; border-radius: 12px; background: #000;
+}
+
+/* Les aperçus sont empilés ; un seul est visible à la fois. */
+.shot { position: absolute; inset: 0; opacity: 0; transition: opacity .75s ease; }
+.shot.is-on { opacity: 1; }
+.shot img { position: absolute; top: 0; left: 0; width: 100%; height: auto; display: block; will-change: transform; }
+
+/* Reflet de vitre, figé : il appartient à l'écran, pas au contenu
+   qui défile dessous. */
+.phone-screen::after {
+  content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
+  background: linear-gradient(118deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.03) 22%, transparent 42%);
+}
+
+/* Légende sous le téléphone : indique le modèle en cours et
+   l'avancement du cycle. */
+.phone-foot { display: flex; align-items: baseline; gap: .6rem; margin-top: 1.1rem; padding-inline: .2rem; }
+.phone-name  { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: -.02em; }
+.phone-trade { font-size: var(--t-small); color: var(--ink-45); margin-right: auto; }
+
+.phone-dots { display: flex; gap: 5px; }
+.phone-dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--ink-28); transition: background .4s, box-shadow .4s; }
+.phone-dots i.is-on { background: var(--purple); box-shadow: 0 0 8px 1px rgba(139,124,246,.8); }
 
 /* ═══ FORMULES ═══════════════════════════════════════════════════ */
 
@@ -135,7 +167,12 @@
     0 26px 60px -40px #000;
 }
 
+.tiers-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.tiers-head h2 { font-size: var(--t-h2); flex: 1 1 22rem; max-width: 20ch; }
+.tiers-head p  { flex: 0 1 26rem; color: var(--ink-70); font-size: .98rem; }
 .tiers-foot { margin-top: 1.6rem; display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap; }
+
+.wrap-wide { width: 100%; max-width: 1300px; margin-inline: auto; padding-inline: var(--gut); }
 
 /* ═══ APPEL ══════════════════════════════════════════════════════ */
 
@@ -144,10 +181,22 @@
 .cta p  { max-width: 44ch; color: var(--ink-70); font-size: .99rem; }
 .cta .btn { flex: none; }
 
+/* ═══ TABLETTE ═══════════════════════════════════════════════════
+   Sous 1080 px il n'y a plus la place pour deux colonnes plus un
+   téléphone de 274 px : on repasse en une colonne, le téléphone
+   cesse d'être collant et se centre entre les deux blocs de texte.
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1080px) {
+  .body-grid { grid-template-columns: 1fr; gap: clamp(2.5rem, 6vw, 3.5rem); }
+  .body-left { max-width: none; order: 1; }
+  .phone-col { position: static; order: 2; width: 274px; margin-inline: auto; }
+}
+
 /* ═══ MOBILE ═════════════════════════════════════════════════════ */
 
 @media (max-width: 860px) {
-  .hero { padding-block: 7rem 3rem; text-align: center; min-height: auto; }
+  .hero { padding-block: 7rem 2.5rem; text-align: center; min-height: auto; }
   .hero-inner { display: flex; flex-direction: column; align-items: center; }
   .hero-star { margin-inline: auto; }
   /* À 390 px, l'échelle de bureau tombe sur cinq lignes et le titre
@@ -157,20 +206,15 @@
   .hero-actions { width: 100%; flex-direction: column; align-items: stretch; }
   .hero-foot-row { justify-content: center; flex-direction: column; gap: .35rem; }
 
-  .head { margin-bottom: 1.8rem; }
-  .models { grid-template-columns: 1fr; gap: .9rem; }
-
-  .facts { grid-template-columns: 1fr; }
-  .fact { padding: 1.5rem 0; border-top: 1px solid var(--edge); }
-  .fact:first-child { border-top: 0; }
-  .fact + .fact { padding-left: 0; border-left: 0; }
-
-  .offer { grid-template-columns: 1fr; }
-  .offer-item,
-  .offer-item:nth-child(odd),
-  .offer-item:nth-child(even) { padding: 1.6rem 0; border-right: 0; }
-
+  .block + .block { margin-top: 2.6rem; }
   .tiers { grid-template-columns: 1fr; }
-  .cta { flex-direction: column; align-items: flex-start; text-align: left; }
+  .cta { flex-direction: column; align-items: flex-start; }
   .cta .btn { width: 100%; }
+}
+
+/* Sous 330 px le châssis déborderait de la gouttière. */
+@media (max-width: 380px) {
+  .phone-col { width: 240px; }
+  .phone { width: 240px; border-radius: 36px; padding: 9px; }
+  .phone-screen { border-radius: 27px; }
 }

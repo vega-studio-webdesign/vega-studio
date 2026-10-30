@@ -27,8 +27,8 @@
      creuse l'écart et la lumière paraît réelle plutôt que teintée. */
   --ink:    #F0EFF5;
   --ink-70: rgba(240,239,245,.70);
-  --ink-45: rgba(240,239,245,.45);
-  --ink-28: rgba(240,239,245,.28);
+  --ink-45: rgba(240,239,245,.56);
+  --ink-28: rgba(240,239,245,.42);
 
   /* ── arêtes ──
      Trois valeurs : ce qui capte la lumière, ce qui est neutre,
@@ -123,7 +123,7 @@ h3 { font-size: var(--t-h3); line-height: 1.3; letter-spacing: -.015em; font-wei
    haut et s'éteint vers le bas, comme n'importe quel objet de la
    page. La différence de valeur fait le travail, pas la teinte. */
 .lit {
-  background: linear-gradient(180deg, #FFFFFF 0%, var(--ink) 40%, rgba(240,239,245,.72) 100%);
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--ink) 42%, rgba(240,239,245,.82) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -135,7 +135,7 @@ h3 { font-size: var(--t-h3); line-height: 1.3; letter-spacing: -.015em; font-wei
    Le hero descend plus bas dans les gris : il a trois lignes pour le
    faire, donc la chute se lit comme un volume. */
 .hero h1.lit {
-  background: linear-gradient(180deg, #FFFFFF 0%, var(--ink) 30%, rgba(240,239,245,.52) 100%);
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--ink) 34%, rgba(240,239,245,.68) 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }
